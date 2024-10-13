@@ -2,7 +2,7 @@ import React from 'react'
 
 const CourseList1 = () => {
   return (
-    <div className='courses-bg'>
+    <div className='courses-bg'>alo
       <div className='flex flex-col text-right px-10 border border-blue-800 max-w-prose' >
         <h2 className='text-[24px] text-[#2196F3] '>مهمه از کی یاد می گیری!!</h2>
         <h2 className='text-[40px] text-[#263238] break-words'>اموزش برنامه نویسی با بهترین ها</h2>

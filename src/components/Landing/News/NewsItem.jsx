@@ -15,7 +15,7 @@ const NewsItem = ({ img, newsTitle, describe, view, date, index }) => {
         <>
             {index === 0 ?
                 <div class='flex flex-col gap-4 p-3 w-[616px] h-[548px] rounded-md '>
-                    <img src={img} class='w-[616px] h-[340px] rounded-2xl ' />
+                    <img src={img} class='w-[400px] h-[400px] rounded-2xl ' />
                     <div class='flex gap-2 items-center'>
                         <div class='flex items-center gap-1 p-2  bg-[#DAEEFF] rounded-3xl ' >
                             <img src={eye} class=' w-[16px] h-[16px] ' />
@@ -33,9 +33,9 @@ const NewsItem = ({ img, newsTitle, describe, view, date, index }) => {
                 </div>
                 :
                 <div class='flex gap-2 p-3 rounded-md w-[624px] h-[180px]  '>
-                    <img src={img} class='w-[220px] h-[161px] rounded-2xl ' />
+                    <img src={img} class='w-[180px] h-[180px] rounded-2xl ' />
                     <div class='flex flex-col gap-2 justify-center '>
-                        <div className=' flex flex-col flex-wrap text-wrap w-[380px] overflow-hidden' >
+                        <div className=' flex flex-col flex-wrap text-wrap w-[380px] overflow-hidden max-w-prose' >
                             <h4 class='text-[#263238] text-[32px] text-right text-wrap'>{newsTitle}</h4>
                             <h4 class='text-[#455A64] text-[16px] text-right text-wrap'>{describe}</h4>
                         </div>

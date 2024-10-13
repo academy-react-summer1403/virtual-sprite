@@ -19,7 +19,7 @@ const NewsHolder = () => {
     return (
         <div className='mb-16 -mt-20'>
             <Title title={"اخبار و مقالات"} />
-            <div className='flex flex-wrap gap-5 justify-center my-5'>
+            <div className='flex flex-wrap gap-5 justify-center my-8'>
                 {topNews.length > 0 && (
                     <>
                         <div className='flex gap-5' key={topNews[0].id}>
@@ -34,7 +34,7 @@ const NewsHolder = () => {
                         </div>
 
                         {/* Container for the next news items with orange border */}
-                        <div className='flex flex-col gap-2'>
+                        <div className='flex flex-col gap-5'>
                             {topNews.slice(1).map((item, index) => (
                                 <NewsItem
                                     index={index + 1} // Adjust index for subsequent items  

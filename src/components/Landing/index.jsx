@@ -1,28 +1,25 @@
 import React from 'react'
 import Header from '@app/Layouts/MainLayout/Navbar/Header'
-import HeroSection from './HeroSection/HeroSection'
-import KhadamatHolder from './Khadamat/KhadamatHolder'
+import HeroSection from './HeroSection'
 import Footer from '@app/Layouts/MainLayout/Footer/Footer'
 import CourseCategory from './CourseCategory/CourseCategory'
-import CourseTopList from '../Courses/CourseTopList'
-import CourseTop from '@core/services/api/courses/CourseTop'
-import TeacherApi from '@core/services/api/teachers/TeacherApi'
-import Test from './Teachers/test'
+import TeacherHolder from './Teachers/TeacherHolder'
+import ServiceHolder from './services/ServiceHolder'
+import NewsHolder from './News/NewsHolder'
+import CourseHolder from './CourseTop/CourseHolder'
 
 
 
 const Landing = () => {
   return (
     <div>
-      {/* <Header/> */}
       <HeroSection />
-      <KhadamatHolder />
-      {/* <CourseTopList/> */}
-      <CourseTop/>
+      <ServiceHolder/>
+      <CourseHolder/>
       <CourseCategory/>
-      <TeacherApi/>
-      {/* <Test/> */}
-      <Footer />
+      <TeacherHolder/>
+      <NewsHolder/>
+      {/* <Footer /> */}
     </div>
   )
 }

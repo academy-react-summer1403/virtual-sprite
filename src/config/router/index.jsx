@@ -1,8 +1,49 @@
-import React from 'react'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Root from './Root.jsx'
+import CourseList1 from '@components/Courses/CourseList1';
+import CourseList2 from '@components/Courses/CourseList2';
+import App from './../../app/App';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        index: true,
+        path: "/",
+        element: <App />,
+        // errorElement: <ErrorText />
+      },
+      {
+        path: "/courselist1",
+        element: <CourseList1 />,
+        // errorElement: <ErrorText />
+      },
+      {
+        path: "/courselist2",
+        element: <CourseList2 />,
+        // errorElement: <ErrorText />
+      },
+      // {
+      //   path: "/addItem",
+      //   element: <AddItem />,
+      //   errorElement: <ErrorText />
+      // },
+    ],
+  },
+  // {
+  //   path: "*",
+  //   element: <Error />
+  // }
+])
 
 const RouterConfig = () => {
   return (
-    <div>Router Config test</div>
+    <RouterProvider router={router} />
   )
 }
 

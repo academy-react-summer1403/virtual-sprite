@@ -7,8 +7,8 @@ const Footer = () => {
     <div class='w-full bg-[#252641] flex flex-col items-center justify-center gap-4 ' >
       <div class='w-[33%] flex flex-col items-center my-5 gap-6 '>
         <div class="flex gap-1 items-center ">
-          <img src={hexa} class='w-[43px] h-[30px] ' />
           <h2 class='text-white text-[18px] font-bold ' >Virtual Sprite</h2>
+          <img src={hexa} class='w-[43px] h-[30px] ' />
         </div>
         <p class='text-white text-[16px]' >هدف ما سهولت دسترسی و دریافت  خدمات از همه ی نقاط کشور با کمترین تعرفه و بدون نیاز  مراجعه حضوری در کل فرایند ثبت </p>
 
@@ -33,7 +33,7 @@ const Footer = () => {
           <img src={c} class='w-[20px] h-[20px]' />
           <p class='text-white text-[12px] ' >تمام حقوق مادی و معنوی این مجموعه متعلق به Virtual Sprite میباشد</p>
         </div>
-        <img src={icons} class='w-[224px] h-[32px]'/>
+        <img src={icons} class='w-[224px] h-[32px]' />
       </div>
 
     </div>

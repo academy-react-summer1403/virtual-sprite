@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './Root.jsx'
 import App from './../../app/App';
-import CourseList1  from '@components/Courses/Course1/CourseList1';
+import CourseList1  from '@components/Courses/Pagination1/CourseList1';
 import CourseList2 from '@components/Courses/CourseList2';
 
 

@@ -13,14 +13,13 @@ import DateFormater from '@common/DateFormater'
 
 
 const CourseItem = ({ teacherName, cost, likeCount, isLiked, img, title, date }) => {
-
+  img === null ? img = noPhoto : img = img
 
 
 
   return (
     <div class='flex flex-col  gap-1 bg-[#ffffff] border-2 shadow-xl rounded-xl p-3 '>
-      {img === null ? (<img src={noPhoto} class='w-[264px] h-[180px] ' />) :
-        (<img src={img} class='w-[264px] h-[180px] ' />)}
+      <img src={img} class='w-[264px] h-[180px] rounded-xl' />
       <h4 class='text-[#263238] text-[18px] text-right p-2'>{title}</h4>
 
       <div class='flex items-center justify-between bg-[#ECEFF1] p-2 rounded-full '>

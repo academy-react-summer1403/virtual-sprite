@@ -5,12 +5,15 @@ import { useEffect } from 'react';
 import { getTopCourses } from '@core/services/api/courses/courseTop.api.js';
 import Btn from '../../common/Btn';
 import Title from '../Title/Title';
+import { useNavigate } from 'react-router-dom';
 
 const CourseHolder = () => {
 
+    const navigate = useNavigate();
+
     const [topCourses, setTopCourses] = useState();
 
-    const getCourses = async() =>{
+    const getCourses = async () => {
         const result = await getTopCourses();
         setTopCourses(result);
     }
@@ -36,7 +39,9 @@ const CourseHolder = () => {
                     />
                 ))}
             </div>
-            <Btn insideText={"مشاهده همه"} />
+            <div className='inline' onClick={() => navigate('/courselist1')} >
+                <Btn insideText={"مشاهده همه"} />
+            </div>
         </div>
     )
 }

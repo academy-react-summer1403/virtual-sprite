@@ -35,7 +35,7 @@ const NewsItem = ({ img, newsTitle, describe, view, date, index }) => {
                 <div class='flex gap-2 p-3 rounded-md w-[624px] h-[180px]  '>
                     <img src={img} class='w-[180px] h-[180px] rounded-2xl ' />
                     <div class='flex flex-col gap-2 justify-center '>
-                        <div className=' flex flex-col flex-wrap text-wrap w-[380px] overflow-hidden max-w-prose' >
+                        <div className=' flex flex-col flex-wrap text-wrap w-[380px] ' >
                             <h4 class='text-[#263238] text-[32px] text-right text-wrap'>{newsTitle}</h4>
                             <h4 class='text-[#455A64] text-[16px] text-right text-wrap'>{describe}</h4>
                         </div>

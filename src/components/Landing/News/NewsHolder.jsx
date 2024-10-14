@@ -32,12 +32,10 @@ const NewsHolder = () => {
                                 date={topNews[0].insertDate}
                             />
                         </div>
-
-                        {/* Container for the next news items with orange border */}
                         <div className='flex flex-col gap-5'>
                             {topNews.slice(1).map((item, index) => (
                                 <NewsItem
-                                    index={index + 1} // Adjust index for subsequent items  
+                                    index={index + 1}  
                                     img={item.currentImageAddressTumb}
                                     newsTitle={item.title}
                                     describe={item.miniDescribe}

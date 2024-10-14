@@ -20,12 +20,14 @@ body{
 }
 .bg{
   width: 100%;
-  background : url('../assets/images/HeroSection/header-bg.png') no-repeat 100% 25%;
+  background : url('../assets/images/HeroSection/header-bg.png') no-repeat 100% 50%;
   background-size:100%;
   display: flex;
+  margin-top: -120px;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 50px;
+  gap: 60px;
 }
 .cat-bg{
   width: 90%;

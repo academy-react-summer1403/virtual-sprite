@@ -47,7 +47,7 @@ const CoursePage1 = () => {
 
     return (
         <div>
-            <div className='flex flex-wrap gap-12 justify-center my-5'>
+            <div className='flex flex-wrap gap-12 justify-center my-5 border border-pink-400 '>
                 {currentItems.map((item) => (
                     <CourseItem
                         key={item.courseId}

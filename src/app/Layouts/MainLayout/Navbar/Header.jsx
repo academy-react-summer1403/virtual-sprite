@@ -15,14 +15,14 @@ const Header = () => {
             <ul class="flex gap-10 items-center ">
                 <li >
                     <NavLink to="/courselist1"
-                        className={({ isActive }) => `${isActive && "text-[#2196F4]"}
-                    text-[#263238] text-[16px] hover:text-[#2196F3]`} >
+                        className={({ isActive }) => `${isActive && "gradient-border"}
+                    text-[#263238] text-[16px] transition duration-300 hover:text-[#2196F3]`} >
                         دوره ها
                     </NavLink>
                 </li>
-                <li className='text-[#263238] text-[16px] cursor-pointer ' >اساتید</li>
-                <li className='text-[#263238] text-[16px] cursor-pointer' >ارتباط با ما</li>
-                <li className='text-[#263238] text-[16px] cursor-pointer' >اخبار مقالات</li>
+                <li className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]' >اساتید</li>
+                <li className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]' >ارتباط با ما</li>
+                <li className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]' >اخبار مقالات</li>
             </ul>
             <div class="flex gap-4 ml-20">
                 {/* <img src={sabad} class=" h-20 w-20" /> */}

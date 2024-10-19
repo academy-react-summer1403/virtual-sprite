@@ -35,7 +35,7 @@ const NewsHolder = () => {
                         <div className='flex flex-col gap-5'>
                             {topNews.slice(1).map((item, index) => (
                                 <NewsItem
-                                    index={index + 1}  
+                                    index={index + 1}
                                     img={item.currentImageAddressTumb}
                                     newsTitle={item.title}
                                     describe={item.miniDescribe}

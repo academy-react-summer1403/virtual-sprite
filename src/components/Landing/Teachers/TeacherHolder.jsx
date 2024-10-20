@@ -9,12 +9,10 @@ import activeDot from '@assets/images/mainContent/teachers/activeDot.svg';
 
 
 
-
-
 const TeacherHolder = () => {
     const [teachers, setTeachers] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const itemsPerSlide = 4; // Number of items per slide  
+    const itemsPerSlide = 4;
 
     const getTeachers = async () => {
         const result = await getAllTeachers()

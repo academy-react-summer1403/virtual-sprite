@@ -1,5 +1,6 @@
 import React from "react";
 import rec from "@assets/images/CourseDetail/recHtml5.svg";
+import SimilarCourses from "./SimilarCourses";
 const CourseDetail = () => {
   return (
     <div>
@@ -24,8 +25,9 @@ const CourseDetail = () => {
         <div class="w-[400px] h-[600px] shadow-xl bg-[#FFFFFF] rounded-xl ">
           مشخصات دوره
         </div>
-        <div class="w-[1200px] h-[55px] shadow-xl bg-[#FFFFFF] rounded-xl ">
+        <div class=" shadow-xl bg-[#FFFFFF] rounded-xl ">
           اسلایدر دوره های مشابه
+          <SimilarCourses/>
         </div>
         {/* <div class="w-[800px] flex flex-row flex-wrap
           gap-40 justify-center items-center shadow-xl" >

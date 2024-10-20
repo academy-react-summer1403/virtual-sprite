@@ -5,6 +5,7 @@ import Root from './Root.jsx'
 import App from './../../app/App';
 import CourseList1  from '@components/Courses/Pagination1/CourseList1';
 import CourseList2 from '@components/Courses/CourseList2';
+import CourseDetail from '@components/CourseDetail/index.jsx';
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
       {
         path: "/courselist2",
         element: <CourseList2 />,
+        // errorElement: <ErrorText />
+      },
+      {
+        path: "/coursedetail",
+        element: <CourseDetail/>,
         // errorElement: <ErrorText />
       },
       // {

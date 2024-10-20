@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CourseItem from '@components/Landing/CourseTop/CourseItem';
 import { coursePagination } from '@core/services/api/courses/coursePagination.api';
+import right from '@assets/images/coursePagination/right.png';
+import left from '@assets/images/coursePagination/left.png';
+
 
 
 
@@ -65,9 +68,9 @@ const CoursePage1 = () => {
                 <button
                     onClick={handlePreviousPage}
                     disabled={currentPage === 1}
-                    className='mx-2 px-3 py-1 text-[18px] font-black rounded-full bg-[#ECEFF1] hover:bg-[#2196F3] hover:text-white '
+                    className='mx-2 px-0 py-0 rounded-full '
                 >
-                    {"<"}
+                    <img src={right} />
                 </button>
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
@@ -81,9 +84,9 @@ const CoursePage1 = () => {
                 <button
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}
-                    className='mx-2 px-3 py-1 text-[18px] font-black rounded-full bg-[#ECEFF1] hover:bg-[#2196F3] hover:text-white'
+                    className='mx-2 px-0 py-0 rounded-full '
                 >
-                    {">"}
+                    <img src={left} />
                 </button>
             </div>
         </div>

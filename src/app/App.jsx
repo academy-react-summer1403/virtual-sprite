@@ -1,13 +1,11 @@
 import "./App.css";
+import Landing from "../components/Landing";
 
 function App() {
-  
   return (
     <>
       <div>
-        <h1 className="text-3xl font-bold underline bg-green-500">
-          hello test
-        </h1>
+        <Landing />
       </div>
     </>
   );

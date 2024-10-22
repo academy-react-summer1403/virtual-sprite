@@ -20,22 +20,29 @@ const MenuPanel = () => {
     { id: 7, name: " خروج از حساب", img:"exist" },
   ]);
   return (
-    <div className="w-[20%] h-[95%] m-auto mt-[1%] rounded-[0.9em] bg-gradient-to-b from-[#8B80F6] to-[#2F12B8] shadow-[10px_10px_5px_0_#00000029]">
+    <>
       <div
         dir="rtl"
-        className="w-[90%] h-[5%] m-auto mt-[3%]"
+        className="lg:w-[90%] lg:h-[5%] lg:m-auto lg:mt-[3%] md:w-[90%] md:h-[5%] md:m-auto md:mt-[3%]
+        sm:w-[90%] sm:h-[5%] sm:m-auto sm:mt-[3%] xs:w-[90%] xs:h-[5%] xs:m-auto xs:mt-[3%]"
       >
         <HiOutlineHome
           style={{ color: "#ffff" }}
-          className="w-[17%] h-[90%] opacity-70"
+          className="w-[17%] h-[90%] opacity-70 sm:w-[17%] sm:h-[90%] sm:opacity-70 xs:w-[17%] xs:h-[90%] xs:opacity-70"
         />
       </div>
-      <div className="w-[90%] h-[30%] border-b-[1px] border-b-[#A196F6] m-auto flex flex-col">
-        <div className="w-[60%] h-[80%] rounded-[100%] m-auto mt-[0] border-b-[6px] border-b-[#D0CEFF] border-r-[6px] border-r-[#D0CEFF] ">
-          {" "}
+      <div className="w-[90%] h-[30%] border-b-[1px] border-b-[#A196F6] m-auto flex flex-col
+      sm:w-[90%] sm:h-[30%] sm:border-b-[1px] sm:border-b-[#A196F6] sm:m-auto sm:flex sm:flex-col
+      xs:w-[90%] xs:h-[30%] xs:border-b-[1px] xs:border-b-[#A196F6] xs:m-auto xs:flex xs:flex-col
+      ">
+        <div className="w-[60%] h-[80%] rounded-[100%] m-auto mt-[0] border-b-[6px] border-b-[#D0CEFF] border-r-[6px] border-r-[#D0CEFF] 
+        xs:w-[60%] xs:h-[80%] xs:rounded-[100%] xs:m-auto xs:mt-[0] xs:border-b-[6px] xs:border-b-[#D0CEFF] xs:border-r-[6px] xs:border-r-[#D0CEFF]
+        sm:w-[60%] sm:h-[80%] sm:rounded-[100%] sm:m-auto sm:mt-[0] sm:border-b-[6px] sm:border-b-[#D0CEFF] sm:border-r-[6px] sm:border-r-[#D0CEFF]
+        ">
+          
           <img src={carbar} className="w-[100%] h-[100%] rounded-[100%] "></img>
         </div>
-        <span className="text-center text-[22px] text-[#EDEDED] mb-[4%]">
+        <span className="text-center text-[22px] sm:text-[25px] xs:text-[25px] text-[#EDEDED] mb-[4%]">
           لیلا کریمی
         </span>
       </div>
@@ -51,7 +58,7 @@ const MenuPanel = () => {
           );
         })}
       </div>
-    </div>
+ </>
   );
 };
 export { MenuPanel };

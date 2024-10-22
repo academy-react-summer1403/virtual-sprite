@@ -9,7 +9,7 @@ const Information=()=>{
         {id:3,name:":کدملی",explane:"2080542044"},
      ])
     return(
-    <div dir="rtl" className="w-[98%] m-auto h-[80%] relative mt-[2%] flex flex-row flex-wrap gap-[2%]">
+    <div dir="rtl" className="w-[98%] m-auto h-[80%] relative mt-[1%] flex flex-row flex-wrap gap-[2%]">
 
 {cardList.map((item,index) => {
         return(
@@ -20,7 +20,7 @@ explane={item.explane}
 id={item.id}
 />
         ); } ) }
-        <div className="w-[20%] h-[40%] absolute bottom-[-10%] border-[#D6D5F5] text-[#4C2BC0] text-center text-[20px] leading-10 rounded-tr-[15px] rounded-bl-[15px] border-[2px] left-[-1.1%]">ویرایش</div>
+        <div className="w-[20%] h-[40%] bg-[#3F40EA] text-[#ffff] absolute bottom-[-20%] border-[#D6D5F5]  text-center font-normal text-[25px] cursor-pointer leading-[50px] rounded-tr-[15px] rounded-bl-[15px] border-[2px] left-[-1.1%]">ویرایش</div>
     </div>
     
     )

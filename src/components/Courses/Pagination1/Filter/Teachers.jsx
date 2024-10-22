@@ -45,11 +45,11 @@ const Teachers = ({ index }) => {
                         {teachers.map((contentItem, contentIndex) => (
                             <div key={contentIndex} className='flex items-center mb-2'>
                                 <input type="checkbox"
-                                    id={contentItem.typeName}
+                                    id={contentItem.fullName}
                                     className='mx-2'
                                 />
                                 {contentItem.fullName === null ? null :
-                                    <label htmlFor={contentItem.typeName}
+                                    <label htmlFor={contentItem.fullName}
                                         className='text-[14px] text-[#455A64]'>
                                         {contentItem.fullName}
                                     </label>}

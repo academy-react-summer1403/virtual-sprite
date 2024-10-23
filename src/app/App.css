@@ -2,6 +2,48 @@
   font-family: yekan;
   src: url("../assets/fonts/Yekan_Bakh_Fanum_Regular.TTF");
 }
+@font-face {
+  font-family: "yekanReg";
+  src: url("../assets/fonts/Yekan_Bakh_Fanum_Regular.TTF") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "yekanBold";
+  src: url("../assets/fonts/Yekan_Bakh_Fanum_Bold.TTF") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "yekanXBold";
+  src: url("../assets/fonts/Yekan_Bakh_Fanum_Extra_Bold.TTF") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "yekanHeavy";
+  src: url("../assets/fonts/Yekan_Bakh_Fanum_Heavy.TTF") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+.normal-text {
+  font-family: "yekanReg";
+  font-weight: normal;
+}
+.bold-text {
+  font-family: "yekanBold";
+  font-weight: 700;
+}
+.xbold-text {
+  font-family: "yekanXBold";
+  font-weight: 800;
+}
+.heavy-text {
+  font-family: "yekanHeavy";
+  font-weight: 900;
+  font-size: 25px;
+}
 body {
   margin: 0;
   padding: 0;
@@ -48,20 +90,25 @@ body {
   display: flex;
   align-items: center;
 }
-.gradient-border {  
-  position: relative;  
-  display: inline-block;  
+.gradient-border {
+  position: relative;
+  display: inline-block;
   padding: 10px 0;
-  color: #2196F3;  
-}  
+  color: #2196f3;
+}
 
-.gradient-border::after {  
-  content: '';  
-  position: absolute;  
-  left: 0;  
-  right: 0;  
-  bottom: 0;  
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 4px;
-  background: linear-gradient(to right, rgba(0, 123, 255, 0), #2196F366, rgba(0, 123, 255, 0));  
+  background: linear-gradient(
+    to right,
+    rgba(0, 123, 255, 0),
+    #2196f366,
+    rgba(0, 123, 255, 0)
+  );
   border-radius: 2px;
-}  
+}

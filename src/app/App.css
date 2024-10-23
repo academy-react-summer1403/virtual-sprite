@@ -12,13 +12,13 @@
 @font-face {
   font-family: "yekanBold";
   src: url("../assets/fonts/Yekan_Bakh_Fanum_Bold.TTF") format("woff2");
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "yekanXBold";
   src: url("../assets/fonts/Yekan_Bakh_Fanum_Extra_Bold.TTF") format("woff2");
-  font-weight: bold;
+  font-weight: 800;
   font-style: normal;
 }
 @font-face {
@@ -27,24 +27,23 @@
   font-weight: 900;
   font-style: normal;
 }
-.heavy-text {
-  font-family: "yekanHeavy";
-  font-weight: 900;
-  font-size: 25px;
-}
 .normal-text {
   font-family: "yekanReg";
   font-weight: normal;
 }
 .bold-text {
   font-family: "yekanBold";
-  font-weight: bold;
+  font-weight: 700;
 }
 .xbold-text {
   font-family: "yekanXBold";
   font-weight: 800;
 }
-
+.heavy-text {
+  font-family: "yekanHeavy";
+  font-weight: 900;
+  font-size: 25px;
+}
 body {
   margin: 0;
   padding: 0;

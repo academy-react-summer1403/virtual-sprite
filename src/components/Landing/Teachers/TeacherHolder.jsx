@@ -4,8 +4,6 @@ import Title from '../Title/Title'
 import { getAllTeachers } from '@core/services/api/teachers/teachers.api';
 import right from '@assets/images/mainContent/teachers/right.svg'
 import left from '@assets/images/mainContent/teachers/left.svg'
-import deactiveDot from '@assets/images/mainContent/teachers/deactiveDot.svg'
-import activeDot from '@assets/images/mainContent/teachers/activeDot.svg';
 
 
 

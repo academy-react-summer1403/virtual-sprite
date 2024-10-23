@@ -9,8 +9,8 @@ const Header = () => {
     return (
         <div class="container mx-auto flex justify-between items-center bg-transparent pt-5 ">
             <div class="flex gap-1 mr-20 items-center ">
-                <h2 class='text-[#263238] text-[19px] font-bold ' >Virtual Sprite</h2>
                 <img src={hexa} class="w-[43px] h-[30px]" />
+                <h2 class='text-[#263238] text-[19px] font-bold ' >Virtual Sprite</h2>
             </div>
             <ul class="flex gap-10 items-center ">
                 <li >

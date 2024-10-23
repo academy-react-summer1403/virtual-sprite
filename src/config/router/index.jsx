@@ -1,10 +1,8 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './Root.jsx'
 import App from './../../app/App';
-import CourseList1  from '@components/Courses/Pagination1/CourseList1';
-import CourseList2 from '@components/Courses/CourseList2';
+import CourseList1 from '@components/Courses/Pagination1/CourseList1';
 import CourseDetail from '@components/CourseDetail/index.jsx';
 
 
@@ -25,13 +23,8 @@ const router = createBrowserRouter([
         // errorElement: <ErrorText />
       },
       {
-        path: "/courselist2",
-        element: <CourseList2 />,
-        // errorElement: <ErrorText />
-      },
-      {
         path: "/coursedetail",
-        element: <CourseDetail/>,
+        element: <CourseDetail />,
         // errorElement: <ErrorText />
       },
       // {

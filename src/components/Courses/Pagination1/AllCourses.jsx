@@ -4,7 +4,7 @@ import right from '@assets/images/coursePagination/right.png';
 import left from '@assets/images/coursePagination/left.png';
 import { useState, useEffect } from 'react';
 
-const CoursePage1 = ({ searchQuery ='' }) => {
+const AllCourses = ({ searchQuery ='' }) => {
     const [courses, setCourses] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 9;
@@ -72,4 +72,4 @@ const CoursePage1 = ({ searchQuery ='' }) => {
             </div>
         </div>);
 };
-export default CoursePage1;
+export default AllCourses;

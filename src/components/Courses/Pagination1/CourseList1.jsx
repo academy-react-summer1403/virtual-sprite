@@ -1,7 +1,7 @@
 import React from 'react'
 import CourseHead from './CourseHead';
 import CourseOptions from './CourseOptions';
-import Filters from './Filter/Filters';
+import Filters from '../Filter';
 
 
 

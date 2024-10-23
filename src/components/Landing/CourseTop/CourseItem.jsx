@@ -5,7 +5,6 @@ import clock from '@assets/images/mainContent/topcourses/clock.svg'
 import noPhoto from '@assets/images/mainContent/topcourses/no.jpg'
 import liked from '@assets/images/mainContent/topcourses/heart.svg'
 import notLiked from '@assets/images/mainContent/topcourses/emptyHeart.svg'
-import moment from 'moment-jalaali';
 import DateFormater from '@common/DateFormater'
 
 
@@ -45,7 +44,7 @@ const CourseItem = ({ teacherName, cost, likeCount, isLiked, img, title, date })
       <div class='flex items-center justify-between p-2'>
         <div class='flex  gap-1 bg-[#FFEBEE] p-2 rounded-full ' >
           {isLiked === true ? (<img src={liked} />) : (<img src={notLiked} />)}
-          <h4 class='text-[#F44336] text-[14px] pb-1' >{likeCount}</h4>
+          <h4 class='text-[#F44336] text-[14px]' >{likeCount}</h4>
         </div>
         <div class='text-[#2196F3] text-[16px] flex items-center gap-1'> {cost} <h4 class='text-[#263238] text-[12px]'>تومان</h4></div>
       </div>

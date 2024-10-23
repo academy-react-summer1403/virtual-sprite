@@ -1,13 +1,13 @@
-import CourseItem from '@components/Landing/CourseTop/CourseItem';
 import { coursePagination } from '@core/services/api/courses/coursePagination.api';
 import right from '@assets/images/coursePagination/right.png';
 import left from '@assets/images/coursePagination/left.png';
 import { useState, useEffect } from 'react';
+import CourseItem2 from './CourseItem2';
 
-const AllCourses = ({ searchQuery ='' }) => {
+const CourseRow = ({ searchQuery = '' }) => {
     const [courses, setCourses] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 9;
+    const itemsPerPage = 5;
 
     const getCourses = async () => {
         const result = await coursePagination();
@@ -45,10 +45,10 @@ const AllCourses = ({ searchQuery ='' }) => {
 
     return (
 
-        <div>
-            <div className='flex flex-wrap gap-12 justify-center my-5'>
+        <div className='w-full px-3 '>
+            <div className='flex flex-col gap-8 justify-center items-center  my-5'>
                 {currentItems.map((item) =>
-                (<CourseItem
+                (<CourseItem2
                     key={item.courseId}
                     img={item.tumbImageAddress}
                     title={item.title}
@@ -56,7 +56,8 @@ const AllCourses = ({ searchQuery ='' }) => {
                     teacherName={item.teacherName}
                     cost={item.cost}
                     likeCount={item.likeCount}
-                    isLiked={item.userIsLiked} />))}
+                    isLiked={item.userIsLiked}
+                    describe={item.describe} />))}
             </div>
             <div className='flex justify-center my-8'>
                 <button onClick={handlePreviousPage} disabled={currentPage === 1} className='mx-2 px-0 py-0 rounded-full ' >
@@ -72,4 +73,4 @@ const AllCourses = ({ searchQuery ='' }) => {
             </div>
         </div>);
 };
-export default AllCourses;
+export default CourseRow;

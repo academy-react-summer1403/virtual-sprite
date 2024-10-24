@@ -1,15 +1,12 @@
-import Landing from "@components/Landing";
+import RouterConfig from "../config/router";
 import "./App.css";
 
 const App = () => {
-  
   return (
-      <div>
-        <Landing/>
-      </div>
+    <div>
+      <RouterConfig />
+    </div>
   );
-}
+};
 
 export default App;
-
-

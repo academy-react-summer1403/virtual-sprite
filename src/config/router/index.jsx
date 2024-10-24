@@ -4,6 +4,7 @@ import App from './../../app/App';
 import CourseList1 from '@components/Courses/Pagination1/CourseList1';
 import CourseDetail from '@components/CourseDetail/index.jsx';
 import  MainLayout  from '@app/Layouts/MainLayout/index.jsx';
+import Landing from '../../components/Landing';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/",
-        element: <App />,
+        element: <Landing />,
         // errorElement: <ErrorText />
       },
       {

@@ -1,16 +1,19 @@
 import React from "react"
 import { createBrowserRouter } from "react-router-dom";
-import { UserPanelPage } from "../../screens/UserPanel";
+import {Pishkhan} from "../../screens/UserPanel/Pishkhan/index.jsx";
+import {EditProfile} from "../../screens/UserPanel/EditProfile/index.jsx"
+import { PanelLayout } from "../../app/Layouts/PanelLayout/PanelLayout";
 
 
 const Router = createBrowserRouter([
 
-    { path: '/panel', element: <UserPanelPage/> },
+    { path: '/panel', element: <PanelLayout/> ,children: [
+        { path: '/panel/pishkhan', element: <Pishkhan /> },
+        { path: '/panel/editprofile', element: <EditProfile /> },
+      ]},
  
     
  ,
-  
-
 ])
 
 export { Router };

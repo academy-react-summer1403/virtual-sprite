@@ -1,9 +1,8 @@
 import React from "react";
+import {Edit} from "../../../components/UserPanel/EditProfile/index.jsx"
 const EditProfile =()=>{
     return(
-        <div className="w-[95%] h-[85%] m-auto mt-[1%] border">
-
-</div>
+        <Edit/>
     )
 }
 export{EditProfile};

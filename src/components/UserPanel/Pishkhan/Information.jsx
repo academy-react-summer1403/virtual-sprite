@@ -9,7 +9,7 @@ const Information=()=>{
         {id:3,name:":کدملی",explane:"2080542044"},
      ])
     return(
-    <div dir="rtl" className="w-[98%] m-auto h-[80%] relative mt-[1%] flex flex-row flex-wrap gap-[2%]">
+    <div dir="rtl" className="w-[98%] m-auto h-[80%] relative mt-[1%] flex flex-row flex-wrap gap-[2%] ">
 
 {cardList.map((item,index) => {
         return(

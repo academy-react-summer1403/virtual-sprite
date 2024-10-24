@@ -6,7 +6,7 @@ import ServiceHolder from './services/ServiceHolder'
 import NewsHolder from './News/NewsHolder'
 import CourseHolder from './CourseTop/CourseHolder'
 
-const Landing = () => {
+const Landing = () => { 
   return (
     <div>
       <HeroSection />

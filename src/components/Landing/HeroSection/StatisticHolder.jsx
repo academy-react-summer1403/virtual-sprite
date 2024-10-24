@@ -14,7 +14,7 @@ const StatisticHolder = () => {
         ]
     );
     return (
-        <div class='flex justify-center gap-8 mb-[200px]' > {statistic.map((item, index) => {
+        <div class='flex flex-wrap justify-center gap-8 mb-[200px]' > {statistic.map((item, index) => {
             return <StatisticItem
                 key={index}
                 img= {item.img}

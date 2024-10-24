@@ -19,7 +19,7 @@ const ServiceHolder = () => {
     return (
         <div class='mb-10' >
             <Title title={"خدمات ما"} />
-            <div class='flex justify-evenly' >
+            <div class='flex flex-wrap justify-evenly gap-4' >
                 {services.map((item, index) => {
                     return <Services
                         key={index}

@@ -7,7 +7,8 @@ import security from '@assets/images/mainContent/courseCategory/security.png'
 
 const CourseCategory = () => {
   return (
-    <div className='cat-bg'>
+    <div className='cat-bg !hidden md:!flex'>
+
 
       <div class=' flex flex-col justify-center text-right gap-6' >
         <h1 class='text-[#263238] text-[40px] ' >دسته بندی‌ دوره‌ها</h1>

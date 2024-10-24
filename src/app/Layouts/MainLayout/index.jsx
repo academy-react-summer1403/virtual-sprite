@@ -1,10 +1,20 @@
 import React from 'react'
-import Header from '@components/common/Header'
+import Footer from '@app/Layouts/MainLayout/Footer';
+import { Outlet } from 'react-router-dom';
+import Header from '@app/Layouts/MainLayout/Navbar';
 
-const Navbar = () => {
+
+
+const MainLayout = () => {
   return (
-    <div></div>
+    <div >
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   )
 }
 
-export default Navbar
+export default MainLayout

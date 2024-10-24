@@ -2,13 +2,15 @@ import React from 'react'
 // import sabad from "@assets/images/header/sabad.png"
 import hexa from '@assets/images/header/hexa.svg'
 import Btn from '@components/common/Btn'
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 
 const Header = () => {
 
+    const navigate = useNavigate();
+
     return (
         <div class="container mx-auto flex justify-between items-center bg-transparent pt-5 ">
-            <div class="flex gap-1 mr-20 items-center ">
+            <div class="flex gap-1 mr-20 items-center cursor-pointer " onClick={() => navigate('/')} >
                 <img src={hexa} class="w-[43px] h-[30px]" />
                 <h2 class='text-[#263238] text-[19px] font-bold ' >Virtual Sprite</h2>
             </div>

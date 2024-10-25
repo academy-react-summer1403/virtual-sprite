@@ -2,37 +2,46 @@ import sabad from "@assets/images/header/sabad.png";
 import hexa from "@assets/images/header/hexa.svg";
 import Btn from "@components/common/Btn";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
-import { Modal, Button } from "@mantine/core";
+import { Modal, Button, Text } from "@mantine/core";
 import React, { useState } from "react";
 import Auth from "@components/Auth";
 import { useDisclosure } from "@mantine/hooks";
 import Login from "@components/Auth/Login";
+import exit from "@assets/images/login/exit.png";
+
 const Header = () => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure(false);
   return (
     <div class="container mx-auto flex justify-between items-center bg-transparent pt-5 ">
-        <Modal
-        class=" absolute right-[20px]"
-          title="عنوان"
-          opened={opened}
-          onClose={close}
-          withCloseButton={true}
-          radius={24}
-          centered
-          overlayProps={{
-            backgroundOpacity: 0.55,
-            blur: 3,
-          }}
-          transitionProps={{
-            transition: "fade",
-            duration: 600,
-            timingFunction: "linear",
-          }}
-        >
-          <Auth />
-        </Modal>
-      
+      <Modal
+        className="absolute right-0 font-[yekanHeavy]"
+        title={
+          <Text class="font-[yekanBold] text-[32px] text-[#263238] mt-[5px] mr-5">
+            ورود به حساب
+          </Text>
+        }
+        opened={opened}
+        onClose={close}
+        withCloseButton={true}
+        radius={24}
+        closeButtonProps={{
+          icon: <img class="absolute left-5" src={exit} />,
+        }}
+        centered
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+        transitionProps={{
+          transition: "fade",
+          duration: 600,
+          timingFunction: "linear",
+        }}
+      >
+        <Auth />
+      </Modal>
+
       <div
         class="flex gap-1 mr-20 items-center cursor-pointer "
         onClick={() => navigate("/")}

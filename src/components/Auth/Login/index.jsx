@@ -2,11 +2,11 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { loginAPI } from "../../../core/services/api/auth/auth";
+// import exit from "@assets/images/login/exit.png";
 
 const Login = () => {
-  
   const loginUser = async (values) => {
-    console.log("click login")
+    console.log("click login");
     const userObj = {
       phoneOrGmail: values.emailMob,
       password: values.password,
@@ -19,7 +19,6 @@ const Login = () => {
     } else {
       alert(user.message);
     }
-
     setItem("token", user.token);
   };
   const getProfileFunc = async () => {
@@ -27,8 +26,8 @@ const Login = () => {
     console.log(user);
   };
   const validationSchema = Yup.object({
-    emailMob: Yup.string().required("شماره موبایل یا ایمیل اشتباه است"),
-    password: Yup.string().required("رمز عبور اشتباه است"),
+    emailMob: Yup.string().required("لطفا شماره موبایل یا ایمیل  را وارد نمایید"),
+    password: Yup.string().required("لطفا رمز عبور را وارد نمایید"),
   });
   return (
     <div>
@@ -42,53 +41,62 @@ const Login = () => {
       >
         {({ values }) => (
           <Form>
-            <div class="relative">
+            <div class="relative flex flex-col justify-center items-center">
+              {/* <div class="flex flex-row justify-between ">
+                <div class="text-[#263238] flex flex-row justify-center items-center leading-[49.6px] text-[32px] text-right">
+                  ورود به حساب
+                </div>
+           
+              </div> */}
               <Field
-                class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] 
-                    my-5
-                      text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]
-                      "
+                class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] my-5
+                 font-[yekanReg]
+                    text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]"
                 name="emailMob"
                 placeholder="ایمیل یا شماره موبایل"
               />
               <ErrorMessage
                 name="emailMob"
                 component="p"
-                style={{ color: "red" }}
-                class="absolute top-12 right-5 z-[10] text-[10px] my-10"
+                // style={{ color: "red" }}
+                className="errorMessage absolute top-12 right-10 z-[10] text-[10px] my-10 font-[yekanReg]"
               />
               <Field
                 class="w-[356px] h-[56px] mb-[15px] rounded-[30px] border-[1px] border-[#CFD8DC] pr-[25px] 
-                      text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]
-                        my-5"
+                      font-[yekanReg] text-[16px] 
+                      focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]
+                      my-5"
                 name="password"
+                type="password"
                 placeholder="رمز عبور"
               />
               <ErrorMessage
                 name="password"
                 component="p"
-                style={{ color: "red" }}
-                class="absolute top-32 right-5 z-[10] text-[10px] my-10"
+                // style={{ color: "red" }}
+                class="errorMessage absolute top-32 right-10 z-[10] text-[10px] my-12 font-[yekanReg]"
               />
             </div>
-            <div class="px-8 py-[20px]">
-              <div class="container mx-auto flex flex-nowrap justify-between">
-                <div>
-                  <Field
-                    type="checkbox"
-                    name="acceptedTerms"
-                    id="show"
-                    className="checkBox"
-                  />
-                  <label htmlFor="show"> من را به خاطر بسپار </label>
-                </div>
-                <div>
-                  {/* <NavLink to="#" >رمز عبور را فراموش کردم</NavLink> */}
-                  <a href="#" class="text-[#2196F3]">
-                    رمز عبور را فراموش کردم
-                  </a>
-                </div>
+            {/* <div class=""> */}
+            <div class="w-[380px] my-[20px] container flex flex-nowrap justify-between">
+              <div class="flex flex-row items-center gap-2 text-[14px] pr-4">
+                <Field
+                  type="checkbox"
+                  name="acceptedTerms"
+                  id="show"
+                  className="checkBox"
+                />
+                <label htmlFor="show" class=" font-[yekanReg] text-[#455A64]">
+                  من را به خاطر بسپار
+                </label>
               </div>
+              <div>
+                {/* <NavLink to="#" >رمز عبور را فراموش کردم</NavLink> */}
+                <a href="#" class="text-[#2196F3]">
+                  رمز عبور را فراموش کردم
+                </a>
+              </div>
+              {/* </div> */}
             </div>
             <div class="mt-[35px]  flex flex-row justify-center">
               <button

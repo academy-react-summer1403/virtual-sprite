@@ -27,8 +27,8 @@ const Login = () => {
     console.log(user);
   };
   const validationSchema = Yup.object({
-    emailMob: Yup.string().required("*"),
-    password: Yup.string().required("*"),
+    emailMob: Yup.string().required("شماره موبایل یا ایمیل اشتباه است"),
+    password: Yup.string().required("رمز عبور اشتباه است"),
   });
   return (
     <div>
@@ -42,11 +42,12 @@ const Login = () => {
       >
         {({ values }) => (
           <Form>
-            <div>
+            <div class="relative">
               <Field
                 class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] 
+                    my-5
                       text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]
-                      relative"
+                      "
                 name="emailMob"
                 placeholder="ایمیل یا شماره موبایل"
               />
@@ -54,12 +55,12 @@ const Login = () => {
                 name="emailMob"
                 component="p"
                 style={{ color: "red" }}
-                class="absolute top-[160px] right-[5px]"
+                class="absolute top-12 right-5 z-[10] text-[10px] my-10"
               />
               <Field
                 class="w-[356px] h-[56px] mb-[15px] rounded-[30px] border-[1px] border-[#CFD8DC] pr-[25px] 
                       text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]
-                      relative"
+                        my-5"
                 name="password"
                 placeholder="رمز عبور"
               />
@@ -67,10 +68,10 @@ const Login = () => {
                 name="password"
                 component="p"
                 style={{ color: "red" }}
-                class="absolute bottom-[220px] right-[5px]"
+                class="absolute top-32 right-5 z-[10] text-[10px] my-10"
               />
             </div>
-            <div class="px-8">
+            <div class="px-8 py-[20px]">
               <div class="container mx-auto flex flex-nowrap justify-between">
                 <div>
                   <Field

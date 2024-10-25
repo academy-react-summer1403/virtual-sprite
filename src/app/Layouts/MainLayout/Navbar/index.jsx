@@ -1,4 +1,4 @@
-import sabad from "@assets/images/header/sabad.png"
+import sabad from "@assets/images/header/sabad.png";
 import hexa from "@assets/images/header/hexa.svg";
 import Btn from "@components/common/Btn";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
@@ -7,17 +7,32 @@ import React, { useState } from "react";
 import Auth from "@components/Auth";
 import { useDisclosure } from "@mantine/hooks";
 import Login from "@components/Auth/Login";
-// import Auth from '@components/Auth'
 const Header = () => {
   const navigate = useNavigate();
-  const [authModal, setAuthModal] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
-  const [showDiv, setShowDiv] = useState(false);
-  const handleClick = () => {
-    setShowDiv(true); // زمانی که دکمه کلیک شود، مقدار true به state می‌دهیم
-  };
   return (
     <div class="container mx-auto flex justify-between items-center bg-transparent pt-5 ">
+        <Modal
+        class=" absolute right-[20px]"
+          title="عنوان"
+          opened={opened}
+          onClose={close}
+          withCloseButton={true}
+          radius={24}
+          centered
+          overlayProps={{
+            backgroundOpacity: 0.55,
+            blur: 3,
+          }}
+          transitionProps={{
+            transition: "fade",
+            duration: 600,
+            timingFunction: "linear",
+          }}
+        >
+          <Auth />
+        </Modal>
+      
       <div
         class="flex gap-1 mr-20 items-center cursor-pointer "
         onClick={() => navigate("/")}
@@ -46,39 +61,27 @@ const Header = () => {
         </li>
       </ul>
       <div class="flex gap-4 ml-20">
-            <img src={sabad} class=" h-20 w-20" /> 
-        <Modal
-          title="عنوان"
-          className="dirAuth"
-          opened={opened} 
-          onClose={close}
-          withCloseButton={true}
-          radius={24}
-        >
-          <Auth />
-        </Modal> 
+        {/* <img src={sabad} class=" h-20 w-20" />  */}
+        {/* <Btn 
+           onClick={() => {
+            open();
+          }} insideText={"ورود به حساب"}/>  */}
+        {/* {showDiv && ( */}
+        {/* <Auth /> */}
+        {/*   <div class="h-[400px] w-[400px] bg-white absolute top-[10px] left-[10px] z-50"> */}
+        {/*      <input type="text" name="emailMob" /> */}
+        {/*      <input type="text" name="password"  /> */}
+        {/*   <Login /> */}
+        {/*    </div> */}
+        {/* )} */}
+        {/* {authModal === true && <Auth setAuthModal={setAuthModal} />} */}
         <Button
           onClick={() => {
             open();
           }}
         >
           ورود به حساب
-        </Button> 
-         {/* <Btn 
-           onClick={() => {
-            open();
-          }} insideText={"ورود به حساب"}/>  */}
-
-        {/* <button onClick={handleClick}>ورود</button> */}
-        {/* {showDiv && ( */}
-          {/* <Auth /> */}
-          {/*   <div class="h-[400px] w-[400px] bg-white absolute top-[10px] left-[10px] z-50"> */}
-          {/*      <input type="text" name="emailMob" /> */}
-          {/*      <input type="text" name="password"  /> */}
-          {/*   <Login /> */}
-          {/*    </div> */}
-        {/* )} */}
-        {/* {authModal === true && <Auth setAuthModal={setAuthModal} />} */}
+        </Button>
       </div>
     </div>
   );

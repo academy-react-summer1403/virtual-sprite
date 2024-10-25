@@ -1,4 +1,4 @@
-// import sabad from "@assets/images/header/sabad.png"
+import sabad from "@assets/images/header/sabad.png"
 import hexa from "@assets/images/header/hexa.svg";
 import Btn from "@components/common/Btn";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
@@ -46,7 +46,7 @@ const Header = () => {
         </li>
       </ul>
       <div class="flex gap-4 ml-20">
-        {/*      <img src={sabad} class=" h-20 w-20" /> 
+            <img src={sabad} class=" h-20 w-20" /> 
         <Modal
           title="عنوان"
           className="dirAuth"
@@ -59,24 +59,25 @@ const Header = () => {
         </Modal> 
         <Button
           onClick={() => {
-            setAuthModal(true);
+            open();
           }}
         >
-          ورود
-        </Button>  <Btn 
+          ورود به حساب
+        </Button> 
+         {/* <Btn 
            onClick={() => {
-         setAuthModal(true);
-          } } insideText={"ورود به حساب"}/> */}
+            open();
+          }} insideText={"ورود به حساب"}/>  */}
 
-        <button onClick={handleClick}>ورود</button>
-        {showDiv && (
-          <Auth />
-          //  <div class="h-[400px] w-[400px] bg-white absolute top-[10px] left-[10px] z-50">
-          //      <input type="text" name="emailMob" />
-          //     <input type="text" name="password"  />
-          //   <Login />
-          //    </div>
-        )}
+        {/* <button onClick={handleClick}>ورود</button> */}
+        {/* {showDiv && ( */}
+          {/* <Auth /> */}
+          {/*   <div class="h-[400px] w-[400px] bg-white absolute top-[10px] left-[10px] z-50"> */}
+          {/*      <input type="text" name="emailMob" /> */}
+          {/*      <input type="text" name="password"  /> */}
+          {/*   <Login /> */}
+          {/*    </div> */}
+        {/* )} */}
         {/* {authModal === true && <Auth setAuthModal={setAuthModal} />} */}
       </div>
     </div>

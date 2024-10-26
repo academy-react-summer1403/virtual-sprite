@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Progress } from '@mantine/core';
-
 const RangeOne = () => {
   return <Progress value={50} animated color="#5BE1B9" />;
 };

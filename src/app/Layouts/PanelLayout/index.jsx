@@ -2,9 +2,11 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { MenuPanel } from "../PanelLayout/MenuPanel/index.jsx";
 import { HeaderPanel } from "./MenuPanel/HeaderMenu.jsx";
+import { MantineProvider } from "@mantine/core";
 
 const PanelLayout = () => {
   return (
+    <MantineProvider>
     <div
       dir="ltr"
       className="w-[1535px] h-[900px] m-auto  flex justify-around
@@ -24,6 +26,7 @@ const PanelLayout = () => {
         <MenuPanel />
       </div>
     </div>
+    </MantineProvider>
   );
 };
 

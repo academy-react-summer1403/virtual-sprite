@@ -9,7 +9,7 @@ const Cardstatus = () => {
         <div className="w-[100%] h-[50%] text-[#22445D] text-[18px] text-right leading-[40px]">
           دوره های من - پرداخت شده
         </div>
-        <div dir="rtl" className="w-[100%] h-[48%] ">
+        <div dir="rtl" className="w-[90%] ml-[10%] mt-[2%] h-[48%] ">
           <RangeOne />
         </div>
       </div>
@@ -17,7 +17,7 @@ const Cardstatus = () => {
         <div className="w-[100%] h-[50%] text-[#22445D] text-[18px] text-right leading-[40px] ">
           دوره های تایید شده - پرداخت نشده
         </div>
-        <div dir="rtl" className="w-[100%] h-[48%] ">
+        <div dir="rtl" className="w-[90%] ml-[10%] mt-[2%] h-[48%] ">
           <RangeTwo />
         </div>
       </div>
@@ -25,7 +25,7 @@ const Cardstatus = () => {
         <div className="w-[100%] h-[50%] text-[#22445D] text-[18px] text-right leading-[40px] ">
           دوره های موردعلاقه
         </div>
-        <div dir="rtl" className="w-[100%] h-[48%] ">
+        <div dir="rtl" className="w-[90%] ml-[10%] mt-[2%] h-[48%] ">
           <RangeThree />
         </div>
       </div>

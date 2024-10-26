@@ -3,9 +3,12 @@ import { coursePagination } from '@core/services/api/courses/coursePagination.ap
 import right from '@assets/images/coursePagination/right.png';
 import left from '@assets/images/coursePagination/left.png';
 import { useState, useEffect } from 'react';
+import { coursePaginationDynamic } from '@core/services/api/courses/coursePagination.api';
+
 
 const CourseGrid = ({ searchQuery ='' }) => {
     const [courses, setCourses] = useState([]);
+    const [type, setType] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 9;
 
@@ -14,9 +17,21 @@ const CourseGrid = ({ searchQuery ='' }) => {
         setCourses(result.courseFilterDtos);
     };
 
+    const getCoursesDynamic = async () => {
+        const params = {
+            CourseTypeId: type 
+        }
+        const result = await coursePaginationDynamic(params);
+        setCourses(result.courseFilterDtos);
+    };
+
     useEffect(() => {
         getCourses();
     }, []);
+
+    useEffect(() => {
+        getCoursesDynamic();
+    }, [type])
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -70,6 +85,7 @@ const CourseGrid = ({ searchQuery ='' }) => {
                     <img src={left} />
                 </button>
             </div>
-        </div>);
+        </div>
+        );
 };
 export default CourseGrid;

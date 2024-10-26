@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import filter from '@assets/images/coursePagination/filter.svg';
 import trash from '@assets/images/coursePagination/delete.svg';
 import Grouping from './grouping';
@@ -7,8 +7,12 @@ import Type from './Type';
 import Teachers from './Teachers';
 import CostRange from './CostRange';
 
-const Filters = () => {
+const Filters = ({ setType, setLevel }) => {
 
+    const handleClearFilters = () => {
+        setType(null); // Reset type to null  
+        setLevel(null); // Reset level to null  
+    };
 
     return (
         <div className='w-[30%]'>
@@ -18,14 +22,19 @@ const Filters = () => {
                         <img src={filter} alt="Filter" />
                         <h2 className='text-[16px] text-[#263238]'>فیلتر</h2>
                     </div>
-                    <img src={trash} className='w-[32px] h-[32px] mx-2 cursor-pointer' alt="Delete" />
+                    <img
+                        src={trash}
+                        className='w-[32px] h-[32px] mx-2 cursor-pointer'
+                        alt="Delete"
+                        onClick={handleClearFilters} // Add clear functionality when clicked  
+                    />
                 </div>
                 <div className='flex flex-col w-full'>
                     <Grouping />
-                    <Level />
-                    <Type/>
+                    <Level setLevel={setLevel} />
+                    <Type setType={setType} />
                     <CostRange min={0} max={50000000} />
-                    <Teachers/>
+                    <Teachers />
                 </div>
             </div>
         </div>

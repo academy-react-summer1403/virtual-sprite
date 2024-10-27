@@ -5,6 +5,7 @@ import CourseList1 from '@components/Courses/Pagination1/CourseList1';
 import CourseDetail from '@components/CourseDetail/index.jsx';
 import  MainLayout  from '@app/Layouts/MainLayout/index.jsx';
 import Landing from '../../components/Landing';
+import ForgetPass from '../../components/Auth/ForgetPass';
 
 const router = createBrowserRouter([
   {

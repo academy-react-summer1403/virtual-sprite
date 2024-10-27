@@ -39,7 +39,7 @@ const Header = () => {
           timingFunction: "linear",
         }}
       >
-        <Auth />
+        <Auth opened={opened} open={open} close={close} />
       </Modal>
 
       <div

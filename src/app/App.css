@@ -63,15 +63,20 @@ body {
 .bg {
   width: 100%;
   background: url("../assets/images/HeroSection/header-bg.png") no-repeat 100%
-    50%;
+    25%;
   background-size: 100%;
   display: flex;
-  margin-top: -120px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  gap: 60px;
+  gap: 90px;
 }
+@media (max-width: 768px) {
+  .bg {
+    gap: 30px;
+  }
+}
+
 .cat-bg {
   width: 90%;
   margin: 40px auto;

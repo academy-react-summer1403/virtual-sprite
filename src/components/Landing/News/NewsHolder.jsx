@@ -5,7 +5,7 @@ import NewsItem from './NewsItem';
 import Btn from '@common/Btn';
 
 const NewsHolder = () => {
-    const [topNews, setTopNews] = useState([]);
+    const [topNews, setTopNews] = useState();
 
     const getNews = async () => {
         const result = await getTopNews();
@@ -17,12 +17,12 @@ const NewsHolder = () => {
     }, []);
 
     return (
-        <div className='mb-16 -mt-20'>
+        <div className='mb-16 -mt-20 px-4 md:px-8'>
             <Title title={"اخبار و مقالات"} />
-            <div className='flex flex-wrap gap-5 justify-center my-8'>
-                {topNews.length > 0 && (
+            <div className='flex flex-col md:flex-row gap-5 justify-center my-8'>
+                {topNews?.length > 0 && (
                     <>
-                        <div className='flex gap-5' key={topNews[0].id}>
+                        <div className='flex flex-col md:flex-row md:w-1/2 gap-5' key={topNews[0].id}>
                             <NewsItem
                                 index={0}
                                 img={topNews[0].currentImageAddressTumb}
@@ -32,7 +32,7 @@ const NewsHolder = () => {
                                 date={topNews[0].insertDate}
                             />
                         </div>
-                        <div className='flex flex-col gap-5'>
+                        <div className='flex flex-col gap-5 md:w-1/2'>
                             {topNews.slice(1).map((item, index) => (
                                 <NewsItem
                                     index={index + 1}
@@ -48,7 +48,9 @@ const NewsHolder = () => {
                     </>
                 )}
             </div>
-            <Btn insideText={"مشاهده همه"} />
+            <div className='flex justify-center'>
+                <Btn insideText={"مشاهده همه"} />
+            </div>
         </div>
     );
 };

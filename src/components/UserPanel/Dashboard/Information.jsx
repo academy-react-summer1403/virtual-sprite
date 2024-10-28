@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ItemInformation } from "./ItemInformation";
+import {useNavigate } from "react-router-dom";
 const Information=()=>{
     const[cardList,setcardList]=useState([
         {id:1,name:":نام و نام خانوادگی",explane:"لیلا کریمی"},
@@ -7,7 +8,11 @@ const Information=()=>{
         {id:1,name:":تلفن همراه",explane:"09117792547"},
         {id:2,name:":ایمیل",explane:"leilakarimi@gmail.com"},
         {id:3,name:":کدملی",explane:"2080542044"},
-     ])
+     ]);
+     const navigator =useNavigate();
+     const gotoedit =()=>{
+      return  navigator("/panel/editprofile");
+     };
     return(
     <div dir="rtl" className="w-[98%] m-auto h-[80%] relative mt-[1%] flex flex-row flex-wrap gap-[2%] ">
 
@@ -20,7 +25,7 @@ explane={item.explane}
 id={item.id}
 />
         ); } ) }
-        <div className="w-[20%] h-[40%] bg-[#12926C] text-[#ffff] absolute bottom-[-20%] border-[#A4F6DE]  text-center font-normal text-[25px] cursor-pointer leading-[50px] rounded-tr-[15px] rounded-bl-[15px] border-[2px] left-[-1.1%]">ویرایش</div>
+        <div onClick={gotoedit} className="w-[20%] h-[40%] bg-[#12926C] text-[#ffff] absolute bottom-[-20%] border-[#A4F6DE]  text-center font-normal text-[25px] cursor-pointer leading-[45px] rounded-tr-[15px] rounded-bl-[15px] border-[2px] left-[-1.1%]">ویرایش</div >
     </div>
     
     )

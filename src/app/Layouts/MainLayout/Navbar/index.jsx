@@ -16,11 +16,11 @@ const Header = () => {
     <div class="container mx-auto flex justify-between items-center bg-transparent pt-5 ">
       <Modal
         className="absolute right-0 font-[yekanHeavy]"
-        title={
-          <Text class="font-[yekanBold] text-[32px] text-[#263238] mt-[5px] mr-5">
-            ورود به حساب
-          </Text>
-        }
+        // title={
+        //   <Text class="font-[yekanBold] text-[32px] text-[#263238] mt-[5px] mr-5">
+        //     ورود به حساب
+        //   </Text>
+        // }
         opened={opened}
         onClose={close}
         withCloseButton={true}

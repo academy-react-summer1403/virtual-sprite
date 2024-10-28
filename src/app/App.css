@@ -51,7 +51,7 @@ body {
   margin: 0;
   padding: 0;
   direction: rtl;
-  font-family: yekan;
+  /* font-family: "yekanReg; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

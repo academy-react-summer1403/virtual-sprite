@@ -6,7 +6,7 @@ import { MantineProvider } from "@mantine/core";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div class="w-full font-[yekanReg]">
       <MantineProvider>
         <Header />
         <main>

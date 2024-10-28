@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroSection from './HeroSection'
-import CourseCategory from './CourseCategory/CourseCategory'
+import CourseCategory from './CourseCategory'
 import TeacherHolder from './Teachers/TeacherHolder'
 import ServiceHolder from './services/ServiceHolder'
 import NewsHolder from './News/NewsHolder'

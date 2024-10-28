@@ -27,16 +27,16 @@ const NewsItem = ({ img, newsTitle, describe, view, date, index }) => {
                             </h4>
                         </div>
                     </div>
-                    <h4 className='text-[#263238] text-[24px] md:text-[32px] text-right'>{newsTitle}</h4>
-                    <h4 className='text-[#455A64] text-[14px] md:text-[16px] text-right'>{describe}</h4>
+                    <h4 className='text-[#263238] dark:text-[#f1f2f4] text-[24px] md:text-[32px] text-right'>{newsTitle}</h4>
+                    <h4 className='text-[#455A64] dark:text-[#b3b9c4] text-[14px] md:text-[16px] text-right'>{describe}</h4>
                 </>
             ) : (
                 <div className='flex gap-2'>
                     <img src={img} className='w-[224px] h-[161px] rounded-2xl object-cover' alt={newsTitle} />
                     <div className='flex flex-col justify-center w-full'>
                         <div className='flex flex-col flex-wrap text-wrap'>
-                            <h4 className='text-[#263238] text-[20px] md:text-[32px] text-right text-wrap'>{newsTitle}</h4>
-                            <h4 className='text-[#455A64] text-[12px] md:text-[16px] text-right text-wrap'>{describe}</h4>
+                            <h4 className='text-[#263238] dark:text-[#f1f2f4] text-[20px] md:text-[32px] text-right text-wrap'>{newsTitle}</h4>
+                            <h4 className='text-[#455A64] dark:text-[#b3b9c4] text-[12px] md:text-[16px] text-right text-wrap'>{describe}</h4>
                         </div>
                         <div className='flex items-center text-right gap-1'>
                             <div className='flex items-center gap-1 p-2 bg-[#DAEEFF] rounded-3xl'>

@@ -17,11 +17,11 @@ const CourseItem = ({ teacherName, cost, likeCount, isLiked, img, title, date })
 
 
   return (
-    <div class='flex flex-col  gap-1 bg-[#ffffff] border-2 shadow-xl rounded-xl p-4 '>
+    <div class='flex flex-col  gap-1 bg-[#ffffff] dark:bg-[#22262b]  shadow-xl rounded-xl p-4 '>
       <img src={img} class='w-[264px] h-[180px] rounded-xl' />
-      <h4 class='text-[#263238] text-[18px] text-right p-2'>{title}</h4>
+      <h4 class='text-[#263238] dark:text-[#f1f2f4] text-[18px] text-right p-2'>{title}</h4>
 
-      <div class='flex items-center justify-between bg-[#ECEFF1] p-2 rounded-full '>
+      <div class='flex items-center justify-between bg-[#ECEFF1] dark:bg-[#5c6c7a] p-2 rounded-full '>
         <div class='flex items-center gap-1' >
           <img src={lesson} class='w-[15px] h-[15px] ' />
           <h6 class=' text-[12px]  text-[#263238]' >202 درس</h6>
@@ -38,15 +38,15 @@ const CourseItem = ({ teacherName, cost, likeCount, isLiked, img, title, date })
         </div>
       </div>
       <div class='flex items-center justify-between p-2'>
-        <div class='text-[#263238] text-[16px] flex items-center gap-1'> مدرس : <h4 class='text-[#263238] text-[14px]'>{teacherName}</h4></div>
-        <h4 class='text-[#263238] text-[13px]'>256 دانش‌آموز</h4>
+        <div class='text-[#263238] dark:text-[#f1f2f4] text-[16px] flex items-center gap-1'> مدرس : <h4 class='text-[#263238] dark:text-[#f1f2f4] text-[14px]'>{teacherName}</h4></div>
+        <h4 class='text-[#263238] dark:text-[#f1f2f4] text-[13px]'>256 دانش‌آموز</h4>
       </div>
       <div class='flex items-center justify-between p-2'>
         <div class='flex  gap-1 bg-[#FFEBEE] p-2 rounded-full ' >
           {isLiked === true ? (<img src={liked} />) : (<img src={notLiked} />)}
           <h4 class='text-[#F44336] text-[14px]' >{likeCount}</h4>
         </div>
-        <div class='text-[#2196F3] text-[16px] flex items-center gap-1'> {cost} <h4 class='text-[#263238] text-[12px]'>تومان</h4></div>
+        <div class='text-[#2196F3] text-[16px] flex items-center gap-1'> {cost} <h4 class='text-[#263238] dark:text-[#f1f2f4] text-[12px]'>تومان</h4></div>
       </div>
     </div>
   )

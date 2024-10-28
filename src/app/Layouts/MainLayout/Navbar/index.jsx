@@ -14,7 +14,7 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className={`container mx-auto flex justify-between items-center dark:bg-[#2c333a] ${headerBgClass} pt-5 px-4 md:px-8 lg:px-16`}>
+        <div className={`container w-full mx-auto flex justify-between items-center dark:bg-[#2c333a] ${headerBgClass} pt-5 px-4 md:px-8 lg:px-16`}>
             <div className="hidden md:flex gap-1 items-center cursor-pointer" onClick={() => navigate('/')}>
                 <img src={hexa} className="w-[43px] h-[30px]" alt="Logo" />
                 <h2 className='text-[#263238] dark:text-[#f1f2f4] text-[19px] font-bold'>Virtual Sprite</h2>

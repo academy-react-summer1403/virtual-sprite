@@ -2,20 +2,25 @@ import React from 'react'
 import Search from '@common/Search'
 import Statstic from './StatisticHolder'
 
+
+
 const HeroSection = () => {
+
   return (
-    <div className='bg dark:bg-[#2c333a]'>
-      <div className='flex flex-col gap-3 md:gap-12 lg:gap-16 md:mt-8'>
-        <h2 className="text-base md:text-xl text-[#263238] dark:text-[#f1f2f4]">پلتفرم آموزش طراحی وب</h2>
-        <h1 className="text-2xl md:text-5xl lg:text-6xl text-[#263238] dark:text-[#f1f2f4]">مرجع آموزش برنامه نویسی</h1>
-        <h2 className="text-base md:text-xl text-[#263238] dark:text-[#f1f2f4]">مرجع آموزش زنده و تعاملی دسترسی به بیش از هفت هزار ویدیوی آموزشی به زبان فارسی</h2>
-      </div>
+    <div className='bg-[#e3f2fd] dark:bg-transparent ' >
+      <div className="dark-bg">
+        <div className='flex flex-col gap-3 md:gap-12 lg:gap-16 md:mt-8'>
+          <h2 className="text-base md:text-xl text-[#263238] dark:text-[#f1f2f4]">پلتفرم آموزش طراحی وب</h2>
+          <h1 className="text-2xl md:text-5xl lg:text-6xl text-[#263238] dark:text-[#f1f2f4]">مرجع آموزش برنامه نویسی</h1>
+          <h2 className="text-base md:text-xl text-[#263238] dark:text-[#f1f2f4]">مرجع آموزش زنده و تعاملی دسترسی به بیش از هفت هزار ویدیوی آموزشی به زبان فارسی</h2>
+        </div>
 
-      <div className='w-[250px] mb-4 md:w-[400px] lg:w-[670px] mx-auto'>
-        <Search />
-      </div>
+        <div className='w-[250px] mb-4 md:w-[400px] lg:w-[670px] mx-auto'>
+          <Search />
+        </div>
 
-      <Statstic />
+        <Statstic />
+      </div>
     </div>
   )
 }

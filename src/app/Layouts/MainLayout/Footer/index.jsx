@@ -5,7 +5,7 @@ import c from '@assets/images/footer/c.png'
 
 const Footer = () => {
   return (
-    <div className='w-full bg-[#252641] flex flex-col items-center justify-center gap-4 p-4 md:p-6 lg:p-8'>
+    <div className='w-full bg-[#252641] dark:bg-[#22262b] flex flex-col items-center justify-center gap-4 p-4 md:p-6 lg:p-8'>
       <div className='w-full md:max-w-[33%] flex flex-col items-center my-5 gap-6'>
         <div className="flex gap-1 items-center ">
           <h2 className='text-white text-[18px] font-bold'>Virtual Sprite</h2>

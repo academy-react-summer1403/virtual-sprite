@@ -55,6 +55,9 @@ body {
   gap: 60px;
   background-color: #fafbfc;
 }
+body.dark {
+  background-color: #2c333a; /* رنگ پس‌زمینه تاریک */
+}
 #root {
   width: 100%;
   margin: 0 auto;
@@ -63,6 +66,18 @@ body {
 .bg {
   width: 100%;
   background: url("../assets/images/HeroSection/header-bg.png") no-repeat 100%
+    25%;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.dark-bg {
+  width: 100%;
+  background: url("../assets/images/HeroSection/darkbg.png") no-repeat 100%
     25%;
   background-size: 100%;
   display: flex;

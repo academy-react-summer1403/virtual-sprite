@@ -8,8 +8,6 @@ import security from '@assets/images/mainContent/courseCategory/security.png'
 const CourseCategory = () => {
   return (
     <div className='cat-bg !hidden md:!flex'>
-
-
       <div class=' flex flex-col justify-center text-right gap-6' >
         <h1 class='text-[#263238] text-[40px] ' >دسته بندی‌ دوره‌ها</h1>
         <p class='text-[#455A64] text-[16px] w-[95%]'>لورم  ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ  و با استفاده از  طراحان گرافیک است   چاپگرها و متون بلکه روزنامه و مجله در ستون و  سطرآنچنان که لازم است   و برای شرایط فعلی تکنولوژی مورد نیاز</p>

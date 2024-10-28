@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import hexa from '@assets/images/header/hexa.svg';
 import Btn from '@components/common/Btn';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import DarkMode from './DarkMode';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -13,10 +14,10 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className={`container mx-auto flex justify-between items-center ${headerBgClass} pt-5 px-4 md:px-8 lg:px-16`}>
+        <div className={`container mx-auto flex justify-between items-center dark:bg-[#2c333a] ${headerBgClass} pt-5 px-4 md:px-8 lg:px-16`}>
             <div className="hidden md:flex gap-1 items-center cursor-pointer" onClick={() => navigate('/')}>
                 <img src={hexa} className="w-[43px] h-[30px]" alt="Logo" />
-                <h2 className='text-[#263238] text-[19px] font-bold'>Virtual Sprite</h2>
+                <h2 className='text-[#263238] dark:text-[#f1f2f4] text-[19px] font-bold'>Virtual Sprite</h2>
             </div>
 
             {/* Desktop Navigation */}
@@ -24,14 +25,14 @@ const Header = () => {
                 <li>
                     <NavLink
                         to="/courselist1"
-                        className={({ isActive }) => `${isActive ? "gradient-border" : ""} text-[#263238] text-[16px] transition duration-300 hover:text-[#2196F3]`}
+                        className={({ isActive }) => `${isActive ? "gradient-border" : ""} text-[#263238] dark:text-[#f1f2f4] text-[16px] transition duration-300 hover:text-[#2196F3]`}
                     >
                         دوره ها
                     </NavLink>
                 </li>
-                <li className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>اساتید</li>
-                <li className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>ارتباط با ما</li>
-                <li className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>اخبار مقالات</li>
+                <li className='text-[#263238] dark:text-[#f1f2f4] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>اساتید</li>
+                <li className='text-[#263238] dark:text-[#f1f2f4] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>ارتباط با ما</li>
+                <li className='text-[#263238] dark:text-[#f1f2f4] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>اخبار مقالات</li>
             </ul>
 
             {/* Mobile Hamburger Menu Button */}
@@ -56,7 +57,7 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li className="py-2">
-                            <span className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>اساتید</span>
+                            <span className='text-[#263238] text-[16px]  transition duration-300 cursor-pointer hover:text-[#2196F3]'>اساتید</span>
                         </li>
                         <li className="py-2">
                             <span className='text-[#263238] text-[16px] transition duration-300 cursor-pointer hover:text-[#2196F3]'>ارتباط با ما</span>
@@ -68,7 +69,8 @@ const Header = () => {
                 </div>
             )}
 
-            <div className="flex gap-4 ml-4">
+            <div className="flex gap-0 ml-4">
+                <DarkMode />
                 <Btn insideText={"ورود به حساب"} />
             </div>
         </div>

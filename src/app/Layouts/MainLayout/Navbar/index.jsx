@@ -3,10 +3,16 @@ import hexa from '@assets/images/header/hexa.svg';
 import Btn from '@components/common/Btn';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import DarkMode from './DarkMode';
+import { Modal, Button, Text } from "@mantine/core";
+import Auth from "@components/Auth";
+import { useDisclosure } from "@mantine/hooks";
+import Login from "@components/Auth/Login";
+import exit from "@assets/images/login/exit.png";
 
 const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [opened, { open, close }] = useDisclosure(false);
     const isHomePage = location.pathname === '/';
     const headerBgClass = isHomePage ? 'bg-[#e3f2fd]' : 'bg-transparent';
 
@@ -15,6 +21,33 @@ const Header = () => {
 
     return (
         <div className={`container w-full mx-auto flex justify-between items-center dark:bg-[#2c333a] ${headerBgClass} pt-5 px-4 md:px-8 lg:px-16`}>
+            <Modal
+                className="absolute right-0 font-[yekanHeavy]"
+                // title={
+                //   <Text class="font-[yekanBold] text-[32px] text-[#263238] mt-[5px] mr-5">
+                //     ورود به حساب
+                //   </Text>
+                // }
+                opened={opened}
+                onClose={close}
+                withCloseButton={true}
+                radius={24}
+                closeButtonProps={{
+                    icon: <img class="absolute left-5" src={exit} />,
+                }}
+                centered
+                overlayProps={{
+                    backgroundOpacity: 0.55,
+                    blur: 3,
+                }}
+                transitionProps={{
+                    transition: "fade",
+                    duration: 600,
+                    timingFunction: "linear",
+                }}
+            >
+                <Auth opened={opened} open={open} close={close} />
+            </Modal>
             <div className="hidden md:flex gap-1 items-center cursor-pointer" onClick={() => navigate('/')}>
                 <img src={hexa} className="w-[43px] h-[30px]" alt="Logo" />
                 <h2 className='text-[#263238] dark:text-[#f1f2f4] text-[19px] font-bold'>Virtual Sprite</h2>
@@ -68,10 +101,29 @@ const Header = () => {
                     </ul>
                 </div>
             )}
-
-            <div className="flex gap-0 ml-4">
+            <div class="flex gap-0 ml-4">
+                {/* <img src={sabad} class=" h-20 w-20" />  */}
+                {/* <Btn 
+           onClick={() => {
+            open();
+          }} insideText={"ورود به حساب"}/>  */}
+                {/* {showDiv && ( */}
+                {/* <Auth /> */}
+                {/*   <div class="h-[400px] w-[400px] bg-white absolute top-[10px] left-[10px] z-50"> */}
+                {/*      <input type="text" name="emailMob" /> */}
+                {/*      <input type="text" name="password"  /> */}
+                {/*   <Login /> */}
+                {/*    </div> */}
+                {/* )} */}
+                {/* {authModal === true && <Auth setAuthModal={setAuthModal} />} */}
                 <DarkMode />
-                <Btn insideText={"ورود به حساب"} />
+                <Button
+                    onClick={() => {
+                        open();
+                    }}
+                >
+                    ورود به حساب
+                </Button>
             </div>
         </div>
     );

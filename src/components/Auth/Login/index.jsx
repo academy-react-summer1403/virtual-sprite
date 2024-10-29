@@ -69,8 +69,8 @@ const Login = ({ setContent }) => {
            
               </div>
               <Field
-                class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] my-5
-                 font-[yekanReg]
+                class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] 
+                 font-[yekanReg] 
                     text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]"
                 name="emailMob"
                 placeholder="ایمیل یا شماره موبایل"
@@ -79,7 +79,7 @@ const Login = ({ setContent }) => {
                 name="emailMob"
                 component="p"
                 // style={{ color: "red" }}
-                className="errorMessage absolute top-12 right-10 z-[10] text-[10px] my-10 font-[yekanReg]"
+                className="errorMessage absolute top-12 right-10 z-[10] text-[10px] my-20 font-[yekanReg]"
               />
               <Field
                 class="w-[356px] h-[56px] mb-[15px] rounded-[30px] border-[1px] border-[#CFD8DC] pr-[25px] 
@@ -94,7 +94,7 @@ const Login = ({ setContent }) => {
                 name="password"
                 component="p"
                 // style={{ color: "red" }}
-                class="errorMessage absolute top-32 right-10 z-[10] text-[10px] my-10 font-[yekanReg]"
+                class="errorMessage absolute top-32 right-10 z-[10] text-[10px] my-20 font-[yekanReg]"
               />
             </div>
             {/* <div class=""> */}
@@ -114,8 +114,7 @@ const Login = ({ setContent }) => {
                 {/* <NavLink to="#" >رمز عبور را فراموش کردم</NavLink> */}
                 <div
                   onClick={()=>setContent("register")}
-                 
-                  class="text-[#2196F3] font-[yekanReg]"
+                  class="text-[#2196F3] font-[yekanReg] cursor-pointer"
                 >
                   رمز عبور را فراموش کردم
                 </div>
@@ -129,8 +128,7 @@ const Login = ({ setContent }) => {
                     drop-shadow-[0_0_20px_rgba(0,0,0,0.2)]
                      border-none transition ease-in-out hover:scale-105 duration-[.3s] "
               >
-                دریافت کد تایید
-              </button>
+ورور              </button>
             </div>
           </Form>
         )}

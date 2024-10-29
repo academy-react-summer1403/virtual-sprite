@@ -7,7 +7,7 @@ import Filters from '../Filter';
 
 const CourseList1 = () => {
   return (
-    <div className="container mx-auto p-8">
+    <div className=" mx-auto p-8">
       <CourseHead />
       <div className='w-full flex'>
         <Filters />

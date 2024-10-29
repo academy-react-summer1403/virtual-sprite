@@ -14,8 +14,21 @@ import like from "@assets/images/CourseDetail/like.svg";
 import dislike from "@assets/images/CourseDetail/dislike.svg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
+import { useState, useEffect } from "react";
+import { courseDetail } from "../../core/services/api/courses/courseDetail.api";
+import { useParams } from "react-router-dom";
 
 const CourseDetail = () => {
+  const [detail, setDetail] = useState();
+  const { id } = useParams();
+  const getDetails = async () => {
+    const result = await courseDetail(id);
+    setDetail(result);
+  };
+
+  useEffect(() => {
+    getDetails();
+  }, []);
   return (
     <div class="flex flex-row justify-center items-start p-4">
       <div class="flex flex-col flex-wrap justify-center items-center gap-10">
@@ -40,7 +53,7 @@ const CourseDetail = () => {
                     src={clock}
                     alt="ساعت"
                   />
-                  <div>14 ساعت</div>
+                  <div>{detail?.startTime}ساعت 14</div>
                 </div>
                 <div
                   class="w-[119px] h-[48px] absolute px-4 py-3 bottom-[30px] left-[160px] 

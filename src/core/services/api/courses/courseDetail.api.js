@@ -1,10 +1,10 @@
 import axios from "axios";
 import { baseUrl } from "@config/baseURL";
 
-export const courseDetail = async () => {
+export const courseDetail = async ({id}) => {
   try {
     const res = await axios.get(
-      `${baseUrl}/Home/GetCoursesWithPagination?PageNumber=1&RowsOfPage=12&SortingCol=Active&SortType=DESC&TechCount=0`
+      `${baseUrl}/Home/GetCourseDetails?CourseId=${id}`
     );
     return res.data;
   } catch (error) {

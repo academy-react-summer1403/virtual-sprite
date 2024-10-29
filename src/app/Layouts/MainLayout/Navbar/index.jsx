@@ -13,7 +13,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure(false);
   return (
-    <div class="container mx-auto flex justify-between items-center bg-transparent pt-5 ">
+    <div class=" mx-auto flex justify-between items-center bg-transparent pt-5 ">
       <Modal
         className="absolute right-0 font-[yekanHeavy]"
         // title={

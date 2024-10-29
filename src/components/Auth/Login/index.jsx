@@ -7,7 +7,7 @@ import { Result } from "postcss";
 
 const Login = ({ setContent }) => {
   const goToRegister = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     setContent("register");
   };
   const loginUser = async (values) => {
@@ -55,18 +55,19 @@ const Login = ({ setContent }) => {
         onSubmit={loginUser}
       >
         {({ values }) => (
-
-         <Form>
-         <div class="relative flex flex-col flex-wrap justify-center items-center 
+          <Form>
+            <div
+              class="relative flex flex-col flex-wrap justify-center items-center 
                      sm:flex-row sm:justify-center sm:gap-4 
                      md:flex-row md:justify-center md: gap-4 
-                     lg:flex-row lg:justify-center lg:gap-4">
-              {/* <div class="flex flex-row justify-between ">
-                <div class="text-[#263238] flex flex-row justify-center items-center leading-[49.6px] text-[32px] text-right">
+                     lg:flex-row lg:justify-center lg:gap-4"
+            >
+              <div class="flex flex-row justify-between ">
+                <div class="text-[#263238] flex flex-row justify-center items-center text-[32px] text-right">
                   ورود به حساب
                 </div>
            
-              </div> */}
+              </div>
               <Field
                 class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] my-5
                  font-[yekanReg]
@@ -111,7 +112,11 @@ const Login = ({ setContent }) => {
               </div>
               <div>
                 {/* <NavLink to="#" >رمز عبور را فراموش کردم</NavLink> */}
-                <a  onClick={goToRegister} href="#" class="text-[#2196F3] font-[yekanReg]">
+                <a
+                  onClick={goToRegister}
+                  href="#"
+                  class="text-[#2196F3] font-[yekanReg]"
+                >
                   رمز عبور را فراموش کردم
                 </a>
               </div>

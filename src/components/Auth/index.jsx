@@ -18,5 +18,3 @@ const Auth = ({ opened, open, close }) => {
 };
 
 export default Auth;
-
-export default Auth;

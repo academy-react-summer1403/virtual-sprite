@@ -6,6 +6,7 @@ import noPhoto from '@assets/images/mainContent/topcourses/no.jpg'
 import liked from '@assets/images/mainContent/topcourses/heart.svg'
 import notLiked from '@assets/images/mainContent/topcourses/emptyHeart.svg'
 import DateFormater from '@common/DateFormater'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -13,7 +14,7 @@ import DateFormater from '@common/DateFormater'
 
 const CourseItem = ({ teacherName, cost, likeCount, isLiked, img, title, date }) => {
   img === null ? img = noPhoto : img = img
-
+  const navigate = useNavigate()
 
 
   return (

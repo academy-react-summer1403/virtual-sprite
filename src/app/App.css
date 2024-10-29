@@ -51,7 +51,7 @@ body {
   margin: 0;
   padding: 0;
   direction: rtl;
-  font-family: yekan;
+  /* font-family: "yekanReg; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -62,6 +62,7 @@ body.dark {
   background-color: #2c333a; /* رنگ پس‌زمینه تاریک */
 }
 #root {
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
   text-align: center;

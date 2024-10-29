@@ -95,7 +95,7 @@ const CourseList1 = () => {
   const inactiveImageStyle = 'h-[30px] w-[30px] cursor-pointer';
 
   return (
-    <div className="container mx-auto p-8">
+    <div className=" mx-auto p-8">
       <CourseHead />
       <div className='w-full flex'>
         <Filters setType={setType} setLevel={setLevel} />

@@ -1,22 +1,37 @@
-import React from 'react'
-import HeroSection from './HeroSection'
-import CourseCategory from './CourseCategory/CourseCategory'
-import TeacherHolder from './Teachers/TeacherHolder'
-import ServiceHolder from './services/ServiceHolder'
-import NewsHolder from './News/NewsHolder'
-import CourseHolder from './CourseTop/CourseHolder'
+import { useDisclosure, useSetState } from "@mantine/hooks";
+import React, { useState } from "react";
+import { Modal, Button, MantineProvider, NavLink } from "@mantine/core";
+import Auth from "../Auth";
 
-const Landing = () => { 
+const Landing = () => {
+  const [authModal, setAuthModal] = useState(false);
   return (
-    <div>
-      <HeroSection />
-      <ServiceHolder/>
-      <CourseHolder/>
-      <CourseCategory/>
-      <TeacherHolder/>
-      <NewsHolder/>
-    </div>
-  )
-}
+    <>
+      <MantineProvider>
+        <Modal
+          title="عنوان"
+          className="dirAuth"
+          opened={authModal}
+          onClose={() => setAuthModal(false)}
+          withCloseButton={true}
+          radius={24}
+        >
+          {/* <div class="w-[356px] h-[156px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC]"> */}
+          {/* {authModal === true && <Auth setAuthModal={setAuthModal} />} */}
+          <Auth />
 
-export default Landing
+          {/* </div> */}
+        </Modal>
+        <Button
+          onClick={() => {
+            setAuthModal(true);
+          }}
+        >
+          ورود
+        </Button>
+      </MantineProvider>
+    </>
+  );
+};
+
+export default Landing;

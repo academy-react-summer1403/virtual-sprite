@@ -62,7 +62,7 @@ const TeacherHolder = () => {
 
     return (
         <>
-            <div className="my-8 bg-[#E3F2FD]">
+            <div className="my-8 bg-[#E3F2FD] dark:bg-[#22262b]">
                 <Title title={"اساتید برتر "} />
                 <div className="flex flex-wrap justify-center gap-4 mt-4 p-3 transition duration-700">
                     {groupedSlides.length > 0 ? (

@@ -4,7 +4,7 @@ import down from '@assets/images/coursePagination/down.svg';
 import { useState, useEffect } from 'react';
 import { filterType } from '@core/services/api/courses/filterType.api';
 
-const Type = ({ index }) => {
+const Type = ({ index, setType }) => {
     const [filterCat, setFilterCat] = useState([]);
     const [openIndexes, setOpenIndexes] = useState(new Set());
 
@@ -41,7 +41,9 @@ const Type = ({ index }) => {
                 {openIndexes.has(index) && (
                     <div className='p-2'>
                         {filterCat.map((contentItem, contentIndex) => (
-                            <div key={contentIndex} className='flex items-center mb-2'>
+                            <div
+                                onClick={() => { setType(contentItem.id) }}
+                                key={contentIndex} className='flex items-center mb-2'>
                                 <input
                                     type="checkbox"
                                     id={contentItem.typeName}

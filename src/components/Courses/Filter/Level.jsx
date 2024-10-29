@@ -4,7 +4,7 @@ import down from '@assets/images/coursePagination/down.svg';
 import { useState, useEffect } from 'react';
 import { filterLevel } from '@core/services/api/courses/filterLevel.api';
 
-const Level = ({ index }) => {
+const Level = ({ index, setLevel }) => {
     const [filterCat, setFilterCat] = useState([]);
     const [openIndexes, setOpenIndexes] = useState(new Set());
 
@@ -41,7 +41,9 @@ const Level = ({ index }) => {
                 {openIndexes.has(index) && (
                     <div className='p-2'>
                         {filterCat.map((contentItem, contentIndex) => (
-                            <div key={contentIndex} className='flex items-center mb-2'>
+                            <div key={contentIndex}
+                                onClick={() => { setLevel(contentItem.id) }}
+                                className='flex items-center mb-2'>
                                 <input
                                     type="checkbox"
                                     id={contentItem.levelName}

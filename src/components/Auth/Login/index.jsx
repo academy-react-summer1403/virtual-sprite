@@ -7,12 +7,9 @@ import { Result } from "postcss";
 
 const Login = ({ setContent }) => {
   const goToRegister = (e) => {
-    
     e.preventDefault(); 
-    setContent('register'); 
+    setContent("register");
   };
- 
- 
   const loginUser = async (values) => {
     console.log("click login");
     const userObj = {

@@ -8,7 +8,7 @@ const Search = ({ handleSearchChange, searchQuery }) => {
                 <div class="absolute inset-y-0 end-0 flex items-center px-3 pointer-events-none">
                     <img src={search} />
                 </div>
-                <input type="search" onChange={handleSearchChange} value={searchQuery} id="default-search" class="block w-full p-4 text-sm text-[#607D8B] rounded-2xl bg-[#FFFFFF]  dark:bg-[#dcdfe4] dark:border-gray-600 dark:placeholder-[#2c333a] dark:text-[#2c333a] dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="چی میخوای یاد بگیری؟" required />
+                <input type="search" onChange={handleSearchChange} value={searchQuery} id="default-search" class="block w-full p-4 text-sm text-[#607D8B] rounded-2xl bg-[#FFFFFF]  dark:bg-[#22262b] dark:border-gray-600 dark:placeholder-[#f1f2f4] dark:text-[#f1f2f4] dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="چی میخوای یاد بگیری؟" required />
             </div>
         </form>
     )

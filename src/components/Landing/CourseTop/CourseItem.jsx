@@ -18,16 +18,20 @@ const CourseItem = ({
   date,
 }) => {
   img === null ? (img = noPhoto) : (img = img);
+  let image = img.includes("https://classapi.sepehracademy.ir") ? img : noPhoto
   const navigate = useNavigate();
 
   return (
-    <div class="flex flex-col  gap-1 bg-[#ffffff] dark:bg-[#22262b]  shadow-xl rounded-xl p-4 ">
-      <img src={img} class="w-[264px] h-[180px] rounded-xl" />
+    <div class="flex flex-col  gap-1 bg-[#ffffff] dark:bg-[#22262b] cursor-pointer shadow-xl rounded-xl p-4 "
+      onClick={() => navigate("/coursedetail")}
+    >
+      <img src={image} class="w-[264px] h-[180px] rounded-xl" />
       <h4 class="text-[#263238] dark:text-[#f1f2f4] text-[18px] text-right p-2">
         {title}
       </h4>
 
-      <div class="flex items-center justify-between bg-[#ECEFF1] dark:bg-[#5c6c7a] p-2 rounded-full ">
+      <div class="flex items-center justify-between   bg-[#ECEFF1] dark:bg-[#5c6c7a] p-2 rounded-full "
+      >
         <div class="flex items-center gap-1">
           <img src={lesson} class="w-[15px] h-[15px] " />
           <h6 class=" text-[12px]  text-[#263238]">202 درس</h6>

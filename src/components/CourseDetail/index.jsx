@@ -19,16 +19,16 @@ import { courseDetail } from "../../core/services/api/courses/courseDetail.api";
 import { useParams } from "react-router-dom";
 
 const CourseDetail = () => {
-  const [detail, setDetail] = useState();
-  const { id } = useParams();
-  const getDetails = async () => {
-    const result = await courseDetail(id);
-    setDetail(result);
-  };
+  // const [detail, setDetail] = useState();
+  // const { id } = useParams();
+  // const getDetails = async () => {
+  //   const result = await courseDetail(id);
+  //   setDetail(result);
+  // };
 
-  useEffect(() => {
-    getDetails();
-  }, []);
+  // useEffect(() => {
+  //   getDetails();
+  // }, []);
   return (
     <div class="flex flex-row justify-center items-start p-4">
       <div class="flex flex-col flex-wrap justify-center items-center gap-10">
@@ -40,7 +40,7 @@ const CourseDetail = () => {
                 class="w-[78px] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-white rounded-3xl text-[red] gap-[5px] z-20"
               >
-                <img class=" h-auto w-[25px] h-[25px]" src={heart} alt="لایک" />
+                <img class=" w-[25px] h-[25px]" src={heart} alt="لایک" />
                 <div>12</div>
               </div>
               <div>
@@ -49,18 +49,18 @@ const CourseDetail = () => {
                       flex flex-row bg-white rounded-3xl text-[#000000] gap-[5px] z-20"
                 >
                   <img
-                    class=" h-auto w-[25px] h-[25px]"
+                    class=" w-[25px] h-[25px]"
                     src={clock}
                     alt="ساعت"
                   />
-                  <div>{detail?.startTime}ساعت 14</div>
+                  <div>14</div>
                 </div>
                 <div
                   class="w-[119px] h-[48px] absolute px-4 py-3 bottom-[30px] left-[160px] 
                     flex flex-row bg-white rounded-3xl text-[#000000] gap-[5px] z-20"
                 >
                   <img
-                    class=" h-auto w-[25px] h-[25px]"
+                    class=" w-[25px] h-[25px]"
                     src={note}
                     alt="یادداشت"
                   />
@@ -195,7 +195,7 @@ const CourseDetail = () => {
               <div class="w-full flex flex-row justify-between px-10">
                 <div class="flex flex-row gap-1 items-center">
                   <img
-                    class=" h-auto w-[25px] h-[25px]"
+                    class=" w-[25px] h-[25px]"
                     src={stuCount}
                     alt="تعداد دانشجو"
                   />
@@ -206,7 +206,7 @@ const CourseDetail = () => {
               <div class="w-full flex flex-row justify-between px-10">
                 <div class="flex flex-row gap-1 items-center">
                   <img
-                    class=" h-auto w-[25px] h-[25px]"
+                    class=" w-[25px] h-[25px]"
                     src={courseStatus}
                     alt="وضعیت دوره "
                   />
@@ -217,7 +217,7 @@ const CourseDetail = () => {
               <div class="w-full flex flex-row justify-between px-10">
                 <div class="flex flex-row gap-1 items-center">
                   <img
-                    class=" h-auto w-[25px] h-[25px]"
+                    class=" w-[25px] h-[25px]"
                     src={startDate}
                     alt="تاریخ شروع"
                   />
@@ -228,7 +228,7 @@ const CourseDetail = () => {
               <div class="w-full flex flex-row justify-between px-10">
                 <div class="flex flex-row gap-1 items-center">
                   <img
-                    class=" h-auto w-[25px] h-[25px]"
+                    class=" w-[25px] h-[25px]"
                     src={endDate}
                     alt="تاریخ پایان"
                   />
@@ -255,7 +255,7 @@ const CourseDetail = () => {
               </div>
 
               <div class="flex flex-col grow justify-center items-center">
-                <div class="w-full flex flex-row justify-start items-end items-center gap-1 ">
+                <div class="w-full flex flex-row justify-start items-center gap-1 ">
                   <div class="flex flex-center items-start rounded-[16px]">
                     <img
                       class="w-[17.52px] h-[16px]"

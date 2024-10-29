@@ -5,7 +5,7 @@ import { loginAPI } from "../../../core/services/api/auth/auth";
 import { Result } from "postcss";
 // import exit from "@assets/images/login/exit.png";
 
-const Login = ({ setContent }) => {
+const Login = ({ setContent, close }) => {
   // const goToRegister = (e) => {
   //   e.preventDefault();
   //   setContent("register");
@@ -20,14 +20,13 @@ const Login = ({ setContent }) => {
     const user = await loginAPI(userObj);
     if (user.token) {
       if (user.message.includes("موفق")) {
-        alert(user.message);
-        setItem("token", user.token);
+        localStorage.setItem("token", user.token);
         console.log(user.token);
-        closeModalWithJS();
       }
     } else {
-      alert(user.message);
+      close()
     }
+    close()
   };
 
   const getProfileFunc = async () => {
@@ -98,7 +97,7 @@ const Login = ({ setContent }) => {
             </div>
             {/* <div class=""> */}
             <div class="w-[380px] my-[20px] container flex flex-nowrap justify-between">
-              <div class="flex flex-row items-center gap-2 text-[14px] pr-4 text-[14px] ">
+              <div class="flex flex-row items-center gap-2 text-[14px] pr-4  ">
                 <Field
                   type="checkbox"
                   name="acceptedTerms"

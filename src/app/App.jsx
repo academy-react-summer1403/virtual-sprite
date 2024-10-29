@@ -1,15 +1,13 @@
-import Landing from "@components/Landing";
+import RouterConfig from "../config/router";
 import "./App.css";
+import "@mantine/core/styles.css";
 
-const App = () => {
-  
+const App = () => {  
   return (
-      <div>
-        <Landing/>
-      </div>
+    <div>
+      <RouterConfig />
+    </div>
   );
-}
+};
 
 export default App;
-
-

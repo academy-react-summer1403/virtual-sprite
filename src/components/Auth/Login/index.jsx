@@ -66,7 +66,6 @@ const Login = ({ setContent }) => {
                 <div class="text-[#263238] flex flex-row justify-center items-center text-[32px] text-right">
                   ورود به حساب
                 </div>
-           
               </div>
               <Field
                 class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] 
@@ -113,7 +112,7 @@ const Login = ({ setContent }) => {
               <div>
                 {/* <NavLink to="#" >رمز عبور را فراموش کردم</NavLink> */}
                 <div
-                  onClick={()=>setContent("register")}
+                  onClick={() => setContent("register")}
                   class="text-[#2196F3] font-[yekanReg] cursor-pointer"
                 >
                   رمز عبور را فراموش کردم
@@ -128,7 +127,8 @@ const Login = ({ setContent }) => {
                     drop-shadow-[0_0_20px_rgba(0,0,0,0.2)]
                      border-none transition ease-in-out hover:scale-105 duration-[.3s] "
               >
-ورور              </button>
+                ورود
+              </button>
             </div>
           </Form>
         )}

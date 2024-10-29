@@ -1,8 +1,10 @@
-import { useDisclosure, useSetState } from "@mantine/hooks";
-import React, { useState } from "react";
-import { Modal, Button, MantineProvider, NavLink } from "@mantine/core";
-import Auth from "../Auth";
-
+import React from 'react'
+import HeroSection from './HeroSection'
+import CourseCategory from './CourseCategory'
+import TeacherHolder from './Teachers/TeacherHolder'
+import ServiceHolder from './services/ServiceHolder'
+import NewsHolder from './News/NewsHolder'
+import CourseHolder from './CourseTop/CourseHolder'
 const Landing = () => {
   return (
     <div>

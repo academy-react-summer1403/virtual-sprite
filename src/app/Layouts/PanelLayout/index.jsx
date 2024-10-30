@@ -6,6 +6,7 @@ import { MantineProvider } from "@mantine/core";
 
 const PanelLayout = () => {
   return (
+    <div className="font-[yekanReg]">
     <MantineProvider>
     <div
       dir="ltr"
@@ -27,6 +28,7 @@ const PanelLayout = () => {
       </div>
     </div>
     </MantineProvider>
+    </div>
   );
 };
 

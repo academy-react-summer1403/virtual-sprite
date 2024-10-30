@@ -12,7 +12,9 @@ import EditProfilePage from "../../screens/UserPanel/EditProfile/index.jsx";
  import FavoritePage from "../../screens/UserPanel/Favorite/index.jsx";
  import ChangePassPage from "../../screens/UserPanel/ChangePass/index.jsx";
  import { CommentPage } from '../../screens/UserPanel/Comment/index.jsx';
-import ReservedCoursesPage from ".././../screens/UserPanel/ReservedCourses/index.jsx"
+import ReservedCoursesPage from ".././../screens/UserPanel/ReservedCourses/index.jsx";
+import ForgetPass from '../../components/Auth/ForgetPass';
+
 const router = createBrowserRouter([
   {
     path: "/",

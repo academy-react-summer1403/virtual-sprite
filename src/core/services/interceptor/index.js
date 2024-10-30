@@ -18,9 +18,9 @@ const onSuccess = (response) => {
 const onError = (err) => {
   console.log(err);
   if (err.response.status === 401) {
-    clearStorage();
+    // clearStorage();
     removeItem("token");
-    // window.location.pathname = "./";
+    window.location.pathname = "/";
   }
 
   if (err.response.status >= 400 && err.response.status < 500) {

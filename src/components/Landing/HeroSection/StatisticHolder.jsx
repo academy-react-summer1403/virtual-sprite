@@ -9,19 +9,21 @@ const StatisticHolder = () => {
     const [statistic, setStatistic] = useState(
         [
             { img: right, num: "167", type: 'مدرس مجرب' },
-            { img: mid , num: "408,228", type: 'دقیقه آموزش' },
+            { img: mid, num: "408,228", type: 'دقیقه آموزش' },
             { img: left, num: "460,789", type: 'نفر دانشجو' },
         ]
     );
     return (
-        <div class='flex flex-wrap justify-center gap-8 mb-[200px]' > {statistic.map((item, index) => {
-            return <StatisticItem
-                key={index}
-                img= {item.img}
-                num={item.num}
-                type={item.type}
-            />
-        })} </div>
+        <div className='!hidden md:!flex'>
+            <div class='flex flex-wrap justify-center gap-8 mb-[200px]' > {statistic.map((item, index) => {
+                return <StatisticItem
+                    key={index}
+                    img={item.img}
+                    num={item.num}
+                    type={item.type}
+                />
+            })} </div>
+        </div>
     )
 }
 

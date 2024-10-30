@@ -12,3 +12,16 @@ export const coursePagination = async () => {
     return [];
   }
 };
+
+export const coursePaginationDynamic = async (params) => {
+  try {
+    const res = await axios.get(
+      `${baseUrl}/Home/GetCoursesWithPagination?PageNumber=1&RowsOfPage=87&SortingCol=Active&SortType=DESC&TechCount=0`,
+      { params: params }
+    );
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};

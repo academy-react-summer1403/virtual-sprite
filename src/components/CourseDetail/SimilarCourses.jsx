@@ -17,11 +17,11 @@ const SimilarCourses = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const itemsPerSlide = 4;
 
+  const fetchCourses = async () => {
+    const result = await courseDetail();
+    setTopCourses(result.courseFilterDtos);
+  };
   useEffect(() => {
-    const fetchCourses = async () => {
-      const result = await courseDetail();
-      setTopCourses(result.courseFilterDtos);
-    };
     fetchCourses();
   }, []);
 
@@ -74,23 +74,19 @@ const SimilarCourses = () => {
           className=" cursor-pointer"
         />
       </div>
-      {/* Dots for pagination */}
-      {/* <div className="flex justify-center mt-2">
+
+      <div className="flex justify-center mt-2">
         {Array.from({ length: maxSlides }).map((_, index) => (
           <div
             key={index}
-            className={`w-3 h-3 rounded-full mx-1 cursor-pointer ${
-              index === currentSlide ? "bg-blue-600" : "bg-gray-300"
-            }`}
+            className={`w-3 h-3 rounded-full mx-1 cursor-pointer mb-4 ${index === currentSlide ? "bg-blue-600" : "bg-gray-300"
+              }`}
             onClick={() => goToSlide(index)}
           />
         ))}
-      </div> */}
+      </div>
       {/* <div className="flex justify-between relative bottom-[450px]">
-                
-
-                
-            </div> */}
+      </div> */}
     </div>
   );
 };

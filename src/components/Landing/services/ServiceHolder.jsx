@@ -17,7 +17,7 @@ const ServiceHolder = () => {
         ]
     );
     return (
-        <div class='mb-10' >
+        <div className='!hidden md:!block mb-10' >
             <Title title={"خدمات ما"} />
             <div class='flex flex-wrap justify-evenly gap-4' >
                 {services.map((item, index) => {

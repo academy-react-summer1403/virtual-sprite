@@ -2,7 +2,7 @@ import RouterConfig from "../config/router";
 import "./App.css";
 import "@mantine/core/styles.css";
 
-const App = () => {  
+const App = () => {
   return (
     <div>
       <RouterConfig />

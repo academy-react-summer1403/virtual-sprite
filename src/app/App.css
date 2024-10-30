@@ -51,12 +51,15 @@ body {
   margin: 0;
   padding: 0;
   direction: rtl;
-  font-family: yekan;
+  /* font-family: "yekanReg; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 60px;
   background-color: #fafbfc;
+}
+body.dark {
+  background-color: #2c333a; /* رنگ پس‌زمینه تاریک */
 }
 #root {
   width: 100%;
@@ -66,15 +69,32 @@ body {
 .bg {
   width: 100%;
   background: url("../assets/images/HeroSection/header-bg.png") no-repeat 100%
-    50%;
+    25%;
   background-size: 100%;
   display: flex;
-  margin-top: -120px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  gap: 60px;
+  gap: 90px;
 }
+
+.dark-bg {
+  width: 100%;
+  background: url("../assets/images/HeroSection/darkbg.png") no-repeat 100%
+    25%;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 90px;
+}
+@media (max-width: 768px) {
+  .bg {
+    gap: 30px;
+  }
+}
+
 .cat-bg {
   width: 90%;
   margin: 40px auto;

@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { UserInfo } from "../../../core/services/api/panel/EditProfile";
+import { EditInfo } from "../../../core/services/api/panel/EditProfile";
 import React, { useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 const UserProfile = () => {
@@ -24,6 +24,9 @@ const UserProfile = () => {
     formdata.append("BirthDay", values.BirthDay);
     formdata.append("Latitude", "25");
     formdata.append("Longitude", "35");
+    
+    const editapi = await  EditInfo(formdata);
+    console.log(editapi);
   };
   return (
     <>

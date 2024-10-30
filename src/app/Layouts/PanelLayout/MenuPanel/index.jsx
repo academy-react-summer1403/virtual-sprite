@@ -13,7 +13,7 @@ import { RxDashboard } from "react-icons/rx";
 import { CardMenu } from "./CardMenu";
 import { useNavigate } from "react-router-dom";
 const MenuPanel = () => {
-  const [cardmenu, setcardmenu] = useState([
+  const menu =[
     { id: 1, name: "پیشخوان", img: pishkhan, navLink: "dashboard" },
     { id: 2, name: "ویرایش پروفایل", img: profile, navLink: "editprofile" },
     { id: 3, name: "دوره های من", img: videoo, navLink: "mycourses" },
@@ -22,7 +22,7 @@ const MenuPanel = () => {
     { id: 6, name: "نظرات من", img: comment, navLink: "comment" },
     { id: 7, name: "تغییر رمز", img: pass, navLink: "changepass" },
     { id: 8, name: " خروج از حساب", img: exist, navLink: "" },
-  ]);
+  ];
   const navigator = useNavigate();
   const gotolayout = () => {
     return navigator("/");
@@ -59,7 +59,7 @@ const MenuPanel = () => {
         </span>
       </div>
       <div className="w-[90%] h-[420px] m-auto mb-[2%]">
-        {cardmenu.map((item, index) => {
+        {menu.map((item, index) => {
           return (
             <CardMenu
               key={index}

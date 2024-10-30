@@ -1,7 +1,7 @@
 import instance from "../../interceptor/index.js";
-export const UserInfo = async () => {
+export const EditInfo = async (formdata) => {
     try {
-      const result = await instance.get(`/SharePanel/GetProfileInfo`);
+      const result = await instance.put("/SharePanel/UpdateProfileInfo",formdata);
   
       return result;
     } catch (error) {

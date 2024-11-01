@@ -20,13 +20,13 @@ const Login = ({ setContent, close }) => {
     const user = await loginAPI(userObj);
     if (user.token) {
       if (user.message.includes("موفق")) {
-        localStorage.setItem("token", user.token);
-        console.log(user.token);
+        localStorage.setItem("token: ", user.token);
+        console.log("login: ", user.token);
       }
     } else {
-      close()
+      close();
     }
-    close()
+    close();
   };
 
   const getProfileFunc = async () => {

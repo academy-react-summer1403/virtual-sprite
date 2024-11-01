@@ -16,19 +16,26 @@ import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
 import { courseDetail } from "../../core/services/api/courses/courseDetail.api";
+import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
 
 const CourseDetail = () => {
-  // const [detail, setDetail] = useState();
+  const [detail, setDetail] = useState([]);
+  const token = localStorage.getItem("token");
   // const { id } = useParams();
-  // const getDetails = async () => {
-  //   const result = await courseDetail(id);
-  //   setDetail(result);
-  // };
 
-  // useEffect(() => {
-  //   getDetails();
-  // }, []);
+  const getDetails = async () => {
+    if (token) {
+      const result = await courseDetailById();
+      console.log(result.data.courseId);
+      setDetail(result);
+    } else {
+      console.log("توکن وجود ندارد");
+    }
+  };
+  useEffect(() => {
+    getDetails();
+  }, []);
   return (
     <div class="flex flex-row justify-center items-start p-4">
       <div class="flex flex-col flex-wrap justify-center items-center gap-10">
@@ -48,22 +55,14 @@ const CourseDetail = () => {
                   class="w-[119px] h-[48px] absolute px-4 py-3 bottom-[30px] left-[30px] 
                       flex flex-row bg-white rounded-3xl text-[#000000] gap-[5px] z-20"
                 >
-                  <img
-                    class=" w-[25px] h-[25px]"
-                    src={clock}
-                    alt="ساعت"
-                  />
+                  <img class=" w-[25px] h-[25px]" src={clock} alt="ساعت" />
                   <div>14</div>
                 </div>
                 <div
                   class="w-[119px] h-[48px] absolute px-4 py-3 bottom-[30px] left-[160px] 
                     flex flex-row bg-white rounded-3xl text-[#000000] gap-[5px] z-20"
                 >
-                  <img
-                    class=" w-[25px] h-[25px]"
-                    src={note}
-                    alt="یادداشت"
-                  />
+                  <img class=" w-[25px] h-[25px]" src={note} alt="یادداشت" />
                   <div>202 درس</div>
                 </div>
               </div>

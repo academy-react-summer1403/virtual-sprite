@@ -9,3 +9,39 @@ export const EditInfo = async (formdata) => {
         return[];
     }
   };
+  export const SelectImg = async(formData) => {
+    try{
+        console.log("fetching started ...");
+
+        const result = await instance.post("/SharePanel/SelectProfileImage",formData);
+
+        return result;
+    }catch(error){
+        console.log(error);
+        return[];
+    }
+};
+export const DeleteImg = async() => {
+    try{
+        console.log("fetching started ...");
+
+        const result = await instance.delete("/SharePanel/DeleteProfileImage");
+
+        return result;
+    }catch(error){
+        console.log(error);
+        return[];
+    }
+};
+export const AddImg = async(imgdata) => {
+    try{
+        console.log("fetching started ...");
+
+        const result = await instance.post("/SharePanel/AddProfileImage",imgdata);
+
+        return result;
+    }catch(error){
+        console.log(error);
+        return[];
+    }
+};

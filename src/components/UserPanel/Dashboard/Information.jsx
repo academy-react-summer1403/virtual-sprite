@@ -1,33 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ItemInformation } from "./ItemInformation";
-import {useNavigate } from "react-router-dom";
-const Information=()=>{
-    const[cardList,setcardList]=useState([
-        {id:1,name:":نام و نام خانوادگی",explane:"لیلا کریمی"},
-        {id:1,name:":تاریخ تولد",explane:"13/6/1373"},
-        {id:1,name:":تلفن همراه",explane:"09117792547"},
-        {id:2,name:":ایمیل",explane:"leilakarimi@gmail.com"},
-        {id:3,name:":کدملی",explane:"2080542044"},
-     ]);
-     const navigator =useNavigate();
-     const gotoedit =()=>{
-      return  navigator("/panel/editprofile");
-     };
-    return(
-    <div dir="rtl" className="w-[98%] m-auto h-[80%] relative mt-[1%] flex flex-row flex-wrap gap-[2%] ">
+import { useNavigate } from "react-router-dom";
+import { FetchProfile } from "../../../core/services/api/panel/Dashboard";
+const Information = () => {
+  const [info, setInfo] = useState({});
 
-{cardList.map((item,index) => {
-        return(
-<ItemInformation
-key={index}
-name={item.name}
-explane={item.explane}
-id={item.id}
-/>
-        ); } ) }
-        <div onClick={gotoedit} className="w-[20%] h-[40%] bg-[#12926C] text-[#ffff] absolute bottom-[-20%] border-[#A4F6DE]  text-center font-normal text-[25px] cursor-pointer leading-[45px] rounded-tr-[15px] rounded-bl-[15px] border-[2px] left-[-1.1%]">ویرایش</div >
+  const getData = async () => {
+    const result = await FetchProfile();
+    setInfo(result);
+    console.log(result.data);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  const name = [
+    { id: 1, name: "نام   ", },
+    { id: 2, name: ":تاریخ تولد",},
+    { id: 3, name: ":نام خانوادگی ",},
+    { id: 4, name: ":ایمیل", },
+    { id: 5, name: ":کدملی", },
+  ];
+
+  const navigator = useNavigate();
+  const gotoedit = () => {
+    return navigator("/panel/editprofile");
+  };
+  return (
+    <div
+      dir="rtl"
+      className="w-[98%] m-auto h-[80%] relative mt-[1%] flex flex-row flex-wrap gap-[2%] "
+    >
+      {name.map((item, index) => {
+        return <ItemInformation key={index} name={item.name} id={item.id}  />;
+      })}
+      <div
+        onClick={gotoedit}
+        className="w-[20%] h-[40%] bg-[#12926C] text-[#ffff] absolute bottom-[-20%] border-[#A4F6DE]  text-center font-normal text-[25px] cursor-pointer leading-[45px] rounded-tr-[15px] rounded-bl-[15px] border-[2px] left-[-1.1%]"
+      >
+        ویرایش
+      </div>
     </div>
-    
-    )
-}
-export{Information};
+  );
+};
+export { Information };

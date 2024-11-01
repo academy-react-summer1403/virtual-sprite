@@ -3,19 +3,9 @@ import { Information } from "./Information";
 import { Status } from "./Status";
 import { LastPeriod } from "./LastPeriod";
 import { Offer } from "./Offer";
-import { FetchProfile } from "../../../core/services/api/panel/Dashboard";
+
 const Dashboard = () => {
-  const [info, setInfo] = useState({});
 
-  const getData = async () => {
-
-    const result = await FetchProfile();
-    setInfo(result);
-    console.log(result.data);
-  };
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <div className="w-[95%] h-[600px] m-auto mb-[2%] mt-[1%] flex flex-col justify-between">
       <div className="w-[100%] h-[31%] border-[#A4F6DE] bg-[#FBF6F6] border-[2px] rounded-[15px] shadow-[10px_10px_5px_0_#00000029]">

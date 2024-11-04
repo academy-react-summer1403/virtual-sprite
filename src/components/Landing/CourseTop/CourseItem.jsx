@@ -15,18 +15,18 @@ const CourseItem = ({
   isLiked,
   img,
   title,
-  date,
+  date,onItemClick 
 }) => {
   img === null ? (img = noPhoto) : (img = img);
   let image = img.includes("https://classapi.sepehracademy.ir") ? img : noPhoto
   const navigate = useNavigate();
 
   return (
-    <div class="flex flex-col  gap-1 bg-[#ffffff] dark:bg-[#22262b] cursor-pointer shadow-xl rounded-xl p-4 "
-      onClick={() => navigate("/coursedetail")}//rezi ${id} ezafe kard
+    <div class="flex flex-col  gap-1 bg-[#ffffff] dark:bg-[#22262b] cursor-pointer shadow-xl rounded-xl p-4 "onClick={onItemClick}
+      // onClick={() => navigate("/coursedetail")}//rezi ${id} ezafe kard
     >
       <img src={image} class="w-[264px] h-[180px] rounded-xl" />
-      <h4 class="text-[#263238] dark:text-[#f1f2f4] text-[18px] text-right p-2">
+      <h4  class="text-[#263238] dark:text-[#f1f2f4] text-[18px] text-right p-2">
         {title}
       </h4>
 

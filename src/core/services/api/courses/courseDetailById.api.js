@@ -1,11 +1,11 @@
 import axios from "axios";
 import { baseUrl } from "@config/baseURL";
-export const courseDetailById = async () => {
+export const courseDetailById = async (id) => {
   try {
     const res = await axios.get(
-      `${baseUrl}/Home/GetCourseDetails?CourseId=c79954bc-1f31-ef11-b6c8-c6ea51a59bbe`
+      `${baseUrl}/Home/GetCourseDetails?CourseId=${id}`
     );
-    return res;
+    return res.data;
   } catch (error) {
     console.log(error);
     return [];

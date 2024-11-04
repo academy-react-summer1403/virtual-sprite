@@ -1,5 +1,6 @@
 import rec from "@assets/images/CourseDetail/recHtml5.svg";
 import heart from "@assets/images/CourseDetail/heart.svg";
+import whiteHeart from "@assets/images/CourseDetail/whiteHeart.svg";
 import clock from "@assets/images/CourseDetail/clock.svg";
 import note from "@assets/images/CourseDetail/note.svg";
 import stuCount from "@assets/images/CourseDetail/stuCount.svg";
@@ -10,24 +11,29 @@ import drBahr from "@assets/images/CourseDetail/drBahr.png";
 import teacher from "@assets/images/CourseDetail/teacher.svg";
 import emptyStar from "@assets/images/CourseDetail/emptyStar.svg";
 import fillStar from "@assets/images/CourseDetail/fillStar.svg";
-import like from "@assets/images/CourseDetail/like.svg";
-import dislike from "@assets/images/CourseDetail/dislike.svg";
+import like0 from "@assets/images/CourseDetail/like0.svg";
+import like1 from "@assets/images/CourseDetail/like1.svg";
+import dislike0 from "@assets/images/CourseDetail/dislike0.svg";
+import dislike1 from "@assets/images/CourseDetail/dislike1.svg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
 import { courseDetail } from "../../core/services/api/courses/courseDetail.api";
 import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
+import { data } from "autoprefixer";
 
 const CourseDetail = () => {
+  // const currentUserLike = 0;
+
   const [detail, setDetail] = useState([]);
   const token = localStorage.getItem("token");
-  // const { id } = useParams();
-
+  const { id } = useParams();
+  // console.log(id);
   const getDetails = async () => {
     if (token) {
-      const result = await courseDetailById();
-      console.log(result.data.courseId);
+      const result = await courseDetailById(id);
+      console.log("course detail", result);
       setDetail(result);
     } else {
       console.log("توکن وجود ندارد");
@@ -35,7 +41,7 @@ const CourseDetail = () => {
   };
   useEffect(() => {
     getDetails();
-  }, []);
+  }, [id]);
   return (
     <div class="flex flex-row justify-center items-start p-4">
       <div class="flex flex-col flex-wrap justify-center items-center gap-10">
@@ -47,8 +53,12 @@ const CourseDetail = () => {
                 class="w-[78px] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-white rounded-3xl text-[red] gap-[5px] z-20"
               >
-                <img class=" w-[25px] h-[25px]" src={heart} alt="لایک" />
-                <div>12</div>
+                <img
+                  className="w-[25px] h-[25px]"
+                  src={detail.isUserFavorite === false ? whiteHeart : heart}
+                  alt="علاقمندی"
+                />
+                <div>???????????</div>
               </div>
               <div>
                 <div
@@ -56,7 +66,7 @@ const CourseDetail = () => {
                       flex flex-row bg-white rounded-3xl text-[#000000] gap-[5px] z-20"
                 >
                   <img class=" w-[25px] h-[25px]" src={clock} alt="ساعت" />
-                  <div>14</div>
+                  <div>{detail.insertDate}</div>
                 </div>
                 <div
                   class="w-[119px] h-[48px] absolute px-4 py-3 bottom-[30px] left-[160px] 
@@ -69,9 +79,7 @@ const CourseDetail = () => {
             </div>
             <div class="flex flex-col justify-start items-start">
               <div className="bold-text">
-                <h3 class="text-[32px] leading[49.6]">
-                  دوره جامع .net core صفر تا صد
-                </h3>
+                <h3 class="text-[32px] leading[49.6]">{detail.title} </h3>
               </div>
               <div>
                 <p class="text-right">
@@ -126,17 +134,26 @@ const CourseDetail = () => {
                 </div>
 
                 <div class="flex flex-row justify-center items-center gap-2">
-                  <img class="w-5 h-5 sm:w-6 sm:h-6" src={like} alt="لایک" />
-                  <span class="text-sm sm:text-base">22</span>
+                  <img
+                    class="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer "
+                    src={detail.currentUserLike === "0" ? like0 : like1}
+                    alt="لایک"
+                  />
+                  <span class="text-sm sm:text-base">{detail.likeCount}</span>
+                  {/* <FaThumbsDown color={detail.currentUserLike === "0" ? "black" : "white"}/> */}
                 </div>
 
                 <div class="flex flex-row justify-center items-center gap-2">
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6"
-                    src={dislike}
+                    src={
+                      detail.currentUserDissLike === "0" ? dislike0 : dislike1
+                    }
                     alt="دیسلایک"
                   />
-                  <span class="text-sm sm:text-base">22</span>
+                  <span class="text-sm sm:text-base">
+                    {detail.dissLikeCount}
+                  </span>
                 </div>
               </div>
             </div>
@@ -222,7 +239,7 @@ const CourseDetail = () => {
                   />
                   تاریخ شروع
                 </div>
-                <div>24 فروردین 1403</div>
+                <div>{detail.startTime}</div>
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div class="flex flex-row gap-1 items-center">
@@ -233,7 +250,7 @@ const CourseDetail = () => {
                   />
                   تاریخ پایان
                 </div>
-                <div>24 شهریور 1403</div>
+                <div>{detail.endTime}</div>
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div>
@@ -246,11 +263,7 @@ const CourseDetail = () => {
             </div>
             <div className="flex flex-row justify-start w-full md:w-1/3 lg:w-[380px] h-[100px] shadow-xl bg-white rounded-xl">
               <div class="flex flex-row justify-center items-center pl-[16px] pr-[24px]">
-                <img
-                  class="w-[64px] h-[64px] "
-                  src={drBahr}
-                  alt="دکتر بحرالعلوم "
-                />
+                <img class="w-[64px] h-[64px] " src={drBahr} alt="استاد  " />
               </div>
 
               <div class="flex flex-col grow justify-center items-center">
@@ -262,7 +275,9 @@ const CourseDetail = () => {
                       alt="استاد"
                     />
                   </div>
-                  <div class="flex flex-row items-center">دکتر بحرالعلوم</div>
+                  <div class="flex flex-row items-center">
+                    {detail.teacherName}{" "}
+                  </div>
                 </div>
                 <div class="w-full flex flex-row justify-start items-start">
                   برنامه نویسی فرانت و بکند

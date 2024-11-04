@@ -21,6 +21,9 @@ const CourseHolder = () => {
     useEffect(() => {
         getCourses()
     }, [])
+    const handleItemClick = (id) => {
+        navigate(`/coursedetail/${id}`); 
+    };
 
     return (
         <div >
@@ -36,6 +39,7 @@ const CourseHolder = () => {
                         cost={item.cost}
                         likeCount={item.likeCount}
                         isLiked={item.userIsLiked}
+                        onItemClick={() => handleItemClick(item.courseId)}
                     />
                 ))}
             </div>

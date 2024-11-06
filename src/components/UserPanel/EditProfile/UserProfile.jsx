@@ -2,9 +2,21 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { EditInfo } from "../../../core/services/api/panel/EditProfile";
 import React, { useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
+import { UserInfo } from "../../../core/services/api/panel/EditProfile";
+import { FetchProfile } from "../../../core/services/api/panel/Dashboard";
 const UserProfile = () => {
- 
+  const [info, setInfo] = useState({});
+
+  const getData = async () => {
+    const result = await FetchProfile();
+    setInfo(result);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   const onSubmit = async (values) => {
+    console.log("alooooooooo");
     const formdata = new FormData();
     formdata.append("LName", values.lName);
     formdata.append("FName", values.fName);
@@ -22,9 +34,9 @@ const UserProfile = () => {
     formdata.append("NationalCode", values.NationalCode);
     formdata.append("Gender", values.gender);
     formdata.append("BirthDay", values.BirthDay);
-    formdata.append("Latitude", "25");
-    formdata.append("Longitude", "35");
-    
+    formdata.append("Latitude", "0");
+    formdata.append("Longitude", "0");
+
     const editapi = await  EditInfo(formdata);
     console.log(editapi);
   };
@@ -34,22 +46,23 @@ const UserProfile = () => {
         مشخصات کاربر
       </div>
       <Formik
+      enableReinitialize={true}
         initialValues={{
-          LName: "",
-          FName: "",
-          HomeAdderess: "",
-          TelegramLink: "",
-          LinkdinProfile: "",
-          phoneNumber: "",
-          NationalCode: "",
-          UserAbout: "",
-          gmail: "",
-          BirthDay: "",
-          gender: "",
+          formFile: null,
+          FName: info.fName ? info.fName : "",
+          LName: info.lName ? info.lName : "",
+          UserAbout: info.userAbout ? info.userAbout : "",
+          NationalCode: info.nationalCode ? info.nationalCode : "",
+          BirthDay: info.birthDay ? info.birthDay : "",
+          HomeAdderess: info.homeAdderess ? info.homeAdderess : "",
+          phoneNumber: info.phoneNumber ? info.phoneNumber : "",
+          gender: info.gender ? info.gender : "",
         }}
+      
+        
         onSubmit={onSubmit}
       >
-        <Form>
+        <form>
           <div className="w-[90%] mt-[1%] mb-[2%] m-auto flex flex-col text-[#158B68] ">
             <div className="w-[100%]  flex justify-between">
               <div className="w-[48%]">
@@ -140,7 +153,7 @@ const UserProfile = () => {
                   جنسیت
                 </label>
                 <select
-                name="Gender"
+                  name="Gender"
                   dir="rtl"
                   className="border border-[#158B68]  text-[19px] rounded-lg bg-[#fff] block  w-full p-2.5 "
                 >
@@ -201,14 +214,17 @@ const UserProfile = () => {
                   className="border border-[#158B68] outline-none text-sm rounded-lg  block w-full p-2.5 "
                 />
               </div>
-            </div>
+            </div> 
             <div className="w-[100%] mt-[2%] flex justify-between">
-              <botton className="w-[100%] h-[100%] rounded-[10px] text-[#fff] text-[23px] text-center leading-[50px] cursor-pointer bg-[#158B68]">
+              <button
+                type="submit"
+                className="w-[100%]  rounded-[10px] text-[#fff] text-[23px] text-center leading-[50px] cursor-pointer bg-[#158B68]"
+              >
                 ثبت تغییرات
-              </botton>
+              </button>
             </div>
           </div>
-        </Form>
+        </form>
       </Formik>
     </>
   );

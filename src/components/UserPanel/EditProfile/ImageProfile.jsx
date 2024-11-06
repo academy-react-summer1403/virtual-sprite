@@ -27,7 +27,7 @@ const ImageProfile = () => {
           <div className="w-[100%] h-[23%] text-center text-[#22445D] leading-[50px] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
             عکس پروفایل
           </div>
-          <img></img>
+          <img />
           <Field type="file" name="file" onchange={handleImage} />
           <button
             onClick={handleApi}

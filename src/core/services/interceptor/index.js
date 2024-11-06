@@ -33,7 +33,7 @@ const onError = (err) => {
 instance.interceptors.response.use(onSuccess, onError);
 
 instance.interceptors.request.use((opt) => {
-  const token = getItem("token");
+  const token = localStorage.getItem("token");
   // const token = getItem("token") ? JSON.parse(getItem("token")) : "";
   if (token) opt.headers.Authorization = "Bearer " + token;
   return opt;

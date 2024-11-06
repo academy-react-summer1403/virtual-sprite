@@ -1,30 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dore from "../../../assets/images/panel/dore.jpg";
 import { ItemCurses } from "./ItemCourses";
 import ReactPaginate from "react-paginate";
+import { MyCoursesapi } from "../../../core/services/api/panel/MyCourses";
 const MyCourses = () => {
-  const [cardList, setCardList] = useState([
-    {
-      id: 1,
-      dore: "نست جی اس",
-      teacher: "استاد بحر",
-      term: "بهار",
-      start: "1400 /12 /20 ",
-      end: "1401 / 12 / 20",
-      mony: "پرداخت نشده",
-      img: dore,
-    },
-    {
-      id: 2,
-      dore: "انگولار",
-      teacher: "استاد بحر",
-      term: "تابستان",
-      start: "1400 /12 /20 ",
-      end: "1401 / 12 / 20",
-      mony: "پرداخت نشده",
-      img: dore,
-    },
-  ]);
+  const [courseList, setCourseList] = useState({});
+  //   const course=[
+  //   {
+  //     id: 1,
+  //     dore: "نست جی اس",
+  //     teacher: "استاد بحر",
+  //     term: "بهار",
+  //     start: "1400 /12 /20 ",
+  //     end: "1401 / 12 / 20",
+  //     mony: "پرداخت نشده",
+  //     img: dore,
+  //   },
+  //   {
+  //     id: 2,
+  //     dore: "انگولار",
+  //     teacher: "استاد بحر",
+  //     term: "تابستان",
+  //     start: "1400 /12 /20 ",
+  //     end: "1401 / 12 / 20",
+  //     mony: "پرداخت نشده",
+  //     img: dore,
+  //   },
+  // ];
+  const GetMyCourses = async () => {
+    const result = await MyCoursesapi();
+    console.log("hi", result);
+    setCourseList(result);
+  };
+  useEffect(() => {
+    GetMyCourses();
+  }, []);
   const [totalPages, setTotalPages] = useState();
   const [pageNumber, setPageNumber] = useState();
   const handlePageClick = (e) => {
@@ -42,21 +52,20 @@ const MyCourses = () => {
         <div className="w-[13%]"></div>
       </div>
       <div className="w-[100%] h-[80%] ">
-        {cardList.map((item, index) => {
-          return (
+       
+         
             <ItemCurses
-              key={index}
-              dore={item.dore}
-              teacher={item.teacher}
-              img={item.img}
-              id={item.id}
-              start={item.start}
-              end={item.end}
-              term={item.term}
-              mony={item.mony}
+              
+              dore={courseList?.termName ? courseList ?.termName	 : ""}
+              teacher={courseList?.fullName ? courseList ?.fullName : ""}
+              img={courseList?.tumbImageAddress? courseList ?.tumbImageAddress : ""}
+              
+              start={courseList?.fullName ? courseList ?.fullName : ""}
+              end={courseList?.lastUpdate	 ? courseList ?.lastUpdate	 : ""}
+              term={courseList?.typeName	 ? courseList ?.typeName	 : ""}
+              mony={courseList?.paymentStatus	 ? courseList ?.paymentStatus	 : ""}
             />
-          );
-        })}
+    
       </div>
 
       <ReactPaginate

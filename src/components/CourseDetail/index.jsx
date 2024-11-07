@@ -22,6 +22,7 @@ import { courseDetail } from "../../core/services/api/courses/courseDetail.api";
 import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
 import { data } from "autoprefixer";
+import ConvertToPersianDate from '../common/PersianDate'
 
 const CourseDetail = () => {
   // const currentUserLike = 0;
@@ -58,15 +59,15 @@ const CourseDetail = () => {
                   src={detail.isUserFavorite === false ? whiteHeart : heart}
                   alt="علاقمندی"
                 />
-                <div>???????????</div>
+                <div>{detail.likeCount}</div>
               </div>
               <div>
                 <div
-                  class="w-[119px] h-[48px] absolute px-4 py-3 bottom-[30px] left-[30px] 
+                  class="w-[119px] h-[48px] absolute px-3 py-3 bottom-[30px] left-[30px] 
                       flex flex-row bg-white rounded-3xl text-[#000000] gap-[5px] z-20"
                 >
                   <img class=" w-[25px] h-[25px]" src={clock} alt="ساعت" />
-                  <div>{detail.insertDate}</div>
+                  <div>{ConvertToPersianDate(detail.insertDate)}</div>
                 </div>
                 <div
                   class="w-[119px] h-[48px] absolute px-4 py-3 bottom-[30px] left-[160px] 
@@ -239,7 +240,7 @@ const CourseDetail = () => {
                   />
                   تاریخ شروع
                 </div>
-                <div>{detail.startTime}</div>
+                <div>{ConvertToPersianDate(detail.startTime)}</div>
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div class="flex flex-row gap-1 items-center">
@@ -250,7 +251,7 @@ const CourseDetail = () => {
                   />
                   تاریخ پایان
                 </div>
-                <div>{detail.endTime}</div>
+                <div>{ConvertToPersianDate(detail.endTime)}</div>
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div>

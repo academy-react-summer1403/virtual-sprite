@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dore from "../../../assets/images/panel/dore.jpg";
 import del from "../../../assets/images/panel/delete.png";
 import { ItemCourse } from "./ItemCourse";
+import { MyFevoritecourse } from "../../../core/services/api/panel/Myfevorite";
 const FavoriteCourse = () => {
-  const [cardList, setCardList] = useState([
+  const [cardList, setCardList] = useState({})
+   const course= [
     {
-      id: 1,
+      id:"",
       dore: "نست جی اس",
       teacher: "استاد بحر",
       term: "حضوری",
@@ -14,17 +16,15 @@ const FavoriteCourse = () => {
       delet: del,
       img: dore,
     },
-    {
-      id: 2,
-      dore: "انگولار",
-      teacher: "استاد بحر",
-      term: "حضوری",
-      start: "1400 /12 /20 ",
-      level: "پیشرفته",
-      delet: del,
-      img: dore,
-    },
-  ]);
+  ];
+  const GetFavoriteCourses = async () => {
+    const result = await MyFevoritecourse();
+    console.log(result);
+    setCardList(result);
+  };
+  useEffect(() => {
+    GetFavoriteCourses();
+  }, []);
   return (
     <>
       <div className="w-[100%]  h-[10%] mt-[1%]  m-auto flex justify-between leading-[50px] text-[#22445D] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
@@ -37,7 +37,7 @@ const FavoriteCourse = () => {
         <div className="w-[13%]"></div>
       </div>
       <div className="w-[100%] h-[88%]">
-        {cardList.map((item, index) => {
+        {course.map((item, index) => {
           return (
             <ItemCourse
               key={index}

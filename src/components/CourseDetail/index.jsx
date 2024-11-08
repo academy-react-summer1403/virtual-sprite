@@ -1,4 +1,5 @@
-import rec from "@assets/images/CourseDetail/recHtml5.svg";
+// import rec from "@assets/images/CourseDetail/recHtml5.svg";
+import noPhoto from "@assets/images/mainContent/topcourses/no.jpg";
 import heart from "@assets/images/CourseDetail/heart.svg";
 import whiteHeart from "@assets/images/CourseDetail/whiteHeart.svg";
 import clock from "@assets/images/CourseDetail/clock.svg";
@@ -22,7 +23,7 @@ import { courseDetail } from "../../core/services/api/courses/courseDetail.api";
 import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
 import { data } from "autoprefixer";
-import ConvertToPersianDate from '../common/PersianDate'
+import ConvertToPersianDate from "../common/PersianDate";
 
 const CourseDetail = () => {
   // const currentUserLike = 0;
@@ -49,7 +50,7 @@ const CourseDetail = () => {
         <div class=" flex flex-row flex-wrap justify-center items-start gap-10">
           <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px] ">
             <div className="w-full relative">
-              <img className="w-full h-auto" src={rec} alt="HTML" />
+              <img className="w-full h-auto"  src={detail.imageAddress ? detail.imageAddress : noPhoto}  alt="HTML" />
               <div
                 class="w-[78px] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-white rounded-3xl text-[red] gap-[5px] z-20"

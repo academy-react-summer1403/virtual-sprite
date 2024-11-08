@@ -5,31 +5,20 @@ import ReactPaginate from "react-paginate";
 import { MyCoursesapi } from "../../../core/services/api/panel/MyCourses";
 const MyCourses = () => {
   const [courseList, setCourseList] = useState({});
-  //   const course=[
-  //   {
-  //     id: 1,
-  //     dore: "نست جی اس",
-  //     teacher: "استاد بحر",
-  //     term: "بهار",
-  //     start: "1400 /12 /20 ",
-  //     end: "1401 / 12 / 20",
-  //     mony: "پرداخت نشده",
-  //     img: dore,
-  //   },
-  //   {
-  //     id: 2,
-  //     dore: "انگولار",
-  //     teacher: "استاد بحر",
-  //     term: "تابستان",
-  //     start: "1400 /12 /20 ",
-  //     end: "1401 / 12 / 20",
-  //     mony: "پرداخت نشده",
-  //     img: dore,
-  //   },
-  // ];
+  const course = [
+    {
+      id:courseList?.courseId ? courseList?.courseId : "",
+      dore: courseList?.termName ? courseList?.termName : "",
+      teacher:courseList?.fullName ? courseList?.fullName : "",
+      term:  courseList?.typeName ? courseList?.typeName : "",
+      start: courseList?.statusName	 ? courseList?.statusName	 : "",
+      end:  courseList?.lastUpdate ? courseList?.lastUpdate : "",
+      mony: courseList?.paymentStatus ? courseList?.paymentStatus : "",
+      img: courseList?.tumbImageAddress ? courseList?.tumbImageAddress : "",
+    },
+  ];
   const GetMyCourses = async () => {
     const result = await MyCoursesapi();
-    console.log("hi", result);
     setCourseList(result);
   };
   useEffect(() => {
@@ -52,20 +41,21 @@ const MyCourses = () => {
         <div className="w-[13%]"></div>
       </div>
       <div className="w-[100%] h-[80%] ">
-       
-         
+        {course.map((item, index) => {
+          return (
             <ItemCurses
-              
-              dore={courseList?.termName ? courseList ?.termName	 : ""}
-              teacher={courseList?.fullName ? courseList ?.fullName : ""}
-              img={courseList?.tumbImageAddress? courseList ?.tumbImageAddress : ""}
-              
-              start={courseList?.fullName ? courseList ?.fullName : ""}
-              end={courseList?.lastUpdate	 ? courseList ?.lastUpdate	 : ""}
-              term={courseList?.typeName	 ? courseList ?.typeName	 : ""}
-              mony={courseList?.paymentStatus	 ? courseList ?.paymentStatus	 : ""}
+            id={item.id}
+              dore={item.dore}
+              teacher={item.teacher}
+              img={item.img}
+              start={item.start}
+              end={item.end}
+              term={item.term}
+              mony={item.mony}
+              key={index}
             />
-    
+          );
+        })}
       </div>
 
       <ReactPaginate

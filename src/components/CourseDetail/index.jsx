@@ -50,7 +50,7 @@ const CourseDetail = () => {
         <div class=" flex flex-row flex-wrap justify-center items-start gap-10">
           <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px] ">
             <div className="w-full relative">
-              <img className="w-full h-auto" src={detail.imageAddress? detail.imageAddress : noPhoto} alt="HTML" />
+              <img className="w-full h-[500px] rounded-[20px]" src={detail.imageAddress? detail.imageAddress : noPhoto} alt="HTML" />
               <div
                 class="w-[78px] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-white rounded-3xl text-[red] gap-[5px] z-20"

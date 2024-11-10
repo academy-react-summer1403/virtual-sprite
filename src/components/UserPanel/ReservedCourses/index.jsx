@@ -1,33 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dore from "../../../assets/images/panel/dore.jpg";
 import del from "../../../assets/images/panel/delete.png";
 import { ItemReserved } from "./ItemReserved";
 import ReactPaginate from "react-paginate";
+import {Myreservecourse} from "../../../core/services/api/panel/MyReserve"
 const ReservedCourses = () => {
-  const [cardList, setCardList] = useState([
-    {
-      id: 1,
-      dore: "نست جی اس",
-      teacher: "استاد بحر",
-      term: "بهار",
-      start: "1400 /12 /20 ",
-      selectt: "تایید شده",
-      del: del,
-      img: dore,
-    },
-    {
-      id: 2,
-      dore: "انگولار",
-      teacher: "استاد بحر",
-      term: "تابستان",
-      start: "1400 /12 /20 ",
-      selectt: "تایید شده",
-      del: del,
-      img: dore,
-    },
-  ]);
-  const [totalPages, setTotalPages] = useState();
-  const [pageNumber, setPageNumber] = useState();
+  const [reserveList, setReserveList] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [totalPages, setTotalPages] = useState(2);
+  const [RowsOfPage, setRowsOfPage] = useState(5);
+  const getReserve = async () => {
+    const result = await Myreservecourse();
+    setTotalPages(Math.ceil(result?.totalCount / RowsOfPage));
+    console.log("hi",result);
+    setReserveList(result);
+  };
+
+  useEffect(() => {
+    getReserve();
+  }, [RowsOfPage, pageNumber]);
+
   const handlePageClick = (e) => {
     setPageNumber(e.selected + 1);
   };
@@ -43,16 +35,15 @@ const ReservedCourses = () => {
         <div className="w-[13%]"></div>
       </div>
       <div className="w-[100%] h-[80%] ">
-        {cardList.map((item, index) => {
+        {reserveList.map((item, index) => {
           return (
             <ItemReserved
               key={index}
-              dore={item.dore}
+              dore={item.courseName}
               teacher={item.teacher}
               img={item.img}
-              id={item.id}
-              start={item.start}
-              del={item.del}
+              id={item.reserveId}
+              start={item.reserverDate}
               term={item.term}
               selectt={item.selectt}
             />
@@ -64,7 +55,7 @@ const ReservedCourses = () => {
         breakLabel="..."
         nextLabel=" >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={5}
         pageCount={5}
         previousLabel="< "
         renderOnZeroPageCount={null}

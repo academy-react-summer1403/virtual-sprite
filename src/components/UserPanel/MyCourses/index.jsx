@@ -4,34 +4,15 @@ import { ItemCurses } from "./ItemCourses";
 import ReactPaginate from "react-paginate";
 import { MyCoursesapi } from "../../../core/services/api/panel/MyCourses";
 const MyCourses = () => {
-  const [courseList, setCourseList] = useState({});
-  // const course = [
-  //   {
-  //     id: courseList?.courseId ? courseList?.courseId : "",
-  //     dore: courseList?.termName ? courseList?.termName : "",
-  //     teacher: courseList?.fullName ? courseList?.fullName : "",
-  //     term: courseList?.typeName ? courseList?.typeName : "",
-  //     start: courseList?.statusName ? courseList?.statusName : "",
-  //     end: courseList?.lastUpdate ? courseList?.lastUpdate : "",
-  //     mony: courseList?.paymentStatus ? courseList?.paymentStatus : "",
-  //     img: courseList?.tumbImageAddress ? courseList?.tumbImageAddress : "",
-  //   },
-  // ];
-  // const GetMyCourses = async () => {
-  //   const result = await MyCoursesapi();
-  //   setCourseList(result);
-  // };
-  // useEffect(() => {
-  //   GetMyCourses();
-  // }, []);
-  const [pageNumber, setPageNumber] = useState();
-  const [totalPages, setTotalPages] = useState();
-  const [RowsOfPage, setRowsOfPage] = useState();
+  const [courseList, setCourseList] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [totalPages, setTotalPages] = useState(10);
+  const [RowsOfPage, setRowsOfPage] = useState(5);
 
   const getCourseList = async () => {
     const courses = await MyCoursesapi(pageNumber, RowsOfPage);
     setTotalPages(Math.ceil(courses?.totalCount / RowsOfPage));
-    setCourseList(courses);
+    setCourseList(courses.listOfMyCourses);
   };
 
   useEffect(() => {
@@ -54,7 +35,7 @@ const MyCourses = () => {
         <div className="w-[13%]"></div>
       </div>
       <div className="w-[100%] h-[80%] ">
-        {[courseList].map((item, index) => {
+        {courseList?.map((item, index) => {
           return (
             <ItemCurses
               id={item.courseId}

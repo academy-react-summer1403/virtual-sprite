@@ -1,58 +1,67 @@
 import React, { useEffect, useState } from "react";
 import dore from "../../../assets/images/panel/dore.jpg";
-import del from "../../../assets/images/panel/delete.png";
 import { ItemCourse } from "./ItemCourse";
 import { MyFevoritecourse } from "../../../core/services/api/panel/Myfevorite";
+import ReactPaginate from "react-paginate";
 const FavoriteCourse = () => {
-  const [cardList, setCardList] = useState({})
-   const course= [
-    {
-      id:"",
-      dore: "نست جی اس",
-      teacher: "استاد بحر",
-      term: "حضوری",
-      start: "1400 /12 /20 ",
-      level: "پیشرفته",
-      delet: del,
-      img: dore,
-    },
-  ];
-  const GetFavoriteCourses = async () => {
-    const result = await MyFevoritecourse();
-    console.log(result);
-    setCardList(result);
+  const [courseList, setCourseList] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [totalPages, setTotalPages] = useState(2);
+  const [RowsOfPage, setRowsOfPage] = useState(5);
+  const getFavoritecourse = async () => {
+    const courses = await MyFevoritecourse();
+    setTotalPages(Math.ceil(courses?.totalCount / RowsOfPage));
+    setCourseList(courses.favoriteCourseDto);
   };
+
   useEffect(() => {
-    GetFavoriteCourses();
-  }, []);
+    getFavoritecourse();
+  }, [RowsOfPage, pageNumber]);
+
+  const handlePageClick = (e) => {
+    setPageNumber(e.selected + 1);
+  };
   return (
     <>
       <div className="w-[100%]  h-[10%] mt-[1%]  m-auto flex justify-between leading-[50px] text-[#22445D] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
         <div className="w-[10%] text-right">حذف </div>
         <div className="w-[18%]  text-center">سطح دوره </div>
-        <div className="w-[16%]  text-center">تاریخ شروع</div>
+        <div className="w-[16%]  text-center">آخرین به روزرسانی </div>
         <div className="w-[14%]  text-center">نوع دوره </div>
         <div className="w-[16%] text-center">نام استاد</div>
         <div className="w-[13%] text-center">نام دوره</div>
         <div className="w-[13%]"></div>
       </div>
-      <div className="w-[100%] h-[88%]">
-        {course.map((item, index) => {
+      <div className="w-[100%] h-[88%] ">
+        {courseList.map((item, index) => {
           return (
             <ItemCourse
               key={index}
-              dore={item.dore}
-              teacher={item.teacher}
-              img={item.img}
-              id={item.id}
-              start={item.start}
-              level={item.level}
-              term={item.term}
-              delet={item.delet}
+              dore={item.courseTitle}
+              teacher={item.teacheName}
+              img={item.tumbImageAddress}
+              id={item.favoriteId}
+              start={item.lastUpdate}
+              level={item.levelName}
+              term={item.typeName}
             />
           );
         })}
       </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel=" >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={totalPages}
+        previousLabel="< "
+        renderOnZeroPageCount={null}
+        className=" h-[3rem] w-[77%] flex gap-1 m-auto justify-center "
+        pageClassName=" h-[2.5rem] w-[2.1rem]  hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+        activeClassName="text-[#158B68]"
+        previousClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+        nextClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center  hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+      />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
-const ItemReserved = ({ dore, term, del, start, selectt, teacher, img }) => {
+import del from "../../../assets/images/panel/delete.png";
+const ItemReserved = ({ dore, term, start, selectt, teacher, img }) => {
   return (
     <div className="w-[95%] h-[65px] bg-[#fff] mt-[1%] m-auto rounded-[25px] flex justify-between text-[#22445D] text-[17px] leading-[60px]">
       <div className="w-[14%] border-[1px] border-transparent">

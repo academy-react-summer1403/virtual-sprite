@@ -5,27 +5,40 @@ import ReactPaginate from "react-paginate";
 import { MyCoursesapi } from "../../../core/services/api/panel/MyCourses";
 const MyCourses = () => {
   const [courseList, setCourseList] = useState({});
-  const course = [
-    {
-      id:courseList?.courseId ? courseList?.courseId : "",
-      dore: courseList?.termName ? courseList?.termName : "",
-      teacher:courseList?.fullName ? courseList?.fullName : "",
-      term:  courseList?.typeName ? courseList?.typeName : "",
-      start: courseList?.statusName	 ? courseList?.statusName	 : "",
-      end:  courseList?.lastUpdate ? courseList?.lastUpdate : "",
-      mony: courseList?.paymentStatus ? courseList?.paymentStatus : "",
-      img: courseList?.tumbImageAddress ? courseList?.tumbImageAddress : "",
-    },
-  ];
-  const GetMyCourses = async () => {
-    const result = await MyCoursesapi();
-    setCourseList(result);
-  };
-  useEffect(() => {
-    GetMyCourses();
-  }, []);
-  const [totalPages, setTotalPages] = useState();
+  // const course = [
+  //   {
+  //     id: courseList?.courseId ? courseList?.courseId : "",
+  //     dore: courseList?.termName ? courseList?.termName : "",
+  //     teacher: courseList?.fullName ? courseList?.fullName : "",
+  //     term: courseList?.typeName ? courseList?.typeName : "",
+  //     start: courseList?.statusName ? courseList?.statusName : "",
+  //     end: courseList?.lastUpdate ? courseList?.lastUpdate : "",
+  //     mony: courseList?.paymentStatus ? courseList?.paymentStatus : "",
+  //     img: courseList?.tumbImageAddress ? courseList?.tumbImageAddress : "",
+  //   },
+  // ];
+  // const GetMyCourses = async () => {
+  //   const result = await MyCoursesapi();
+  //   setCourseList(result);
+  // };
+  // useEffect(() => {
+  //   GetMyCourses();
+  // }, []);
   const [pageNumber, setPageNumber] = useState();
+  const [totalPages, setTotalPages] = useState();
+  const [RowsOfPage, setRowsOfPage] = useState();
+
+  const getCourseList = async () => {
+    const courses = await MyCoursesapi(pageNumber, RowsOfPage);
+    setTotalPages(Math.ceil(courses?.totalCount / RowsOfPage));
+    setCourseList(courses);
+  };
+
+  useEffect(() => {
+    getCourseList();
+  }, [RowsOfPage, pageNumber]);
+
+  
   const handlePageClick = (e) => {
     setPageNumber(e.selected + 1);
   };
@@ -41,37 +54,40 @@ const MyCourses = () => {
         <div className="w-[13%]"></div>
       </div>
       <div className="w-[100%] h-[80%] ">
-        {course.map((item, index) => {
+        {[courseList].map((item, index) => {
           return (
             <ItemCurses
-            id={item.id}
-              dore={item.dore}
-              teacher={item.teacher}
-              img={item.img}
-              start={item.start}
-              end={item.end}
-              term={item.term}
-              mony={item.mony}
+              id={item.courseId}
+              dore={item.termName}
+              teacher={item.fullName}
+              img={item.tumbImageAddress}
+              start={item.statusName}
+              end={item.lastUpdate}
+              term={item.typeName }
+              mony={item.paymentStatus}
               key={index}
             />
+          
           );
+       
         })}
       </div>
-
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel=" >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        pageCount={5}
-        previousLabel="< "
-        renderOnZeroPageCount={null}
-        className=" h-[3rem] w-[77%] flex gap-1 m-auto justify-center "
-        pageClassName=" h-[2.5rem] w-[2.1rem]  hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
-        activeClassName="text-[#158B68]"
-        previousClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
-        nextClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center  hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
-      />
+     
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel=" >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          pageCount={totalPages}
+          previousLabel="< "
+          renderOnZeroPageCount={null}
+          className=" h-[3rem] w-[77%] flex gap-1 m-auto justify-center "
+          pageClassName=" h-[2.5rem] w-[2.1rem]  hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+          activeClassName="text-[#158B68]"
+          previousClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+          nextClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center  hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+        />
+   
     </div>
   );
 };

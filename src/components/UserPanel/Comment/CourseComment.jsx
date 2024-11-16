@@ -3,7 +3,13 @@ import dore from "../../../assets/images/panel/dore.jpg";
 import detail from "../../../assets/images/panel/detail.png";
 import { ItemCourse } from "./ItemCourse";
 import ReactPaginate from "react-paginate";
+import {CommentCourseapi} from "../../../core/services/api/panel/Comments"
 const CourseComment = () => {
+  const [info, setInfo] = useState({});
+  const Commentapi =async ()=>{
+    const result =await CommentCourseapi();
+    setInfo(result);
+  }
   const [cardList, setCardList] = useState([
     {
       id: 1,

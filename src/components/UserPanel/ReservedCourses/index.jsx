@@ -9,9 +9,10 @@ const ReservedCourses = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [RowsOfPage, setRowsOfPage] = useState(5);
+  const [totalCount,settotalcount]=useState(4);
   const getReserve = async () => {
     const result = await Myreservecourse();
-    setTotalPages(Math.ceil(result?.totalCount / RowsOfPage));
+    setTotalPages(Math.ceil(totalCount / RowsOfPage));
     console.log("hi",result);
     setReserveList(result);
   };

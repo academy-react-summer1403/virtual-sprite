@@ -3,7 +3,13 @@ import dore from "../../../assets/images/panel/dore.jpg";
 import detail from "../../../assets/images/panel/detail.png";
 import { ItemArticle } from "./ItemArticle";
 import ReactPaginate from "react-paginate";
+import {CommentArticleapi} from "../../../core/services/api/panel/Comments"
 const ArticleComment = () => {
+  const [info, setInfo] = useState({});
+  const Articletapi =async ()=>{
+    const result =await CommentArticleapi();
+    setInfo(result);
+  }
   const [cardList, setCardList] = useState([
     {
       id: 1,

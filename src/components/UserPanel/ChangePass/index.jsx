@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import picpass from "../../../assets/images/panel/picpass.png";
 import { ChangePassapi } from "../../../core/services/api/panel/ChangePass";
+import { Notification } from '@mantine/core';
 const ChangePass = () => {
   const onSubmit = async (values) => {
     const obj = {
@@ -11,7 +12,12 @@ const ChangePass = () => {
 
     const passapi = await ChangePassapi(obj);
     console.log(passapi);
+    if(passapi.success){
+     alert("موفقیت امبز")
+    }
   };
+
+
   return (
     <div className="w-[95%] h-[600px] mb-[2%] m-auto mt-[1%]  border-[1px] bg-[#FBF6F6] border-[#E8E8E8] shadow-[10px_10px_5px_0_#00000029] rounded-[15px]">
       <div className="w-[100%] border h-[9%]  text-center text-[#22445D] leading-[60px] text-[22px] bg-[#A4F6DE] rounded-t-[15px] ">

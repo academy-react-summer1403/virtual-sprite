@@ -14,7 +14,8 @@ import EditProfilePage from "../../screens/UserPanel/EditProfile/index.jsx";
  import { CommentPage } from '../../screens/UserPanel/Comment/index.jsx';
 import ReservedCoursesPage from ".././../screens/UserPanel/ReservedCourses/index.jsx";
 import ForgetPass from '../../components/Auth/ForgetPass';
-
+import Register from '../../components/Auth/Register/index.jsx';
+import NewsPage from '../../screens/News/index.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +37,13 @@ const router = createBrowserRouter([
         element: <CourseDetail />,
         // errorElement: <ErrorText />
       },
-      // {
+      {
+        path: "/news",
+        element: <NewsPage />,
+        // errorElement: <ErrorText />
+      },
+    
+     
       //   path: "/addItem",
       //   element: <AddItem />,
       //   errorElement: <ErrorText />

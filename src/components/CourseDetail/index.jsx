@@ -19,7 +19,7 @@ import dislike1 from "@assets/images/CourseDetail/dislike1.svg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
-import { courseDetail } from "../../core/services/api/courses/courseDetail.api";
+import { Addcourse, courseDetail } from "../../core/services/api/courses/courseDetail.api";
 import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
 import { data } from "autoprefixer";
@@ -44,6 +44,18 @@ const CourseDetail = () => {
   useEffect(() => {
     getDetails();
   }, [id]);
+  
+  const AddCourseapi=async()=>{
+    const courseId="id";
+    if (courseId) {  const res = await Addcourse(courseId);
+      console.log("course rezarve", res);
+    }
+   
+    else {
+      console.log("توکن وجود ندارد");
+    }
+  }; 
+
   return (
     <div class="flex flex-row justify-center items-start p-4">
       <div class="flex flex-col flex-wrap justify-center items-center gap-10">
@@ -256,7 +268,7 @@ const CourseDetail = () => {
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div>
-                  <Btn insideText={"شرکت در دوره"} />
+                  <Btn onclick={AddCourseapi()} insideText={"شرکت در دوره"} />
                 </div>
                 <div class="flex flex-row justify-center items-center">
                   500000 تومان

@@ -14,9 +14,9 @@ export const courseDetail = async () => {
   }
 };
 
-export const Addcourse = async (courseId) => {
+export const Addcourse = async (obj) => {
   try {
-    const res = instance.post("/CourseReserve/ReserveAdd‍‍",courseId)
+    const res = instance.post("/CourseReserve/ReserveAdd‍‍",obj)
     return res.data;
   } catch (error) {
     console.log(error);

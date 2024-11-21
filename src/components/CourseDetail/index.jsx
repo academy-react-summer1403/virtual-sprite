@@ -46,7 +46,7 @@ const CourseDetail = () => {
   }, [id]);
   
   const AddCourseapi=async()=>{
-    const obj={courseId:value.id}
+    const obj={courseId:detail?.courseId}
     if (token) {  const res = await Addcourse(obj);
       console.log("course rezarve", res);
     }

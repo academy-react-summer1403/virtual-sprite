@@ -13,6 +13,7 @@ const Auth = ({ opened, open, close }) => {
       ) : content === "register" ? (
         <Register setContent={setContent} />
       ) : null}
+      
     </div>
   );
 };

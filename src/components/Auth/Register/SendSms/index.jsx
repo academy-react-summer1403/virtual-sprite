@@ -1,8 +1,27 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import exit from "@assets/images/exit.png";
-import TelField from "../../TelField"
-const SendSms = () => {
+import exit from "../../../../assets/images/login/exit.png";
+import { SmsAPI } from "../../../../core/services/api/auth/auth";
+// import TelField from "../../TelField"
+const SendSms = ({step,phoneNumber}) => {
+  const [Code, setCode] = useState();
+const handleCode = (e) => { 
+   setCode(e.target.value); 
+
+}; 
+const onSubmit = async() => {
+   const obj ={
+      phoneNumber:phoneNumber,
+      verifyCode:Code,
+   };
+   console.log(obj);
+              const registerapitwo = await SmsAPI(obj);
+              console.log(registerapitwo);
+              if(registerapitwo.success == true){
+                  step();
+              }
+             
+        };
   return (
     <>
       <div class="mx-auto w-[420px] h-[483px] bg-white rounded-[24px] absolute top-[100px] inset-0">
@@ -23,20 +42,30 @@ const SendSms = () => {
           </span>
         </div>
         <Formik>
-          {() => (
+          
             <Form>
-              <div class="flex flex-row justify-evenly">
+              {/* <div class="flex flex-row justify-evenly">
                 <TelField name="n1" />
                 <TelField name="n2" />
                 <TelField name="n3" />
                 <TelField name="n4" />
                 <TelField name="n5" />
-              </div>
-              <div class=" text-[24px] ">
+
+              </div> */}
+               <Field
+                class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] 
+                 font-[yekanReg] 
+                    text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]"
+                name="Code"
+                placeholder="کدتایید"
+                value={Code} onChange={handleCode}
+              />
+              {/* <div class=" text-[24px] ">
                 <label>1:34</label>
-              </div>
+              </div> */}
               <div class="mt-[35px]">
                 <button
+                onClick={onSubmit}
                   type="submit"
                   class="m-[15px] w-[208px] h-[56px] bg-[#2196F3] text-[rgba(255,255,255,1)] rounded-[80px]
                   drop-shadow-[0_0_20px_rgba(0,0,0,0.2)]
@@ -46,7 +75,7 @@ const SendSms = () => {
                 </button>
               </div>
             </Form>
-          )}
+       
         </Formik>
 
         <div></div>

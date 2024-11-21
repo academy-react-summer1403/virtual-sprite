@@ -1,7 +1,20 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import exit from "@assets/images/exit.png";
-const RegisterFinish = () => {
+import exit from "../../../../assets/images/login/exit.png";
+import { RegisterFinishAPI } from "../../../../core/services/api/auth/auth";
+const RegisterFinish = ({step, phoneNumber}) => {
+  const onSubmit = async (values) => {
+    const obj = {
+      phoneNumber: phoneNumber,
+      password: values?.password,
+      gmail: values?.gmail,
+     
+    };
+
+    const result = await RegisterFinishAPI(obj);
+    console.log(result);
+    // const obj2 = { phoneNumber: phoneNumber ,password: values?.password,};
+    };
   return (
     <>
       <div class="mx-auto w-[420px] h-[490px] bg-white rounded-[24px] absolute top-[100px] inset-0">
@@ -14,16 +27,15 @@ const RegisterFinish = () => {
           </div>
         </div>
         <Formik
-          initialValues={{
-            acceptedTerms: false,
-          }}
+          initialValues={{ gmail: "", password: "" }}
+          onSubmit={onSubmit}
         >
-          {({ values }) => (
+          
             <Form>
               <div>
                 <Field
                   class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]"
-                  name="emailMob"
+                  name="gmail"
                   placeholder="ایمیل یا شماره موبایل"
                 />
                 <Field
@@ -31,11 +43,7 @@ const RegisterFinish = () => {
                   name="password"
                   placeholder="رمز عبور"
                 />
-                <Field
-                  class="w-[356px] h-[56px] mb-[15px] rounded-[30px] border-[1px] border-[#CFD8DC] pr-[25px] text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]"
-                  name="password"
-                  placeholder="تکرار رمز عبور"
-                />
+            
               </div>
               <div class="px-8">
                 <div class="container mx-auto flex flex-nowrap justify-start">
@@ -59,7 +67,7 @@ const RegisterFinish = () => {
                 </button>
               </div>
             </Form>
-          )}
+          
         </Formik>
       </div>
     </>

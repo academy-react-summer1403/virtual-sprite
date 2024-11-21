@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { loginAPI } from "../../../core/services/api/auth/auth";
 import { Result } from "postcss";
+import { useNavigate } from "react-router-dom";
 // import exit from "@assets/images/login/exit.png";
 
 const Login = ({ setContent, close }) => {
@@ -37,6 +38,7 @@ const Login = ({ setContent, close }) => {
   // loginUser();
   // getProfileFunc();
   // }, []);
+
   const validationSchema = Yup.object({
     emailMob: Yup.string().required(
       "لطفا شماره موبایل یا ایمیل  را وارد نمایید"
@@ -111,7 +113,7 @@ const Login = ({ setContent, close }) => {
               <div>
                 {/* <NavLink to="#" >رمز عبور را فراموش کردم</NavLink> */}
                 <div
-                  onClick={() => setContent("register")}
+                  
                   class="text-[#2196F3] font-[yekanReg] cursor-pointer"
                 >
                   رمز عبور را فراموش کردم
@@ -129,6 +131,10 @@ const Login = ({ setContent, close }) => {
                 ورود
               </button>
             </div>
+            <div className="flex w-[43%] m-auto mt-[1%]  font-[yekanReg] font-normal ">
+<span className="text-[#455A64]">حساب کاربری ندارید؟  </span>
+<span onClick={() => setContent("register")} className="text-[#2196F3] cursor-pointer"> ثبت نام</span>
+              </div>
           </Form>
         )}
       </Formik>

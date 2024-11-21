@@ -46,7 +46,9 @@ const CourseDetail = () => {
   }, [id]);
   
   const AddCourseapi=async()=>{
-    const obj={courseId:detail?.courseId}
+
+    const obj={courseId:detail.courseId}
+
     if (token) {  const res = await Addcourse(obj);
       console.log("course rezarve", res);
     }
@@ -268,7 +270,8 @@ const CourseDetail = () => {
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div>
-                  <Btn onclick={AddCourseapi} insideText={"شرکت در دوره"} />
+                  <button onclick={AddCourseapi}>شرکت در دوره</button>
+                 
                 </div>
                 <div class="flex flex-row justify-center items-center">
                   500000 تومان

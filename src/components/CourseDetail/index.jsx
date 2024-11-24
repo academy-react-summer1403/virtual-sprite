@@ -18,7 +18,7 @@ import dislike1 from "@assets/images/CourseDetail/dislike1.svg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
-import { Addcourse, courseDetail } from "../../core/services/api/courses/courseDetail.api";
+import { Addcourse} from "../../core/services/api/courses/courseDetail.api";
 import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
 import { data } from "autoprefixer";
@@ -45,16 +45,11 @@ const CourseDetail = () => {
   }, [id]);
   
   const AddCourseapi=async()=>{
-    const obj={courseId:detail.courseId}
-    if (token) {  const res = await Addcourse(obj);
-      console.log("course rezarve", res);
-    }
-   
-    else {
-      console.log("توکن وجود ندارد");
-    }
-  }; 
-
+    const obj={courseId:detail?.courseId};
+    console.log("hii",obj)
+     const res = await Addcourse(obj);
+   console.log("hiiiiii",res)
+  }
   return (
     <div class="flex flex-row justify-center items-start p-4">
       <div class="flex flex-col flex-wrap justify-center items-center gap-10">
@@ -267,7 +262,7 @@ const CourseDetail = () => {
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div>
-                  <button onclick={AddCourseapi}>شرکت در دوره</button>
+                  <button onClick={()=>AddCourseapi()}>شرکت در دوره</button>
                  
                 </div>
                 <div class="flex flex-row justify-center items-center">

@@ -19,6 +19,7 @@ export const Addcourse = async (obj) => {
     const res = instance.post("/CourseReserve/ReserveAdd‍‍",obj)
     return res;
   } catch (error) {
-    return false;
-  }
+    console.log(error);
+    return[];
+}
 };

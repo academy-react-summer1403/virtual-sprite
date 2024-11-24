@@ -3,7 +3,7 @@ import dore from "../../../assets/images/panel/dore.jpg";
 import del from "../../../assets/images/panel/delete.png";
 import { ItemReserved } from "./ItemReserved";
 import ReactPaginate from "react-paginate";
-import {Myreservecourse} from "../../../core/services/api/panel/MyReserve"
+import {Deletereservecourse, Myreservecourse} from "../../../core/services/api/panel/MyReserve"
 const ReservedCourses = () => {
   const [reserveList, setReserveList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
@@ -16,7 +16,14 @@ const ReservedCourses = () => {
     console.log("hi",result);
     setReserveList(result);
   };
-
+  console.log("obj",reserveList)
+  const handleDelete = async() => {
+    const del ={del:reserveList.courseId}
+console.log("hello",del)
+    const result = await Deletereservecourse(del);
+    console.log("hii",result)
+  };
+ 
   useEffect(() => {
     getReserve();
   }, [RowsOfPage, pageNumber]);
@@ -47,6 +54,7 @@ const ReservedCourses = () => {
               start={item.reserverDate}
               term={item.term}
               selectt={item.selectt}
+              handleDelete={handleDelete}
             />
           );
         })}

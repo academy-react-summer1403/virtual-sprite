@@ -9,3 +9,14 @@ export const Myreservecourse = async () => {
         return[];
     }
   };
+ 
+  export const Deletereservecourse = async () => {
+    try {
+      const result = await instance.delete(`/CourseReserve`);
+  
+      return result;
+    } catch (error) {
+        console.log(error);
+        return[];
+    }
+  };

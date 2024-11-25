@@ -9,11 +9,12 @@ export const EditInfo = async (formdata) => {
         return[];
     }
   };
-  export const SelectImg = async(formData) => {
+
+  export const SelectImg = async(data) => {
     try{
         console.log("fetching started ...");
 
-        const result = await instance.post("/SharePanel/SelectProfileImage",formData);
+        const result = await instance.post("/SharePanel/SelectProfileImage",data);
 
         return result;
     }catch(error){
@@ -33,11 +34,11 @@ export const DeleteImg = async() => {
         return[];
     }
 };
-export const AddImg = async(imgdata) => {
+export const uploadImage = async(data) => {
     try{
         console.log("fetching started ...");
 
-        const result = await instance.post("/SharePanel/AddProfileImage",imgdata);
+        const result = await instance.post("/SharePanel/AddProfileImage",data);
 
         return result;
     }catch(error){

@@ -17,12 +17,20 @@ const ReservedCourses = () => {
     setReserveList(result);
   };
   console.log("obj",reserveList)
-  const handleDelete = async() => {
-    const del ={del:reserveList.courseId}
-console.log("hello",del)
-    const result = await Deletereservecourse(del);
-    console.log("hii",result)
+//   const handleDelete = async() => {
+//     const del ={del:reserveList.courseId}
+// console.log("hello",del)
+//     const result = await Deletereservecourse(del);
+//     console.log("hii",result)
+//   };
+const handleDelete = async () => {
+  const id = {
+    active: true,
+    id:reserveList.courseId
   };
+    const result= await Deletereservecourse(id);
+    console.log("result", result);
+};
  
   useEffect(() => {
     getReserve();

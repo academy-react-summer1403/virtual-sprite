@@ -10,13 +10,12 @@ export const Myreservecourse = async () => {
     }
   };
  
-  export const Deletereservecourse = async () => {
+  export const Deletereservecourse = async (id) => {
     try {
-      const result = await instance.delete(`/CourseReserve`);
-  
-      return result;
-    } catch (error) {
-        console.log(error);
-        return[];
-    }
-  };
+      const result = await instance.delete(`/CourseReserve`, id) 
+ 
+    return result;
+  } catch (error) {
+    console.error("خطا", error);
+  }
+};

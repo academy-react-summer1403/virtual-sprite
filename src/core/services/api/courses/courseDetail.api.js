@@ -16,10 +16,36 @@ export const courseDetail = async () => {
 
 export const Addcourse = async (obj) => {
   try {
-    const res = instance.post("/CourseReserve/ReserveAdd‍‍",obj)
+    const res = await instance.post("/CourseReserve/ReserveAdd", obj, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return res;
   } catch (error) {
     console.log(error);
-    return[];
-}
+    return [];
+  }
+};
+export const AddLikeApi = async () => {
+  try {
+    const res = await instance.post("/Course/AddCourseLike?CourseId=<uuid>");
+    return res;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+export const Addfavorite = async (obj) => {
+  try {
+    const result = await instance.post("/Course/AddCourseFavorite", obj, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return result;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 };

@@ -19,65 +19,90 @@ import dislike1 from "@assets/images/CourseDetail/dislike1.svg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
-import { Addcourse} from "../../core/services/api/courses/courseDetail.api";
+import { Notification } from "@mantine/core";
+
+import {
+  Addcourse,
+  Addfavorite,
+  AddLikeApi,
+} from "../../core/services/api/courses/courseDetail.api";
 import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
 import { data } from "autoprefixer";
-import ConvertToPersianDate from '../common/PersianDate'
+import ConvertToPersianDate from "../common/PersianDate";
+import { Describe } from "./Describe";
+import { Comment } from "./Comment";
 
 const CourseDetail = () => {
-  // const currentUserLike = 0;
-
+  const [top, settop] = useState(2);
   const [detail, setDetail] = useState([]);
+
+  const updatetop = (id) => {
+    settop(id);
+  };
+
   const token = localStorage.getItem("token");
   const { id } = useParams();
-  // console.log(id);
+
   const getDetails = async () => {
-    if (token) {
-      const result = await courseDetailById(id);
-      console.log("course detail", result);
-      setDetail(result);
-    } else {
-      console.log("توکن وجود ندارد");
-    }
+    const result = await courseDetailById(id);
+    console.log("course detail", result);
+    setDetail(result);
   };
   useEffect(() => {
     getDetails();
   }, [id]);
-  
-  const AddCourseapi=async()=>{
 
 
-    const obj={courseId:detail.courseId}
-
-    if (token) {  const res = await Addcourse(obj);
-      console.log("course rezarve", res);
-    }
    
-    else {
+
+  // const AddLike = async (id) =>{
+  //   const Likeapi = await AddLikeApi(id);
+  //   console.log("like",Likeapi)
+  // }
+  const AddCourseapi = async () => {
+    const obj = { courseId: id };
+    console.log("obj add reserve", obj);
+    if (token) {
+      const res = await Addcourse(obj);
+      console.log("result add reserve", res);
+    } else {
       console.log("توکن وجود ندارد");
     }
-  }; 
+  };
+  const Addfavoriteapi = async () => {
+    const obj = { courseId: id };
+    if (token) {
+      const res = await Addfavorite(obj);
+      <Notification>به علاقمندی ها اضافه شد</Notification>;
+    } else {
+      <Notification>لطفا لاگین کنید</Notification>;
+    }
+  };
 
-
-   
   return (
     <div class="flex flex-row justify-center items-start p-4">
       <div class="flex flex-col flex-wrap justify-center items-center gap-10">
         <div class=" flex flex-row flex-wrap justify-center items-start gap-10">
           <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px] ">
             <div className="w-full relative">
-              <img className="w-full h-[500px] rounded-[20px]" src={detail.imageAddress? detail.imageAddress : noPhoto} alt="HTML" />
+
+              <img
+                className="w-[100%]  h-[550px] border rounded-[20px]"
+                src={detail.imageAddress}
+                alt="HTML"
+              />
+
               <div
                 class="w-[78px] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-white rounded-3xl text-[red] gap-[5px] z-20"
               >
                 <img
-                  className="w-[25px] h-[25px]"
+                  className="w-[25px] h-[25px] cursor-pointer"
                   src={detail.isUserFavorite === false ? whiteHeart : heart}
                   alt="علاقمندی"
+                  onClick={() => Addfavoriteapi()}
                 />
-                <div>{detail.likeCount}</div>
               </div>
               <div>
                 <div
@@ -101,13 +126,7 @@ const CourseDetail = () => {
                 <h3 class="text-[32px] leading[49.6]">{detail.title} </h3>
               </div>
               <div>
-                <p class="text-right">
-                  محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی
-                  پیشرفته و تمیز؛ برای مسائل واقعی دنیای نرم افزار محبوب ترین
-                  کتابخانه ی جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل
-                  مساله به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی
-                  جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز.
-                </p>
+                <p class="text-right">{detail.miniDescribe}</p>
               </div>
             </div>
             <div className="h-[100px] flex items-center justify-between">
@@ -143,8 +162,8 @@ const CourseDetail = () => {
                 <div class="flex flex-row justify-center items-center text-sm sm:text-base md:text-lg lg:text-xl">
                   امتیاز 20 نفر
                 </div>
-
-                <Btn insideText={"ثبت دیدگاه"} />
+{/* 
+                <Btn insideText={"ثبت دیدگاه"} /> */}
               </div>
 
               <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-3">
@@ -152,7 +171,10 @@ const CourseDetail = () => {
                   آیا از این دوره راضی بودید؟
                 </div>
 
-                <div class="flex flex-row justify-center items-center gap-2">
+                <div
+                  class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]"
+                  onClick={(id) => AddLike(id)}
+                >
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer "
                     src={detail.currentUserLike === "0" ? like0 : like1}
@@ -162,7 +184,7 @@ const CourseDetail = () => {
                   {/* <FaThumbsDown color={detail.currentUserLike === "0" ? "black" : "white"}/> */}
                 </div>
 
-                <div class="flex flex-row justify-center items-center gap-2">
+                <div class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]">
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6"
                     src={
@@ -178,46 +200,41 @@ const CourseDetail = () => {
             </div>
 
             <div className="shadow-xl bg-white rounded-xl flex flex-col items-start justify-center gap-10 p-10">
-              <div class="">توضیحات</div>
-              <div>
-                <div className="bold-text  py-5">
-                  <h3 class="text-[20px] leading[31] text-right">
-                    آموزش رایگان html
-                  </h3>
+              <div className="w-[40%] h-[60px] border-b-[1px] border-b-[#ECEFF1] mt-[1%]  cursor-pointer  text-center leading-[50px] flex text-[#607D8B] text-[23px]">
+                <div
+                  className={
+                    top == 1
+                      ? "w-[50%] h-[100%] text-[#2196F3] border-b-[#2196F3] border-b-[3px]"
+                      : "w-[50%] h-[100%] "
+                  }
+                  onClick={() => {
+                    updatetop(1);
+                  }}
+                >
+                  توضیحات
                 </div>
-                <div>
-                  <p class="text-[16px] leading[24.8] text-right">
-                    محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی
-                    پیشرفته و تمیز؛ برای مسائل واقعی دنیای نرم افزار محبوب ترین
-                    کتابخانه ی جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل
-                    مساله به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی
-                    جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز.
-                  </p>
-                </div>
-              </div>
-              <div>
-                <div className="bold-text py-5">
-                  <h3 class="text-[20px] leading[31] text-right">
-                    اموزش رایگان html برای چه کسانی مناسب است ؟
-                  </h3>
-                </div>
-                <div>
-                  <p class="text-[16px] leading[24.8] text-right">
-                    محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی
-                    پیشرفته و تمیز؛ برای مسائل واقعی دنیای نرم افزار محبوب ترین
-                    کتابخانه ی جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل
-                    مساله به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی
-                    جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛
-                  </p>
-                  <p class="text-right">
-                    محبوب ترین کتابخانه ی جاوااسکریپت حل مساله به روش کدنویسی
-                    پیشرفته و تمیز؛ برای مسائل واقعی دنیای نرم افزار محبوب ترین
-                    کتابخانه ی جاوااسکریپت محبوب ترین کتابخانه ی جاوااسکریپت حل
-                    مساله به روش کدنویسی پیشرفته و تمیز؛ محبوب ترین کتابخانه ی
-                    جاوااسکریپت حل مساله به روش کدنویسی پیشرفته و تمیز؛
-                  </p>
+                <div
+                  className={
+                    top == 2
+                      ? "w-[50%] h-[100%] text-[#2196F3] border-b-[#2196F3] border-b-[3px]"
+                      : "w-[50%] h-[100%] "
+                  }
+                  onClick={() => {
+                    updatetop(2);
+                  }}
+                >
+                  نظرات کاربران
                 </div>
               </div>
+              <div className="w-[95%] h-[85%] m-auto rounded-[15px]">
+        <div className={top == 1 ? "w-[100%] h-[90%]" : "hidden"}>
+          <Describe detail={detail}/>
+        </div>
+
+        <div className={top == 2 ? "w-[100%] h-[90%]" : "hidden"}>
+          <Comment />
+        </div>
+      </div>
             </div>
           </div>
 
@@ -273,11 +290,12 @@ const CourseDetail = () => {
               </div>
               <div class="w-full flex flex-row justify-between px-10">
                 <div>
-                  <button onClick={AddCourseapi}>شرکت در دوره</button>
-                 
+
+                  <button onClick={() => AddCourseapi()}>شرکت در دوره</button>
+
                 </div>
                 <div class="flex flex-row justify-center items-center">
-                  500000 تومان
+                  {detail.cost} تومان
                 </div>
               </div>
             </div>

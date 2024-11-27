@@ -1,36 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import exit from "../../../../assets/images/login/exit.png";
 import { SmsAPI } from "../../../../core/services/api/auth/auth";
-// import TelField from "../../TelField"
-const SendSms = ({step,phoneNumber}) => {
-  const [Code, setCode] = useState();
-const handleCode = (e) => { 
-   setCode(e.target.value); 
+import { ValidationStepTwo } from "../../../../core/validations/RegisterValid";
 
-}; 
-const onSubmit = async() => {
-   const obj ={
-      phoneNumber:phoneNumber,
-      verifyCode:Code,
-   };
-   console.log(obj);
-              const registerapitwo = await SmsAPI(obj);
-              console.log(registerapitwo);
-              if(registerapitwo.success == true){
-                  step();
-              }
-             
-        };
+const SendSms = ({ phoneNumber, setContent }) => {
+  const [Code, setCode] = useState();
+  const handleCode = (e) => {
+    setCode(e.target.value);
+  };
+  const onSubmit = async () => {
+    const obj = {
+      phoneNumber: phoneNumber,
+      verifyCode: Code,
+    };
+    console.log(obj);
+    const registerapitwo = await SmsAPI(obj);
+    console.log(registerapitwo);
+    if (registerapitwo.success == true) {
+      setContent("RegisterFinish");
+    }
+  };
   return (
     <>
-      <div class="mx-auto w-[420px] h-[483px] bg-white rounded-[24px] absolute top-[100px] inset-0">
-        <div class="flex flex-row justify-between px-6 my-5">
-          <div class="text-[#263238] flex flex-row justify-center items-center leading-[49.6px] text-[32px] text-right">
-            کد تاییدیه
-          </div>
-          <div class="w-12 h-12 rounded-xl bg-slate-200 flex flex-row justify-center items-center">
-            <img class="w-6 h-6" src={exit}></img>
+      <div
+        class="relative flex flex-col flex-wrap justify-center items-center 
+             sm:flex-row sm:justify-center sm:gap-4 
+             md:flex-row md:justify-center md: gap-4 
+             lg:flex-row lg:justify-center lg:gap-4"
+      >
+        <div class="flex flex-row justify-between ">
+          <div class="text-[#263238] flex flex-row justify-center items-center text-[32px] text-right">
+            کدتایید
           </div>
         </div>
         <div class=" text-[14px] px-10 my-9 text-right">
@@ -41,41 +42,31 @@ const onSubmit = async() => {
             <a href="#"> تغییر دهید </a>
           </span>
         </div>
-        <Formik>
-          
-            <Form>
-              {/* <div class="flex flex-row justify-evenly">
-                <TelField name="n1" />
-                <TelField name="n2" />
-                <TelField name="n3" />
-                <TelField name="n4" />
-                <TelField name="n5" />
-
-              </div> */}
-               <Field
-                class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] 
+        <Formik validationSchema={ValidationStepTwo}>
+          <Form>
+            <Field
+              class="w-[356px] h-[56px] mb-[15px] rounded-[50px] border-[1px] border-[#CFD8DC] pr-[25px] mr-[5%]
                  font-[yekanReg] 
                     text-[16px] focus:outline-none focus:ring focus:ring-[#CFD8DC] drop-shadow-[0_5px_20px_rgba(0,0,0,0.1)]"
-                name="Code"
-                placeholder="کدتایید"
-                value={Code} onChange={handleCode}
-              />
-              {/* <div class=" text-[24px] ">
+              name="Code"
+              placeholder="کدتایید"
+              value={Code}
+              onChange={handleCode}
+            />
+            {/* <div class=" text-[24px] ">
                 <label>1:34</label>
               </div> */}
-              <div class="mt-[35px]">
-                <button
-                onClick={onSubmit}
-                  type="submit"
-                  class="m-[15px] w-[208px] h-[56px] bg-[#2196F3] text-[rgba(255,255,255,1)] rounded-[80px]
-                  drop-shadow-[0_0_20px_rgba(0,0,0,0.2)]
+
+            <button
+              onClick={onSubmit}
+              type="submit"
+              class=" w-[208px] h-[56px] bg-[#2196F3] text-[rgba(255,255,255,1)] rounded-[80px]
+                  drop-shadow-[0_0_20px_rgba(0,0,0,0.2)] mt-[35px]  mr-[23%]
                    border-none transition ease-in-out hover:scale-105 duration-[.3s]"
-                >
-                  ساخت حساب کاربری
-                </button>
-              </div>
-            </Form>
-       
+            >
+              ساخت حساب کاربری
+            </button>
+          </Form>
         </Formik>
 
         <div></div>
@@ -90,5 +81,4 @@ const onSubmit = async() => {
   );
 };
 
-
-export default SendSms
+export default SendSms;

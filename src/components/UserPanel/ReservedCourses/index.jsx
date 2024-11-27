@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from "react";
-import dore from "../../../assets/images/panel/dore.jpg";
-import del from "../../../assets/images/panel/delete.png";
-import { ItemReserved } from "./ItemReserved";
 import ReactPaginate from "react-paginate";
-import {Deletereservecourse, Myreservecourse} from "../../../core/services/api/panel/MyReserve"
+import {
+  Deletereservecourse,
+  Myreservecourse,
+} from "../../../core/services/api/panel/MyReserve";
+import { ItemReserved } from "./ItemReserved";
+
 const ReservedCourses = () => {
   const [reserveList, setReserveList] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [RowsOfPage, setRowsOfPage] = useState(5);
-  const [totalCount,settotalcount]=useState(4);
+  const [totalCount, settotalcount] = useState(4);
+
   const getReserve = async () => {
     const result = await Myreservecourse();
     setTotalPages(Math.ceil(totalCount / RowsOfPage));
-    console.log("hi",result);
+    console.log("hi", result);
     setReserveList(result);
   };
-  console.log("obj",reserveList)
-//   const handleDelete = async() => {
-//     const del ={del:reserveList.courseId}
-// console.log("hello",del)
-//     const result = await Deletereservecourse(del);
-//     console.log("hii",result)
-//   };
-const handleDelete = async () => {
-  const id = {
-    active: true,
-    id:reserveList.courseId
-  };
-    const result= await Deletereservecourse(id);
+  console.log("obj", reserveList);
+
+  const handleDelete = async (id) => {
+    const obj = {
+      id,
+    };
+    const result = await Deletereservecourse(obj);
     console.log("result", result);
-};
- 
+    getReserve()
+  };
+
   useEffect(() => {
     getReserve();
   }, [RowsOfPage, pageNumber]);
@@ -62,7 +60,7 @@ const handleDelete = async () => {
               start={item.reserverDate}
               term={item.term}
               selectt={item.selectt}
-              handleDelete={handleDelete}
+              handleDelete={() => handleDelete(item.reserveId)}
             />
           );
         })}

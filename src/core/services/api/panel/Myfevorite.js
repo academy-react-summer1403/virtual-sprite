@@ -19,3 +19,12 @@ export const MyFevoritecourse = async () => {
         return[];
     }
   };
+  export const Deletefavoritecourse = async (formData) => {
+    try {
+      const result = await instance.delete(`/Course/DeleteCourseFavorite`, { data: formData });
+  
+      return result;
+    } catch (error) {
+      console.error("خطا", error);
+    }
+  };

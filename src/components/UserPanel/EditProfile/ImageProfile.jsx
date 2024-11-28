@@ -68,15 +68,15 @@ const ImageProfile = () => {
               className=" cursor-pointer mt-[3%] bg-[#A4F6DE] w-[70%] h-[20%] m-auto "
             >ویرایش عکس</button> */}
 
-          <img src={image} className="w-[50px] h-[50px]" />
+          <img src={image} className="w-[80px] h-[80px] m-auto rounded-[100%] border" />
           <input
             type="file"
             accept="image/*"
-            className="mt-[30px]"
+            className="mt-[10px]"
             onChange={handleFileChange}
           />
           <button
-            className=" cursor-pointer mt-[3%] bg-[#A4F6DE] w-[70%] h-[20%] m-auto"
+            className=" cursor-pointer mt-[1%] bg-[#A4F6DE] w-[70%] h-[20%] m-auto"
             onClick={handleSubmit}
           >
             آپلود

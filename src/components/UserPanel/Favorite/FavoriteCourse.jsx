@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { iduseEffect, useState } from "react";
 import dore from "../../../assets/images/panel/dore.jpg";
 import { ItemCourse } from "./ItemCourse";
-import { MyFevoritecourse } from "../../../core/services/api/panel/Myfevorite";
+import {
+  Deletefavoritecourse,
+  MyFevoritecourse,
+} from "../../../core/services/api/panel/Myfevorite";
 import ReactPaginate from "react-paginate";
 const FavoriteCourse = () => {
   const [courseList, setCourseList] = useState([]);
@@ -17,6 +20,14 @@ const FavoriteCourse = () => {
   useEffect(() => {
     getFavoritecourse();
   }, [RowsOfPage, pageNumber]);
+  
+  const handleDelete = async () => {
+    const formData = new FormData();
+    formData.append("CourseFavoriteId", id);
+    const result = await Deletefavoritecourse(formData);
+    console.log("result", result);
+    getFavoritecourse();
+  };
 
   const handlePageClick = (e) => {
     setPageNumber(e.selected + 1);
@@ -44,6 +55,7 @@ const FavoriteCourse = () => {
               start={item.lastUpdate}
               level={item.levelName}
               term={item.typeName}
+              handleDelete={() => handleDelete(item.favoriteId)}
             />
           );
         })}

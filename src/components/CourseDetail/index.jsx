@@ -25,6 +25,7 @@ import {
   Addcourse,
   Addfavorite,
   AddLikeApi,
+  DisLikeApi,
 } from "../../core/services/api/courses/courseDetail.api";
 import { courseDetailById } from "../../core/services/api/courses/courseDetailById.api";
 import { useParams } from "react-router-dom";
@@ -32,6 +33,7 @@ import { data } from "autoprefixer";
 import ConvertToPersianDate from "../common/PersianDate";
 import { Describe } from "./Describe";
 import { Comment } from "./Comment";
+import { AddComment } from "../../core/services/api/courses/comment";
 
 const CourseDetail = () => {
   const [top, settop] = useState(2);
@@ -53,13 +55,18 @@ const CourseDetail = () => {
     getDetails();
   }, [id]);
 
+  const AddLike = async () => {
+    const Likeapi = await AddLikeApi(id);
+    getDetails();
+  };
+ 
+  const DisLike = async () => {
+    const formData = new FormData();
+    formData.append("CourseLikeId", id);
+    const Disapi = await DisLikeApi(formData);
+  };
 
-   
 
-  // const AddLike = async (id) =>{
-  //   const Likeapi = await AddLikeApi(id);
-  //   console.log("like",Likeapi)
-  // }
   const AddCourseapi = async () => {
     const obj = { courseId: id };
     console.log("obj add reserve", obj);
@@ -81,29 +88,29 @@ const CourseDetail = () => {
   };
 
   return (
-    <div class="flex flex-row justify-center items-start p-4">
-      <div class="flex flex-col flex-wrap justify-center items-center gap-10">
-        <div class=" flex flex-row flex-wrap justify-center items-start gap-10">
-          <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px] ">
+    <div class="flex flex-row justify-center items-start p-4 bg-[#ffffffd7]">
+      <div class="flex flex-col flex-wrap justify-center items-center gap-10 ">
+        <div class=" flex flex-row flex-wrap justify-center items-start gap-10 ">
+          <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px]  ">
             <div className="w-full relative">
 
               <img
-                className="w-[100%]  h-[550px] border rounded-[20px]"
+                className="w-[100%]  h-[550px]  rounded-[20px]"
                 src={detail.imageAddress}
-                alt="HTML"
               />
 
-              <div
-                class="w-[78px] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
-                      flex flex-row bg-white rounded-3xl text-[red] gap-[5px] z-20"
+              <button
+                class="w-[10rem] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
+                      flex flex-row bg-[#ffff] rounded-[50px] text-[red] gap-[5px] z-20"
+
               >
+                مورد علاقه ها
                 <img
                   className="w-[25px] h-[25px] cursor-pointer"
                   src={detail.isUserFavorite === false ? whiteHeart : heart}
-                  alt="علاقمندی"
                   onClick={() => Addfavoriteapi()}
                 />
-              </div>
+              </button>
               <div>
                 <div
                   class="w-[119px] h-[48px] absolute px-3 py-3 bottom-[30px] left-[30px] 
@@ -162,7 +169,7 @@ const CourseDetail = () => {
                 <div class="flex flex-row justify-center items-center text-sm sm:text-base md:text-lg lg:text-xl">
                   امتیاز 20 نفر
                 </div>
-{/* 
+                {/* 
                 <Btn insideText={"ثبت دیدگاه"} /> */}
               </div>
 
@@ -173,24 +180,25 @@ const CourseDetail = () => {
 
                 <div
                   class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]"
-                  onClick={(id) => AddLike(id)}
+                  onClick={AddLike}
                 >
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer "
                     src={detail.currentUserLike === "0" ? like0 : like1}
-                    alt="لایک"
                   />
                   <span class="text-sm sm:text-base">{detail.likeCount}</span>
                   {/* <FaThumbsDown color={detail.currentUserLike === "0" ? "black" : "white"}/> */}
                 </div>
 
-                <div class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]">
+                <div
+                  onClick={() => DisLike(detail.userLikeId)}
+                  class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]"
+                >
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6"
                     src={
                       detail.currentUserDissLike === "0" ? dislike0 : dislike1
                     }
-                    alt="دیسلایک"
                   />
                   <span class="text-sm sm:text-base">
                     {detail.dissLikeCount}
@@ -227,14 +235,14 @@ const CourseDetail = () => {
                 </div>
               </div>
               <div className="w-[95%] h-[85%] m-auto rounded-[15px]">
-        <div className={top == 1 ? "w-[100%] h-[90%]" : "hidden"}>
-          <Describe detail={detail}/>
-        </div>
+                <div className={top == 1 ? "w-[100%] h-[90%]" : "hidden"}>
+                  <Describe detail={detail} />
+                </div>
 
-        <div className={top == 2 ? "w-[100%] h-[90%]" : "hidden"}>
-          <Comment />
-        </div>
-      </div>
+                <div className={top == 2 ? "w-[100%] h-[90%]" : "hidden"}>
+                  <Comment detail={detail}/>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -288,12 +296,12 @@ const CourseDetail = () => {
                 </div>
                 <div>{ConvertToPersianDate(detail.endTime)}</div>
               </div>
-              <div class="w-full flex flex-row justify-between px-10">
-                <div>
 
-                  <button onClick={() => AddCourseapi()}>شرکت در دوره</button>
+              <div class="w-full  flex flex-row justify-between px-10">
+                
+                  <button className="bg-[#2196F3] text-white " onClick={() => AddCourseapi()}>شرکت در دوره</button>
+                
 
-                </div>
                 <div class="flex flex-row justify-center items-center">
                   {detail.cost} تومان
                 </div>

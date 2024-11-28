@@ -16,7 +16,6 @@ const UserProfile = () => {
   }, []);
 
   const onSubmit = async (values) => {
-    console.log("alooooooooo");
     const formdata = new FormData();
     formdata.append("LName", values.lName);
     formdata.append("FName", values.fName);
@@ -36,7 +35,7 @@ const UserProfile = () => {
     formdata.append("BirthDay", values.BirthDay);
     formdata.append("Latitude", "0");
     formdata.append("Longitude", "0");
-
+console.log("formdeta",formdata)
     const editapi = await  EditInfo(formdata);
     console.log(editapi);
   };
@@ -60,7 +59,7 @@ const UserProfile = () => {
         }}
       
         
-        onSubmit={onSubmit}
+       
       >
         <form>
           <div className="w-[90%] mt-[1%] mb-[2%] m-auto flex flex-col text-[#158B68] ">
@@ -218,6 +217,7 @@ const UserProfile = () => {
             <div className="w-[100%] mt-[2%] flex justify-between">
               <button
                 type="submit"
+                onClick={onSubmit}
                 className="w-[100%]  rounded-[10px] text-[#fff] text-[23px] text-center leading-[50px] cursor-pointer bg-[#158B68]"
               >
                 ثبت تغییرات

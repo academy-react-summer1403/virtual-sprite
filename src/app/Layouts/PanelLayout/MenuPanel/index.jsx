@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import carbar from "../../../../assets/images/panel/picc.png";
 import pass from "../../../../assets/images/panel/pass.png";
 import exist from "../../../../assets/images/panel/exist.png";
@@ -12,7 +12,11 @@ import { HiOutlineHome } from "react-icons/hi2";
 import { RxDashboard } from "react-icons/rx";
 import { CardMenu } from "./CardMenu";
 import { useNavigate } from "react-router-dom";
+import { FetchProfile } from "../../../../core/services/api/panel/Dashboard";
+
 const MenuPanel = () => {
+  const [info, setInfo] = useState({});
+
   const menu = [
     { id: 1, name: "پیشخوان", img: pishkhan, navLink: "dashboard" },
     { id: 2, name: "ویرایش پروفایل", img: profile, navLink: "editprofile" },
@@ -32,6 +36,16 @@ const MenuPanel = () => {
     navigate("/");
   };
 
+
+  const getData = async () => {
+    const result = await FetchProfile();
+    console.log("result",result)
+    setInfo(result);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log("detail",info)
   return (
     <>
       <div
@@ -57,7 +71,7 @@ const MenuPanel = () => {
         sm:w-[60%] sm:h-[80%] sm:rounded-[100%] sm:m-auto sm:mt-[0] sm:border-b-[6px] sm:border-b-[#158B68] sm:border-r-[6px] sm:border-r-[#158B68]
         "
         >
-          <img src={carbar} className="w-[100%] h-[100%] rounded-[100%] "></img>
+          <img src={info.userImage} className="w-[100%] h-[100%] rounded-[100%] "></img>
         </div>
         <span className="text-center text-[22px] sm:text-[25px] xs:text-[25px] text-[#158B68] mb-[4%]">
           لیلا کریمی

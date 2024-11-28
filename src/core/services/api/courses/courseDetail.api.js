@@ -27,9 +27,18 @@ export const Addcourse = async (obj) => {
     return [];
   }
 };
-export const AddLikeApi = async () => {
+export const AddLikeApi = async (id) => {
   try {
-    const res = await instance.post("/Course/AddCourseLike?CourseId=<uuid>");
+    const res = await instance.post(`/Course/AddCourseLike?CourseId=${id}`);
+    return res;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+export const DisLikeApi = async (formData) => {
+  try {
+    const res = await instance.delete(`/Course/DeleteCourseLike`, { data: formData });
     return res;
   } catch (error) {
     console.log(error);

@@ -1,10 +1,11 @@
 import React from "react";
 import del from "../../../assets/images/panel/delete.png";
-const ItemCourse = ({ dore, term, level, start, teacher,img}) => {
+const ItemCourse = ({ dore, term, level, start, teacher,img,handleDelete}) => {
+
   return (
     <div className="w-[95%] h-[65px] bg-[#fff] mt-[1%] m-auto rounded-[25px] flex justify-between text-[#22445D] text-[17px] leading-[60px]">
       <div className="w-[2.5%] ml-[5%] h-[40%] mt-[1.5%]">
-        <img src={del} className="w-[100%] h-[100%]"></img>
+        <img src={del} className="w-[100%] h-[100%] cursor-pointer" onClick={handleDelete}></img>
       </div>
       <div className="w-[18%]   text-center ">{level}</div>
       <div className="w-[17%]  text-center ">{start} </div>

@@ -1,12 +1,18 @@
 import instance from "../../interceptor/index.js";
 export const EditInfo = async (formdata) => {
     try {
-      const result = await instance.put("/SharePanel/UpdateProfileInfo",formdata);
+      const result = await instance.put(`‍/SharePanel/UpdateProfileInfo`,formdata,
+        {
+            headers: {
+             
+             " Content-Type":" multipart/form-data",
+            },
+          }
+      );
   
       return result;
     } catch (error) {
-        console.log(error);
-        return[];
+      console.error("خطا", error);
     }
   };
 

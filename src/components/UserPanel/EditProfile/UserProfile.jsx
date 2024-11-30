@@ -16,17 +16,18 @@ const UserProfile = () => {
   }, []);
 
   const onSubmit = async (values) => {
+    console.log("values onsubmit",values);
     const formdata = new FormData();
     formdata.append("LName", values.lName);
     formdata.append("FName", values.fName);
     formdata.append("UserAbout", values.UserAbout);
     formdata.append(
       "LinkdinProfile",
-      "https://www.linkedin.com/&ved=2ahUKEwiQz42J6ZaGAxWmfqQEHQAqA6wQFnoECAYQAQ&usg=AOvVaw2Fx3jReOOmKj1CUsWZkKns"
+      "https://www.linkedin.com"
     );
     formdata.append(
       "TelegramLink",
-      "https://telegram.org/&ved=2ahUKEwjyg5Lu6JaGAxVd_rsIHUOWC-sQFnoECAcQAQ&usg=AOvVaw3t0dfZX-RyWOWxyb6xMKLv"
+      "https://t.me"
     );
     formdata.append("ReceiveMessageEvent", false);
     formdata.append("HomeAdderess", values.HomeAdderess);
@@ -35,9 +36,9 @@ const UserProfile = () => {
     formdata.append("BirthDay", values.BirthDay);
     formdata.append("Latitude", "0");
     formdata.append("Longitude", "0");
-console.log("formdeta",formdata)
-    const editapi = await  EditInfo(formdata);
-    console.log(editapi);
+  
+    const editapi = await EditInfo(formdata);
+    
   };
   return (
     <>
@@ -45,7 +46,7 @@ console.log("formdeta",formdata)
         مشخصات کاربر
       </div>
       <Formik
-      enableReinitialize={true}
+        enableReinitialize={true}
         initialValues={{
           formFile: null,
           FName: info.fName ? info.fName : "",
@@ -57,11 +58,10 @@ console.log("formdeta",formdata)
           phoneNumber: info.phoneNumber ? info.phoneNumber : "",
           gender: info.gender ? info.gender : "",
         }}
-      
-        
-       
+        onSubmit={onSubmit}
+
       >
-        <form>
+        <Form>
           <div className="w-[90%] mt-[1%] mb-[2%] m-auto flex flex-col text-[#158B68] ">
             <div className="w-[100%]  flex justify-between">
               <div className="w-[48%]">
@@ -213,18 +213,18 @@ console.log("formdeta",formdata)
                   className="border border-[#158B68] outline-none text-sm rounded-lg  block w-full p-2.5 "
                 />
               </div>
-            </div> 
+            </div>
             <div className="w-[100%] mt-[2%] flex justify-between">
               <button
                 type="submit"
-                onClick={onSubmit}
+                // onClick={onSubmit}
                 className="w-[100%]  rounded-[10px] text-[#fff] text-[23px] text-center leading-[50px] cursor-pointer bg-[#158B68]"
               >
                 ثبت تغییرات
               </button>
             </div>
           </div>
-        </form>
+        </Form>
       </Formik>
     </>
   );

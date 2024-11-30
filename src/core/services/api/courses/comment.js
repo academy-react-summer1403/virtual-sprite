@@ -10,9 +10,9 @@ export const AddComment = async (formdata) => {
     }
   };
  
-  export const GetCommentApi = async () => {
+  export const GetCommentApi = async (CourseId) => {
     try {
-      const result = await instance.get(`/Course/GetCourseCommnets/:CourseId`);
+      const result = await instance.get(`/Course/GetCourseCommnets/${CourseId}`);
   
       return result;
     } catch (error) {

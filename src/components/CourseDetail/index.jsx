@@ -59,13 +59,11 @@ const CourseDetail = () => {
     const Likeapi = await AddLikeApi(id);
     getDetails();
   };
- 
-  const DisLike = async () => {
-    const formData = new FormData();
-    formData.append("CourseLikeId", id);
-    const Disapi = await DisLikeApi(formData);
-  };
 
+  const DisLike = async () => {
+    const Disapi = await DisLikeApi(id);
+    getDetails();
+  };
 
   const AddCourseapi = async () => {
     const obj = { courseId: id };
@@ -81,9 +79,11 @@ const CourseDetail = () => {
     const obj = { courseId: id };
     if (token) {
       const res = await Addfavorite(obj);
-      <Notification>به علاقمندی ها اضافه شد</Notification>;
+      if (res) {
+        console.log("response", res);
+      }
     } else {
-      <Notification>لطفا لاگین کنید</Notification>;
+      return <Notification>لطفا لاگین کنید</Notification>;
     }
   };
 
@@ -93,7 +93,6 @@ const CourseDetail = () => {
         <div class=" flex flex-row flex-wrap justify-center items-start gap-10 ">
           <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px]  ">
             <div className="w-full relative">
-
               <img
                 className="w-[100%]  h-[550px]  rounded-[20px]"
                 src={detail.imageAddress}
@@ -102,7 +101,6 @@ const CourseDetail = () => {
               <button
                 class="w-[10rem] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-[#ffff] rounded-[50px] text-[red] gap-[5px] z-20"
-
               >
                 مورد علاقه ها
                 <img
@@ -167,7 +165,7 @@ const CourseDetail = () => {
                 </div>
 
                 <div class="flex flex-row justify-center items-center text-sm sm:text-base md:text-lg lg:text-xl">
-                  امتیاز 20 نفر
+                  امتیاز {detail.currentRate} نفر
                 </div>
                 {/* 
                 <Btn insideText={"ثبت دیدگاه"} /> */}
@@ -191,7 +189,7 @@ const CourseDetail = () => {
                 </div>
 
                 <div
-                  onClick={() => DisLike(detail.userLikeId)}
+           onClick={DisLike}
                   class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]"
                 >
                   <img
@@ -240,7 +238,7 @@ const CourseDetail = () => {
                 </div>
 
                 <div className={top == 2 ? "w-[100%] h-[90%]" : "hidden"}>
-                  <Comment detail={detail}/>
+                  <Comment detail={detail} />
                 </div>
               </div>
             </div>
@@ -298,9 +296,12 @@ const CourseDetail = () => {
               </div>
 
               <div class="w-full  flex flex-row justify-between px-10">
-                
-                  <button className="bg-[#2196F3] text-white " onClick={() => AddCourseapi()}>شرکت در دوره</button>
-                
+                <button
+                  className="bg-[#2196F3] text-white "
+                  onClick={() => AddCourseapi()}
+                >
+                  شرکت در دوره
+                </button>
 
                 <div class="flex flex-row justify-center items-center">
                   {detail.cost} تومان

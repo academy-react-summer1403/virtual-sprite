@@ -36,9 +36,9 @@ export const AddLikeApi = async (id) => {
     return [];
   }
 };
-export const DisLikeApi = async (formData) => {
+export const DisLikeApi = async (id) => {
   try {
-    const res = await instance.delete(`/Course/DeleteCourseLike`, { data: formData });
+    const res = await instance.post(`/Course/AddCourseDissLike?CourseId=${id}`);
     return res;
   } catch (error) {
     console.log(error);

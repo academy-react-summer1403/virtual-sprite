@@ -1,4 +1,4 @@
-import React, { iduseEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import dore from "../../../assets/images/panel/dore.jpg";
 import { ItemCourse } from "./ItemCourse";
 import {
@@ -11,6 +11,7 @@ const FavoriteCourse = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [RowsOfPage, setRowsOfPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(5); 
   const getFavoritecourse = async () => {
     const courses = await MyFevoritecourse();
     setTotalPages(Math.ceil(courses?.totalCount / RowsOfPage));
@@ -32,6 +33,11 @@ const FavoriteCourse = () => {
   const handlePageClick = (e) => {
     setPageNumber(e.selected + 1);
   };
+  const handlePerPage = (e) => {
+   
+    setRowsPerPage(parseInt(e.target.value)); // تغییر تعداد رکوردها
+    setPageNumber(1); // ریست کردن به صفحه اول
+  };
   return (
     <>
       <div className="w-[100%]  h-[10%] mt-[1%]  m-auto flex justify-between leading-[50px] text-[#22445D] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
@@ -41,7 +47,23 @@ const FavoriteCourse = () => {
         <div className="w-[14%]  text-center">نوع دوره </div>
         <div className="w-[16%] text-center">نام استاد</div>
         <div className="w-[13%] text-center">نام دوره</div>
-        <div className="w-[13%]"></div>
+        <div className="w-[13%]">
+       
+            <select
+              className="dataTable-select"
+              type="select"
+              id="sort-select"
+              value={rowsPerPage}
+              onChange={handlePerPage}
+            >
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+            </select>
+            <label for="sort-select">مرتب سازی</label>
+        </div>
       </div>
       <div className="w-[100%] h-[88%] ">
         {courseList.map((item, index) => {

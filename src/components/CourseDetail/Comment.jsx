@@ -4,42 +4,51 @@ import { useParams } from "react-router-dom";
 import { FaRegComments } from "react-icons/fa";
 import heart from "@assets/images/CourseDetail/heart.svg";
 import whiteHeart from "@assets/images/CourseDetail/whiteHeart.svg";
-import { AddComment, GetCommentApi } from "../../core/services/api/courses/comment.js";
+import {
+  AddComment,
+  GetCommentApi,
+} from "../../core/services/api/courses/comment.js";
 
 const Comment = ({ detail }) => {
   // const [show, setShow] = useState(1);
   const [comment, setComment] = useState(1);
 
-  const {id} =useParams();
+  const courseId = detail.courseId;
 
   const onSubmit = async (values) => {
-
     const formdata = new FormData();
-    formdata.append("CourseId",id);
-    formdata.append("Title",values.Title);
-    formdata.append("Describe",values.Describe);
-   
+    formdata.append("CourseId", id);
+    formdata.append("Title", values.Title);
+    formdata.append("Describe", values.Describe);
+
     const commentapi = await AddComment(formdata);
   };
-   
-  const GetComment = async () =>{
-    const result = await GetCommentApi(id);
-    console.log("result",result)
-    setComment(result);
-  }
+
+  const GetComment = async (id) => {
+    try {
+      const result = await GetCommentApi(id);
+      console.log("result", result);
+      setComment(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    GetComment();
-  }, []);
+   
+      GetComment(detail.courseId);
+    
+  }, [detail?.courseId]);
+
   return (
     <div className="flex flex-col   ">
       <Formik
-        initialValues={{ Describe: "",Title:"" }}
+        initialValues={{ Describe: "", Title: "" }}
         onSubmit={onSubmit}
         // onSubmit={onSubmit}
       >
         <Form>
           <section className="flex flex-col ">
-          <Field
+            <Field
               name="Title"
               placeholder=" نام خود را وارد کنید"
               className="h-[3rem] border-[1px] text-[font color 3] border-[#CFD8DC]  w-[43rem] mb-[1rem] p-[1rem] text-[18px] bg-[#fff] rounded-[25px]"

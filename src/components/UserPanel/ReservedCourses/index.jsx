@@ -12,6 +12,13 @@ const ReservedCourses = () => {
   const [totalPages, setTotalPages] = useState(2);
   const [RowsOfPage, setRowsOfPage] = useState(5);
   const [totalCount, settotalcount] = useState(4);
+  const [rowsPerPage, setRowsPerPage] = useState(5); 
+
+  const handlePerPage = (e) => {
+   
+    setRowsPerPage(parseInt(e.target.value)); // تغییر تعداد رکوردها
+    setPageNumber(1); // ریست کردن به صفحه اول
+  };
 
   const getReserve = async () => {
     const result = await Myreservecourse();
@@ -46,7 +53,22 @@ const ReservedCourses = () => {
         <div className="w-[13%] text-center">نام ترم</div>
         <div className="w-[13%] text-center">نام استاد</div>
         <div className="w-[13%] text-center">نام دوره</div>
-        <div className="w-[13%]"></div>
+        <div className="w-[13%]">
+        <select
+              className="dataTable-select"
+              type="select"
+              id="sort-select"
+              value={rowsPerPage}
+              onChange={handlePerPage}
+            >
+              <option value={3}>1</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+            </select>
+            <label for="sort-select">مرتب سازی</label>
+        </div>
       </div>
       <div className="w-[100%] h-[80%] ">
         {reserveList.map((item, index) => {

@@ -36,16 +36,15 @@ const MenuPanel = () => {
     navigate("/");
   };
 
-
   const getData = async () => {
     const result = await FetchProfile();
-    console.log("result",result)
+    console.log("result", result);
     setInfo(result);
   };
   useEffect(() => {
     getData();
   }, []);
-  console.log("detail",info)
+  console.log("detail", info);
   return (
     <>
       <div
@@ -71,10 +70,13 @@ const MenuPanel = () => {
         sm:w-[60%] sm:h-[80%] sm:rounded-[100%] sm:m-auto sm:mt-[0] sm:border-b-[6px] sm:border-b-[#158B68] sm:border-r-[6px] sm:border-r-[#158B68]
         "
         >
-          <img src={info.userImage} className="w-[100%] h-[100%] rounded-[100%] "></img>
+          <img
+            src={info.currentPictureAddress}
+            className="w-[100%] h-[100%] rounded-[100%] "
+          ></img>
         </div>
         <span className="text-center text-[22px] sm:text-[25px] xs:text-[25px] text-[#158B68] mb-[4%]">
-          لیلا کریمی
+          {info.fName}
         </span>
       </div>
       <div className="w-[90%] h-[420px] m-auto mb-[2%]">

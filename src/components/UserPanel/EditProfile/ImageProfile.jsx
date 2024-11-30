@@ -38,11 +38,13 @@ const ImageProfile = () => {
         // setImage(response.currentPictureAddress);
         console.log("result get info", response);
         if (
-          response.currentPictureAddress.includes(
-            "https://classapi.sepehracademy.ir"
-          )
+          // response.currentPictureAddress.includes(
+          //   "https://classapi.sepehracademy.ir"
+          // )
+          result.success === true
         ) {
-          const images = response.data.userImage;
+          
+          const images = response.userImage;
           const latestImg = images[images.length - 1];
           const profileFormData = new FormData();
           profileFormData.append("ImageId", latestImg.id);

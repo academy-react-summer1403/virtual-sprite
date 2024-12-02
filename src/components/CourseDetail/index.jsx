@@ -16,6 +16,7 @@ import like0 from "@assets/images/CourseDetail/like0.svg";
 import like1 from "@assets/images/CourseDetail/like1.svg";
 import dislike0 from "@assets/images/CourseDetail/dislike0.svg";
 import dislike1 from "@assets/images/CourseDetail/dislike1.svg";
+import noPhoto2 from "../../assets//images/CourseDetail/noPhoto2.jpg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
@@ -94,8 +95,10 @@ const CourseDetail = () => {
           <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px]  ">
             <div className="w-full relative">
               <img
-                className="w-[100%]  h-[550px]  rounded-[20px]"
-                src={detail.imageAddress}
+                className="w-[100%] h-[550px] rounded-[20px]"
+                src={detail.imageAddress || noPhoto2}
+                onError={(e) => (e.target.src = noPhoto2)} // اگر تصویر اصلی بارگذاری نشد، تصویر جایگزین شود
+                alt="تصویر دوره"
               />
 
               <button
@@ -189,7 +192,7 @@ const CourseDetail = () => {
                 </div>
 
                 <div
-           onClick={DisLike}
+                  onClick={DisLike}
                   class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]"
                 >
                   <img

@@ -27,7 +27,7 @@ const CourseHolder = () => {
 
     return (
         <div >
-            <Title title={"دوره‌های اموزشی "} />
+            <Title title={"دوره‌های آموزشی "} />
             <div class='flex flex-wrap gap-12 justify-center my-5' >
                 {topCourses?.map((item) => (
                     <CourseItem

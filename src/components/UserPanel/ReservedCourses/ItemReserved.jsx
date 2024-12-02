@@ -19,6 +19,7 @@ const ItemReserved = ({ dore, term, start, selectt, teacher, img,handleDelete })
         <img
           src={img}
           className="w-[75%] h-[70%] m-auto mt-[6%] rounded-[15px]"
+          
         ></img>
       </div>
     </div>

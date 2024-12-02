@@ -105,7 +105,7 @@ const CourseDetail = () => {
                 مورد علاقه ها
                 <img
                   className="w-[25px] h-[25px] cursor-pointer"
-                  src={detail.isUserFavorite === false ? whiteHeart : heart}
+                  src={Addfavoriteapi.success === false ? whiteHeart : heart}
                   onClick={() => Addfavoriteapi()}
                 />
               </button>
@@ -182,7 +182,7 @@ const CourseDetail = () => {
                 >
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer "
-                    src={detail.currentUserLike === "0" ? like0 : like1}
+                    src={AddLike.success === true ? like0 : like1}
                   />
                   <span class="text-sm sm:text-base">{detail.likeCount}</span>
                   {/* <FaThumbsDown color={detail.currentUserLike === "0" ? "black" : "white"}/> */}
@@ -195,7 +195,7 @@ const CourseDetail = () => {
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6"
                     src={
-                      detail.currentUserDissLike === "0" ? dislike0 : dislike1
+                      DisLike.success === true ? dislike0 : dislike1
                     }
                   />
                   <span class="text-sm sm:text-base">

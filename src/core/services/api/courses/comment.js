@@ -20,3 +20,14 @@ export const AddComment = async (formdata) => {
         return[];
     }
   };
+  
+  export const PostReply = async (obj) => {
+    try {
+      const result = await instance.post("/Course/AddReplyCourseComment",obj);
+  
+      return result;
+    } catch (error) {
+        console.log(error);
+        return[];
+    }
+  };

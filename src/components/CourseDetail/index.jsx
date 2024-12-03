@@ -94,11 +94,13 @@ const CourseDetail = () => {
         <div class=" flex flex-row flex-wrap justify-center items-start gap-10 ">
           <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px]  ">
             <div className="w-full relative">
-              <img
-                className="w-[100%]  h-[550px]  rounded-[20px]"
-                // src={detail.imageAddress == null ?  noPhoto : detail.imageAddress}
-              />
+            <img
+                className="w-[100%] h-[550px] rounded-[20px]"
+                src={detail.imageAddress || noPhoto}
+                onError={(e) => (e.target.src = noPhoto)} // اگر تصویر اصلی بارگذاری نشد، تصویر جایگزین شود
+                alt="تصویر دوره"
 
+              />
               <button
                 class="w-[10rem] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-[#ffff] rounded-[50px] text-[red] gap-[5px] z-20"

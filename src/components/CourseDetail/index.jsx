@@ -21,6 +21,7 @@ import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
 import { Notification } from "@mantine/core";
 
+
 import {
   Addcourse,
   Addfavorite,
@@ -95,7 +96,7 @@ const CourseDetail = () => {
             <div className="w-full relative">
               <img
                 className="w-[100%]  h-[550px]  rounded-[20px]"
-                src={detail.imageAddress}
+                // src={detail.imageAddress == null ?  noPhoto : detail.imageAddress}
               />
 
               <button

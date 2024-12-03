@@ -4,7 +4,7 @@ import left from '@assets/images/coursePagination/left.png';
 import { useState, useEffect } from 'react';
 import CourseItem2 from './CourseItem2';
 import { coursePaginationDynamic } from '@core/services/api/courses/coursePagination.api';
-
+import { useNavigate } from "react-router-dom";
 const CourseRow = ({ searchQuery = '' }) => {
     const [courses, setCourses] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +16,7 @@ const CourseRow = ({ searchQuery = '' }) => {
         setCourses(result.courseFilterDtos);
     };
 
-
+    console.log("courses",courses)
     const getCoursesDynamic = async () => {
         const params = {
             CourseTypeId: type 
@@ -58,7 +58,10 @@ const CourseRow = ({ searchQuery = '' }) => {
             setCurrentPage(currentPage - 1);
         }
     };
-
+    const navigate = useNavigate();
+    const handleItemClick = (id) => {
+        navigate(`/coursedetail/${id}`); 
+    };
     return (
 
         <div className='w-full px-3 '>
@@ -73,7 +76,9 @@ const CourseRow = ({ searchQuery = '' }) => {
                     cost={item.cost}
                     likeCount={item.likeCount}
                     isLiked={item.userIsLiked}
-                    describe={item.describe} />))}
+                    describe={item.describe}
+                    gotodetail={() => handleItemClick(item.courseId)}
+                     />))}
             </div>
             <div className='flex justify-center my-8'>
                 <button onClick={handlePreviousPage} disabled={currentPage === 1} className='mx-2 px-0 py-0 rounded-full ' >

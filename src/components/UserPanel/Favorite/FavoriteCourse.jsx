@@ -17,14 +17,14 @@ const FavoriteCourse = () => {
     setTotalPages(Math.ceil(courses?.totalCount / RowsOfPage));
     setCourseList(courses.favoriteCourseDto);
   };
-
+console.log("courselist",courseList)
   useEffect(() => {
     getFavoritecourse();
   }, [RowsOfPage, pageNumber]);
   
   const handleDelete = async () => {
     const formData = new FormData();
-    formData.append("CourseFavoriteId", id);
+    formData.append("CourseFavoriteId", courseList.favoriteId);
     const result = await Deletefavoritecourse(formData);
     console.log("result", result);
     getFavoritecourse();

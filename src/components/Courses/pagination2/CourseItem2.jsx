@@ -12,13 +12,14 @@ import teacher from '@assets/images/coursePagination/teacher.svg';
 
 
 
-const CourseItem2 = ({ teacherName, cost, likeCount, isLiked, img, title, date, describe }) => {
+const CourseItem2 = ({ teacherName, cost, likeCount, isLiked, img, title, date, describe,gotodetail }) => {
     img === null ? img = noPhoto : img = img
 
 
+    
 
     return (
-        <div class='flex flex-wrap justify-center w-[98%] gap-3 bg-[#ffffff]
+        <div onClick={gotodetail}  class='flex flex-wrap justify-center w-[98%] gap-3 bg-[#ffffff]
         shadow-xl rounded-xl p-4 '>
             <div>
                 <img src={img} class='w-[264px] h-[180px] rounded-xl' />

@@ -1,73 +1,88 @@
 import React, { useEffect, useState } from "react";
-import dore from "../../../assets/images/panel/dore.jpg";
-import detail from "../../../assets/images/panel/detail.png";
 import { ItemCourse } from "./ItemCourse";
 import ReactPaginate from "react-paginate";
 import { CommentCourseapi } from "../../../core/services/api/panel/Comments";
+
 const CourseComment = () => {
-  const [courseList, setCourseList] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(2);
-  const [RowsOfPage, setRowsOfPage] = useState(5);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [totalCount, settotalcount] = useState(4);
+  // تعریف متغیرهای state
+  const [courseList, setCourseList] = useState([]); // تمام داده‌ها
+  const [pageNumber, setPageNumber] = useState(0); // شماره صفحه (شروع از صفر)
+  const rowsPerPage = 5; // تعداد سطرهای نمایش در هر صفحه
 
-  const Commentapi = async () => {
-    const result = await CommentCourseapi();
-    console.log("comment", result);
-    setTotalPages(Math.ceil(result?.totalCount / RowsOfPage));
-    setCourseList(result.myCommentsDtos);
+  // متد دریافت داده‌ها از API
+  const fetchComments = async () => {
+    try {
+      const result = await CommentCourseapi();
+      setCourseList(result?.myCommentsDtos || []); // ذخیره تمام داده‌ها
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
   };
+
+  // اثر استفاده از `pageNumber`
   useEffect(() => {
-    Commentapi();
-  }, [RowsOfPage, pageNumber]);
+    fetchComments();
+  }, []);
 
+  // محاسبه داده‌های صفحه فعلی
+  const displayedData = courseList.slice(
+    pageNumber * rowsPerPage,
+    (pageNumber + 1) * rowsPerPage
+  );
+
+  // مدیریت تغییر صفحه
   const handlePageClick = (e) => {
-    setPageNumber(e.selected + 1);
+    setPageNumber(e.selected); // تغییر شماره صفحه
   };
+
   return (
-    <>
-      <div className="w-[100%]  h-[10%] mt-[1%]  m-auto flex justify-between leading-[50px] text-[#22445D] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
-        <div className="w-[10%] text-right">جزئیات </div>
-        {/* <div className="w-[18%]  text-center">وضعیت </div> */}
-        <div className="w-[25%]  text-center">تاریخ ارسال </div>
-        <div className="w-[14%]  text-center">تعداد پاسخ </div>
-        <div className="w-[16%] text-center">عنوان نظر </div>
-        <div className="w-[13%] text-center">نام دوره</div>
-        <div className="w-[13%]"></div>
+    <div className="course-comment">
+      {/* عنوان جدول */}
+      <div className="header w-full mt-1 flex justify-between items-center bg-[#A4F6DE] rounded-t-lg text-[#22445D] text-lg px-4 py-2">
+        <div className="text-right" style={{ width: "100px" }}>جزئیات</div>
+        <div className="text-center" style={{ width: "150px" }}>تاریخ ارسال</div>
+        <div className="text-center" style={{ width: "100px" }}>تعداد پاسخ</div>
+        <div className="text-center" style={{ width: "120px" }}>عنوان نظر</div>
+        <div className="text-center" style={{ width: "120px" }}>نام دوره</div>
+        <div style={{ width: "50px" }}></div>
       </div>
-      <div className="w-[100%] h-[88%]">
-        {courseList.map((item, index) => {
-          return (
+
+      {/* لیست نظرات */}
+      <div className="content w-full flex flex-col gap-2 py-2">
+        {displayedData.length > 0 ? (
+          displayedData.map((item, index) => (
             <ItemCourse
               key={index}
               dore={item.courseTitle}
               comment={item.title}
-              // img={item.img}
               id={item.commentId}
               response={item.replyCount}
               status={item.status}
               send={item.insertDate}
               detail={item.detail}
             />
-          );
-        })}
+          ))
+        ) : (
+          <div className="text-center text-gray-500 mt-4">هیچ نظری یافت نشد.</div>
+        )}
       </div>
+
+      {/* صفحه‌بندی */}
       <ReactPaginate
         breakLabel="..."
         nextLabel=" >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={5}
+        pageRangeDisplayed={3}
+        pageCount={Math.ceil(courseList.length / rowsPerPage)} // تعداد صفحات
         previousLabel="< "
-        renderOnZeroPageCount={null}
-        className=" h-[3rem] w-[77%] flex gap-1 m-auto justify-center "
-        pageClassName=" h-[2.5rem] w-[2.1rem]  hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
-        activeClassName="text-[#158B68]"
-        previousClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
-        nextClassName=" h-[2.5rem] w-[2.1rem] hover:border-[1px] hover:border-[#158B68] pt-[0.4rem] text-center  hover:rounded-[100%] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+        className="pagination flex gap-2 justify-center items-center mx-auto my-4"
+        pageClassName="page-item px-4 py-2 flex items-center justify-center border rounded-full hover:border-[#158B68] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+        activeClassName="active-page text-[#158B68]"
+        previousClassName="prev-next px-4 py-2 flex items-center justify-center border rounded-full hover:border-[#158B68] hover:bg-[#BFF4E4] hover:text-[#158B68]"
+        nextClassName="prev-next px-4 py-2 flex items-center justify-center border rounded-full hover:border-[#158B68] hover:bg-[#BFF4E4] hover:text-[#158B68]"
       />
-    </>
+    </div>
   );
 };
+
 export { CourseComment };

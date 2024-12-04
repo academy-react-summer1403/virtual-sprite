@@ -8,10 +8,21 @@ export const loginAPI = async (user) => {
     return false;
   }
 };
+export const VerifyMessageAPI = async (VrifyCode, obj) => {
+  try {
+    const response = await instance.post(
+      `/Sign/LoginTwoStep?VrifyCode=${VrifyCode}`,
+      obj
+    );
+    return response;
+  } catch (error) {
+    return false;
+  }
+};
 
 export const RegisterAPI = async (obj) => {
   try {
-    const response = await instance.post("/Sign/SendVerifyMessage",obj);
+    const response = await instance.post("/Sign/SendVerifyMessage", obj);
     return response;
   } catch (error) {
     return false;
@@ -20,7 +31,7 @@ export const RegisterAPI = async (obj) => {
 
 export const SmsAPI = async (obj) => {
   try {
-    const response = await instance.post("/Sign/VerifyMessage",obj);
+    const response = await instance.post("/Sign/VerifyMessage", obj);
     return response;
   } catch (error) {
     return false;
@@ -29,7 +40,7 @@ export const SmsAPI = async (obj) => {
 
 export const RegisterFinishAPI = async (obj) => {
   try {
-    const response = await instance.post("/Sign/Register",obj);
+    const response = await instance.post("/Sign/Register", obj);
     return response;
   } catch (error) {
     return false;

@@ -1,7 +1,16 @@
 import React from "react";
 import del from "../../../assets/images/panel/delete.png";
-const ItemCourse = ({ dore, term, level, start, teacher,img,handleDelete}) => {
-
+import {
+  Deletefavoritecourse,
+} from "../../../core/services/api/panel/Myfevorite";
+const ItemCourse = ({ dore, term, level, start, teacher,img,id,get}) => {
+  const handleDelete = async () => {
+    const formData = new FormData();
+    formData.append("CourseFavoriteId",id);
+    const result = await Deletefavoritecourse(formData);
+    console.log("result", result);
+    get();
+  };
   return (
     <div className="w-[95%] h-[65px] bg-[#fff] mt-[1%] m-auto rounded-[25px] flex justify-between text-[#22445D] text-[17px] leading-[60px]">
       <div className="w-[2.5%] ml-[5%] h-[40%] mt-[1.5%]">

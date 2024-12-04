@@ -8,42 +8,40 @@ import { ItemReserved } from "./ItemReserved";
 
 const ReservedCourses = () => {
   const [reserveList, setReserveList] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(2);
-  const [RowsOfPage, setRowsOfPage] = useState(5);
-  const [totalCount, settotalcount] = useState(4);
-  const [rowsPerPage, setRowsPerPage] = useState(5); 
+  const [pageNumber, setPageNumber] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handlePerPage = (e) => {
-   
-    setRowsPerPage(parseInt(e.target.value)); // تغییر تعداد رکوردها
-    setPageNumber(1); // ریست کردن به صفحه اول
+  const displayedData = reserveList.slice(
+    pageNumber * rowsPerPage,
+    (pageNumber + 1) * rowsPerPage
+  );
+
+  const handlePageClick = (e) => {
+    setPageNumber(e.selected);
+  };
+
+  const handleRowsPerPageChange = (e) => {
+    setRowsPerPage(Number(e.target.value));
+    setPageNumber(0);
   };
 
   const getReserve = async () => {
     const result = await Myreservecourse();
-    setTotalPages(Math.ceil(totalCount / RowsOfPage));
-    console.log("hi", result);
     setReserveList(result);
+    console.log("hi", result);
   };
-  console.log("obj", reserveList);
 
   const handleDelete = async (id) => {
-    const obj = {
-      id,
-    };
+    const obj = { id };
     const result = await Deletereservecourse(obj);
     console.log("result", result);
-    getReserve()
+    getReserve();
   };
 
   useEffect(() => {
     getReserve();
-  }, [RowsOfPage, pageNumber]);
+  }, []);
 
-  const handlePageClick = (e) => {
-    setPageNumber(e.selected + 1);
-  };
   return (
     <div className="w-[95%] h-[580px] mb-[2%] m-auto mt-[1%]  bg-[#FBF6F6] shadow-[10px_10px_5px_0_#00000029] rounded-[15px]">
       <div className="w-[100%]  h-[9%]  m-auto flex  leading-[60px] text-[#22445D] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
@@ -54,24 +52,23 @@ const ReservedCourses = () => {
         <div className="w-[13%] text-center">نام استاد</div>
         <div className="w-[13%] text-center">نام دوره</div>
         <div className="w-[13%]">
-        <select
-              className="dataTable-select"
-              type="select"
-              id="sort-select"
-              value={rowsPerPage}
-              onChange={handlePerPage}
-            >
-              <option value={3}>1</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-            </select>
-            <label for="sort-select">مرتب سازی</label>
+          <select
+            className="dataTable-select"
+            id="sort-select"
+            value={rowsPerPage}
+            onChange={handleRowsPerPageChange}
+          >
+            <option value={3}>1</option>
+            <option value={4}>2</option>
+            <option value={5}>3</option>
+            <option value={6}>4</option>
+            <option value={7}>5</option>
+          </select>
+          <label htmlFor="sort-select">مرتب سازی</label>
         </div>
       </div>
-      <div className="w-[100%] h-[80%] ">
-        {reserveList.map((item, index) => {
+      <div className="w-[100%] h-[80%]">
+        {displayedData.map((item, index) => {
           return (
             <ItemReserved
               key={index}
@@ -92,8 +89,8 @@ const ReservedCourses = () => {
         breakLabel="..."
         nextLabel=" >"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={5}
+        pageRangeDisplayed={3}
+        pageCount={Math.ceil(reserveList.length / rowsPerPage)}
         previousLabel="< "
         renderOnZeroPageCount={null}
         className=" h-[3rem] w-[77%] flex gap-1 m-auto justify-center "

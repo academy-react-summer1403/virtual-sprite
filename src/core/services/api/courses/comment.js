@@ -21,9 +21,20 @@ export const AddComment = async (formdata) => {
     }
   };
   
-  export const PostReply = async (obj) => {
+  export const PostReply = async (formData) => {
     try {
-      const result = await instance.post("/Course/AddReplyCourseComment",obj);
+      const result = await instance.post("/Course/AddReplyCourseComment",formData);
+  
+      return result;
+    } catch (error) {
+        console.log(error);
+        return[];
+    }
+  };
+  
+  export const GetReplyApi = async (CourseId,CommentId) => {
+    try {
+      const result = await instance.get(`/Course/GetCourseReplyCommnets/${CourseId}/${CommentId}`);
   
       return result;
     } catch (error) {

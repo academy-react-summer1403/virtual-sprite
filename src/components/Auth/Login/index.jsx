@@ -20,15 +20,18 @@ const Login = ({ setContent, close }) => {
       rememberMe: true,
     };
     const user = await loginAPI(userObj);
-    if (user.token) {
+    if (user.token == null) {
+      setContent("verifycode");
+    } else if (user.token) {
       if (user.message.includes("موفق")) {
         localStorage.setItem("token", user.token);
         console.log(user.token);
+        setContent("verifycode");
+      } else {
+        close();
       }
-    } else {
       close();
     }
-    close();
   };
 
   const getProfileFunc = async () => {
@@ -126,7 +129,7 @@ const Login = ({ setContent, close }) => {
                     drop-shadow-[0_0_20px_rgba(0,0,0,0.2)]
                      border-none transition ease-in-out hover:scale-105 duration-[.3s] "
               >
-                ورود
+                ارسال کد
               </button>
             </div>
             <div className="flex w-[43%] m-auto mt-[1%]  font-[yekanReg] font-normal ">

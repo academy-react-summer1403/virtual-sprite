@@ -80,12 +80,13 @@ const CourseDetail = () => {
     const obj = { courseId: id };
     if (token) {
       const res = await Addfavorite(obj);
-      if (res) {
-        console.log("response", res);
-      }
-    } else {
-      return <Notification>لطفا لاگین کنید</Notification>;
-    }
+      console.log("response", res);}
+    //   if (res) {
+    //     console.log("response", res);
+    //   }
+    // } else {
+    //   return <Notification>لطفا لاگین کنید</Notification>;
+    // }
   };
 
   return (
@@ -108,7 +109,7 @@ const CourseDetail = () => {
                 مورد علاقه ها
                 <img
                   className="w-[25px] h-[25px] cursor-pointer"
-                  src={Addfavoriteapi.success === false ? whiteHeart : heart}
+                  src={whiteHeart}
                   onClick={() => Addfavoriteapi()}
                 />
               </button>

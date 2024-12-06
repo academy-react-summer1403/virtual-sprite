@@ -19,8 +19,6 @@ import dislike1 from "@assets/images/CourseDetail/dislike1.svg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
-import { Notification } from "@mantine/core";
-
 
 import {
   Addcourse,
@@ -39,6 +37,7 @@ import { AddComment } from "../../core/services/api/courses/comment";
 const CourseDetail = () => {
   const [top, settop] = useState(2);
   const [detail, setDetail] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const updatetop = (id) => {
     settop(id);
@@ -79,8 +78,12 @@ const CourseDetail = () => {
   const Addfavoriteapi = async () => {
     const obj = { courseId: id };
     if (token) {
-      const res = await Addfavorite(obj);
-      console.log("response", res);}
+      try {
+        const res = await Addfavorite(obj);
+        console.log("response", res);
+      } catch (error) {}
+    }
+
     //   if (res) {
     //     console.log("response", res);
     //   }
@@ -95,22 +98,21 @@ const CourseDetail = () => {
         <div class=" flex flex-row flex-wrap justify-center items-start gap-10 ">
           <div className="flex flex-col gap-4 w-1/2 md:w-1/2 lg:w-[800px]  ">
             <div className="w-full relative">
-            <img
+              <img
                 className="w-[100%] h-[550px] rounded-[20px]"
                 src={detail.imageAddress || noPhoto}
-                onError={(e) => (e.target.src = noPhoto)} // اگر تصویر اصلی بارگذاری نشد، تصویر جایگزین شود
+                onError={(e) => (e.target.src = noPhoto)}
                 alt="تصویر دوره"
-
               />
               <button
+                onClick={() => Addfavoriteapi()}
                 class="w-[10rem] h-[48px] absolute px-4 py-3 top-[20px] right-[20px] 
                       flex flex-row bg-[#ffff] rounded-[50px] text-[red] gap-[5px] z-20"
               >
                 مورد علاقه ها
                 <img
                   className="w-[25px] h-[25px] cursor-pointer"
-                  src={whiteHeart}
-                  onClick={() => Addfavoriteapi()}
+                  src={isFavorite ? fillHeart : whiteHeart}
                 />
               </button>
               <div>
@@ -193,14 +195,12 @@ const CourseDetail = () => {
                 </div>
 
                 <div
-           onClick={DisLike}
+                  onClick={DisLike}
                   class="flex flex-row justify-center items-center gap-2 bg-[#ECEFF1] rounded-[50px] w-[5rem] h-[3rem]"
                 >
                   <img
                     class="w-5 h-5 sm:w-6 sm:h-6"
-                    src={
-                      DisLike.success === true ? dislike0 : dislike1
-                    }
+                    src={DisLike.success === true ? dislike0 : dislike1}
                   />
                   <span class="text-sm sm:text-base">
                     {detail.dissLikeCount}
@@ -241,7 +241,7 @@ const CourseDetail = () => {
                   <Describe detail={detail} />
                 </div>
 
-                <div className={top == 2 ? "w-[100%] h-[90%]" : "hidden"}>
+                <div className={top == 2 ? "w-[100%] " : "hidden"}>
                   <Comment detail={detail} />
                 </div>
               </div>

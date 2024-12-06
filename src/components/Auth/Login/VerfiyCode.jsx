@@ -3,13 +3,17 @@ import { Formik, Form, Field } from "formik";
 import exit from "../../../assets/images/login/exit.png";
 import { VerifyMessageAPI } from "../../../core/services/api/auth/auth";
 
-const VerfiyCode = ({ userobj, setContent, close }) => {
+const VerfiyCode = ({ object, setContent, close }) => {
   const [Code, setCode] = useState();
   const handleCode = (e) => {
     setCode(e.target.value);
   };
+  console.log("step2 object", object);
   const onSubmit = async () => {
-    const obj = {};
+    const obj = {
+      phoneOrGmail: object.phoneOrGmail,
+      password: object.password,
+    };
 
     // console.log(obj);
     const logintwo = await VerifyMessageAPI(Code, obj);

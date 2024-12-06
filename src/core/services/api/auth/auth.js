@@ -3,7 +3,10 @@ import instance from "../../interceptor";
 export const loginAPI = async (user) => {
   try {
     const response = await http.post("/sign/login", user);
-    return response;
+ 
+    // alert("message: " + response.data.message); 
+    console.log("response",response)
+    return response;s
   } catch (error) {
     return false;
   }

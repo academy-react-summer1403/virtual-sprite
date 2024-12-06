@@ -16,11 +16,11 @@ const ItemCourse = ({ dore, term, level, start, teacher,img,id,get}) => {
       <div className="w-[2.5%] ml-[5%] h-[40%] mt-[1.5%]">
         <img src={del} className="w-[100%] h-[100%] cursor-pointer" onClick={handleDelete}></img>
       </div>
-      <div className="w-[18%]   text-center ">{level}</div>
-      <div className="w-[17%]  text-center ">{start} </div>
-      <div className="w-[16%] text-center ">{term}</div>
-      <div className="w-[16%] text-center ">{teacher}</div>
-      <div className="w-[15%] text-center">{dore}</div>
+      <div className="w-[18%]   text-center truncate">{level}</div>
+      <div className="w-[17%]  text-center truncate">{start} </div>
+      <div className="w-[16%] text-center truncate">{term}</div>
+      <div className="w-[16%] text-center truncate">{teacher}</div>
+      <div className="w-[15%] text-center truncate">{dore}</div>
       <div className="w-[12%]">
         <img
           src={img}

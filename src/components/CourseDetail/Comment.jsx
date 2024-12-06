@@ -1,32 +1,28 @@
-import { useState, useEffect } from "react";
-import { Field, Form, Formik } from "formik";
-import { useParams } from "react-router-dom";
-import { FaRegComments } from "react-icons/fa";
 import heart from "@assets/images/CourseDetail/heart.svg";
 import whiteHeart from "@assets/images/CourseDetail/whiteHeart.svg";
-import { validationcomment } from "../../core/validations/CommentValid.jsx";
+import { Button, Modal, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button, Loader, Text } from "@mantine/core";
+import { Field, Form, Formik } from "formik";
+import { useEffect, useState } from "react";
 import {
   AddComment,
   GetCommentApi,
   GetReplyApi,
   PostReply,
 } from "../../core/services/api/courses/comment.js";
-import { Accordion } from "@mantine/core";
+import { validationcomment } from "../../core/validations/CommentValid.jsx";
+import CommentItemm from "./CommentItemm.jsx";
+
 const Comment = ({ detail }) => {
   const [comments, setComments] = useState([]);
   const [reply, setReply] = useState([]);
   const [loading, setLoading] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-
   const [isOpen, setIsOpen] = useState(false);
 
- 
   const toggleDiv = () => {
-    setIsOpen(!isOpen); 
+    setIsOpen(!isOpen);
   };
 
   const courseId = detail?.courseId;
@@ -115,12 +111,12 @@ const Comment = ({ detail }) => {
             <Field
               name="Title"
               placeholder="نام خود را وارد کنید"
-              className="h-[3rem] border-[1px] text-[font color 3] border-[#CFD8DC] w-[43rem] mb-[1rem] p-[1rem] text-[18px] bg-[#fff] rounded-[25px]"
+              className="h-[3rem] border-[1px] text-[font color 3] border-[#CFD8DC] w-[99%] mb-[1rem] p-[1rem] text-[18px] bg-[#fff] rounded-[25px]"
             />
             <Field
               name="Describe"
               placeholder="نظر خود را بنویسید"
-              className="h-[7rem] border-[1px] text-[font color 3] border-[#CFD8DC] w-[43rem] mb-[1rem] p-[1rem] text-[18px] bg-[#fff] rounded-[25px]"
+              className="h-[7rem] border-[1px] text-[font color 3] border-[#CFD8DC] w-[99%] mb-[1rem] p-[1rem] text-[18px] bg-[#fff] rounded-[25px]"
             />
             <button
               type="submit"
@@ -138,134 +134,17 @@ const Comment = ({ detail }) => {
         </Text>
       )}
 
-      {/* {loading ? (
-        <Loader color="blue" />
-      ) : ( */}
-      {comments.map((item, index) => (
-        <section
-          key={index}
-          className="flex flex-col w-[97%] m-auto mt-[30px] border-t"
-        >
-          <div className="w-[100%] h-[40px] flex justify-between mt-[10px]">
-            <div className="flex w-[30%]">
-              <img
-                src={item.pictureAddress}
-                className="border rounded-[100%] w-[40px] h-[40px] mt-[1%]"
-                alt="User"
-              />
-              <p className="leading-[48px] pr-1 text-[16px]">{item.title}</p>
-            </div>
-            <p className="text-[#607D8B] text-[14px] text-left leading-[48px]">
-              {item.insertDate}
-            </p>
-          </div>
-          <div className="w-[100%] text-[#455A64] text-right mt-[10px]">
-            {item.describe}
-          </div>
-          <div className="w-[100%] h-[30px] flex mt-[2%] cursor-pointer">
-            <img
-              src={detail.isUserFavorite ? heart : whiteHeart}
-              className="w-[20px] h-[20px]"
-              alt="Favorite"
-            />
-            <div className="flex mr-[10px] text-[14px] border text-[#455A64]">
-              <Modal
-                className="absolute right-0"
-                opened={opened}
-                onClose={close}
-                title="پاسخ دهید"
-                withCloseButton={false}
-              >
-                <Formik
-                  initialValues={{ Describe: "", Title: "" }}
-                  onSubmit={(values) => onSubmitReply(values, item.id)}
-                >
-                  <Form>
-                    <div className="flex flex-col">
-                      <Field
-                        name="Title"
-                        placeholder="نام خود را وارد کنید"
-                        className="h-[3rem] border-[1px] text-[font color 3] border-[#CFD8DC] w-[25rem] mb-[1rem] p-[1rem] text-[18px] bg-[#fff] rounded-[25px]"
-                      />
-                      <Field
-                        name="Describe"
-                        placeholder="نظر خود را بنویسید"
-                        className="h-[7rem] border-[1px] text-[font color 3] border-[#CFD8DC] w-[25rem] mb-[1rem] p-[1rem] text-[18px] bg-[#fff] rounded-[25px]"
-                      />
-                      <button
-                        type="submit"
-                        className="text-white w-[12rem] m-auto bg-[#2196F3] text-[1.2rem] mt-[1rem] rounded-[20px]"
-                      >
-                        ثبت نظرات
-                      </button>
-                    </div>
-                  </Form>
-                </Formik>
-              </Modal>
-              <Button onClick={open}>پاسخ دهید</Button>
-            </div>
-            <div
-              onClick={toggleDiv}
-              className="w-[80%] mr-[1%] mt-[1%] cursor-pointer text-left"
-            >
-              دیدن پاسخ ها
-              {isOpen && (
-                <div
-                  className="
-                    p-[20px] 
-                    bg-[#f1f1f1]
-                    mt-[10px]
-                  "
-                ></div>
-              )}
-              {/* <div>
-        <div 
-          onClick={() => handleToggle(1)} 
-          style={{ padding: '10px', background: '#ccc', cursor: 'pointer' }}
-        >
-      
-        </div>
-       
-          <div style={{ padding: '10px', background: '#f1f1f1' }}>
-               {reply.map((item, index) => ( <section
+      <div>
+        {comments.map((item, index) => (
+          <CommentItemm
             key={index}
-            className="flex flex-col w-[90%] m-auto mt-[30px] border-r"
-          >
-            <div className="w-[100%] h-[40px] flex justify-between mt-[10px]">
-              <div className="flex w-[30%]">
-                <img
-              src={item.pictureAddress}
-                  className="border rounded-[100%] w-[40px] h-[40px] mt-[1%]"
-               
-                />
-                <p className="leading-[48px] pr-1 text-[16px]">   {item.author}</p>
-              </div>
-              <p className="text-[#607D8B] text-[14px] text-left leading-[48px]">
-            {item.insertDate}
-              </p>
-            </div>
-            <div className="w-[100%] text-[#455A64] text-right mt-[10px]">
-       {item.describe}
-            </div>
-            <div className="w-[25%] h-[30px] flex mt-[2%] cursor-pointer">
-            <img
-                src={detail.isUserFavorite ? heart : whiteHeart}
-                className="w-[20px] h-[20px]"
-                alt="Favorite"
-              />
-              </div>
-  
-</section>
-  ))
-}
-          </div>
-      
-      </div> */}
-            </div>
-          </div>
-        </section>
-      ))}
-      {/* )} */}
+            item={item}
+            detail={detail}
+            comments={comments}
+            GetComment={GetComment}
+          />
+        ))}
+      </div>
     </div>
   );
 };

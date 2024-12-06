@@ -21,9 +21,9 @@ const ItemReserved = ({
         ></img>
       </div>
       <div className="w-[16%]  text-center ">{selectt}</div>
-      <div className="w-[16%]  text-center ">{start} </div>
+      <div className="w-[16%]  text-center truncate">{start} </div>
       <div className="w-[15%] text-center ">{term}</div>
-      <div className="w-[14%] text-center ">{teacher}</div>
+      <div className="w-[14%] text-center truncate">{teacher}</div>
       <div className="w-[14%] text-center truncate">{dore}</div>
       <div className="w-[12%]">
         <img

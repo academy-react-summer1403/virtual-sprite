@@ -24,8 +24,10 @@ const onError = (err) => {
   }
 
   if (err.response.status >= 400 && err.response.status < 500) {
-    alert("Client error: " + err.response.status);
+    alert("Client error: " + err.response.status); 	
   }
+
+  alert("Error Message: " + err.response.message);
 
   return Promise.reject(err);
 };

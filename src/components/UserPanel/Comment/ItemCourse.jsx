@@ -6,10 +6,10 @@ const ItemCourse = ({ dore, send, status, response, comment, img }) => {
         {/* <img  className="w-[100%] h-[100%]"></img> */}
       </div>
       {/* <div className="w-[17%]  text-center "> </div> */}
-      <div className="w-[25%] text-center ">{send}</div>
-      <div className="w-[17%]  text-center ">{response} </div>
-      <div className="w-[16%] text-center ">{comment}</div>
-      <div className="w-[15%] text-center">{dore}</div>
+      <div className="w-[25%] text-center truncate">{send}</div>
+      <div className="w-[17%]  text-center truncate">{response} </div>
+      <div className="w-[16%] text-center truncate">{comment}</div>
+      <div className="w-[15%] text-center truncate">{dore}</div>
       <div className="w-[10%]">
         <img
           src={img}

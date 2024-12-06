@@ -4,11 +4,11 @@ const ItemCurses = ({ dore, term, end, start, mony, teacher, img }) => {
   return (
     <div className="w-[95%] h-[65px] bg-[#fff] mt-[1%] m-auto rounded-[25px] flex justify-between text-[#22445D] text-[17px] leading-[60px]">
       <div className="w-[14%] text-center">  {mony}</div>
-      <div className="w-[16%]  text-center ">{end}</div>
-      <div className="w-[16%]  text-center ">{start}</div>
-      <div className="w-[15%] text-center "> {term}</div>
-      <div className="w-[14%] text-center "> {teacher}</div>
-      <div className="w-[14%] text-center"> {dore}</div>
+      <div className="w-[16%]  text-center truncate">{end}</div>
+      <div className="w-[16%]  text-center truncate">{start}</div>
+      <div className="w-[15%] text-center truncate"> {term}</div>
+      <div className="w-[14%] text-center truncate"> {teacher}</div>
+      <div className="w-[14%] text-center truncate"> {dore}</div>
       <div className="w-[12%]">
         <img
           src={img }

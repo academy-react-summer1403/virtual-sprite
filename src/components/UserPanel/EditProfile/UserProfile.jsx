@@ -16,19 +16,13 @@ const UserProfile = () => {
   }, []);
 
   const onSubmit = async (values) => {
-    console.log("values onsubmit",values);
+    console.log("values onsubmit", values);
     const formdata = new FormData();
     formdata.append("LName", values.lName);
     formdata.append("FName", values.fName);
     formdata.append("UserAbout", values.UserAbout);
-    formdata.append(
-      "LinkdinProfile",
-      "https://www.linkedin.com"
-    );
-    formdata.append(
-      "TelegramLink",
-      "https://t.me"
-    );
+    formdata.append("LinkdinProfile", "https://www.linkedin.com");
+    formdata.append("TelegramLink", "https://t.me");
     formdata.append("ReceiveMessageEvent", false);
     formdata.append("HomeAdderess", values.HomeAdderess);
     formdata.append("NationalCode", values.NationalCode);
@@ -36,9 +30,8 @@ const UserProfile = () => {
     formdata.append("BirthDay", values.BirthDay);
     formdata.append("Latitude", "0");
     formdata.append("Longitude", "0");
-  
+
     const editapi = await EditInfo(formdata);
-    
   };
   return (
     <>
@@ -59,7 +52,6 @@ const UserProfile = () => {
           gender: info.gender ? info.gender : "",
         }}
         onSubmit={onSubmit}
-
       >
         <Form>
           <div className="w-[90%] mt-[1%] mb-[2%] m-auto flex flex-col text-[#158B68] ">

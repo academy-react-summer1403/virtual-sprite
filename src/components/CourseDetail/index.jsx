@@ -19,7 +19,7 @@ import dislike1 from "@assets/images/CourseDetail/dislike1.svg";
 import Btn from "../common/Btn";
 import SimilarCourses from "./SimilarCourses";
 import { useState, useEffect } from "react";
-
+import { notifications } from "@mantine/notifications";
 import {
   Addcourse,
   Addfavorite,
@@ -71,6 +71,12 @@ const CourseDetail = () => {
     if (token) {
       const res = await Addcourse(obj);
       console.log("result add reserve", res);
+      if(res.message){
+        console.log("خطا",res.message);
+        notifications.show({
+          message:res.message,
+        })
+      }
     } else {
       console.log("توکن وجود ندارد");
     }
@@ -78,19 +84,24 @@ const CourseDetail = () => {
   const Addfavoriteapi = async () => {
     const obj = { courseId: id };
     if (token) {
+ 
       try {
         const res = await Addfavorite(obj);
         console.log("response", res);
-      } catch (error) {}
+        if (res.success) {
+          setIsFavorite(!isFavorite); // تغییر وضعیت علاقه‌مندی
+        }
+        if (res.message) {
+          notifications.show({ message: res.message });
+        }
+      } catch (error) {
+        notifications.show({ message: "خطا در اضافه کردن به علاقه‌مندی‌ها" });
+      }
+    } else {
+      console.log("توکن وجود ندارد");
     }
+  }
 
-    //   if (res) {
-    //     console.log("response", res);
-    //   }
-    // } else {
-    //   return <Notification>لطفا لاگین کنید</Notification>;
-    // }
-  };
 
   return (
     <div class="flex flex-row justify-center items-start p-4 bg-[#ffffffd7]">
@@ -112,7 +123,7 @@ const CourseDetail = () => {
                 مورد علاقه ها
                 <img
                   className="w-[25px] h-[25px] cursor-pointer"
-                  src={isFavorite ? fillHeart : whiteHeart}
+                  src={isFavorite ? heart : whiteHeart}
                 />
               </button>
               <div>

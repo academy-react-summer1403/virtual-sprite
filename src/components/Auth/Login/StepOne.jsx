@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { loginAPI } from "../../../core/services/api/auth/auth";
+import { notifications } from "@mantine/notifications";
 const StepOne = ({ setContent, setObject, close, step }) => {
   const loginUser = async (values) => {
     // console.log("click login");
@@ -11,34 +12,27 @@ const StepOne = ({ setContent, setObject, close, step }) => {
       rememberMe: true,
     };
 
-    console.log("step 1 object",userObj)
+    console.log("step 1 object", userObj);
     setObject(userObj);
-
-    const user = await loginAPI(userObj);
-    console.log("user result", user);
-
-    if (user.success) {
-      if (user.message.includes("موفقیت")) {
-        localStorage.setItem("token", user.token);
-        close();
-      } else if (user.message.includes("پیامک")) {
-        step();
-
-
-
+    // try {
+      const user = await loginAPI(userObj);
+      console.log("user result", user);
+if(user.message){
+  console.log("خطا",user.message);
+  notifications.show({
+    message:user.message,
+  })
+}
+      if (user.success) {
+        if (user.message.includes("موفقیت")) {
+          localStorage.setItem("token", user.token);
+          close();
+        } else if (user.message.includes("پیامک")) {
+          step();
+        }
       }
-    }
-
-    // if (user.token == null) {
-    //   step();
-    // } else if (user.token) {
-    //   if (user.message.includes("موفق")) {
-    //     localStorage.setItem("token", user.token);
-    //     console.log(user.token);
-    //   } else {
-    //     close();
-    //   }
-    //   close();
+    // } catch (err) {
+    //   console.log("خطا", err.response.data.ErrorMessage);
     // }
   };
 
@@ -46,10 +40,6 @@ const StepOne = ({ setContent, setObject, close, step }) => {
     const user = await getProfile();
     console.log(user);
   };
-  // useEffect(() => {
-  // loginUser();
-  // getProfileFunc();
-  // }, []);
 
   const validationSchema = Yup.object({
     emailMob: Yup.string().required(
@@ -137,7 +127,7 @@ const StepOne = ({ setContent, setObject, close, step }) => {
                         drop-shadow-[0_0_20px_rgba(0,0,0,0.2)]
                          border-none transition ease-in-out hover:scale-105 duration-[.3s] "
               >
-                ارسال کد
+                وارد شویید
               </button>
             </div>
             <div className="flex w-[43%] m-auto mt-[1%]  font-[yekanReg] font-normal ">

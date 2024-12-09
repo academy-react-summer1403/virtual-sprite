@@ -13,7 +13,8 @@ import { RxDashboard } from "react-icons/rx";
 import { CardMenu } from "./CardMenu";
 import { useNavigate } from "react-router-dom";
 import { FetchProfile } from "../../../../core/services/api/panel/Dashboard";
-
+import { useDispatch, useSelector } from "react-redux";
+import { handlepanel } from "../../../../redux/PanelSlice";
 const MenuPanel = () => {
   const [info, setInfo] = useState({});
 
@@ -39,12 +40,18 @@ const MenuPanel = () => {
   const getData = async () => {
     const result = await FetchProfile();
     console.log("result", result);
+
     setInfo(result);
   };
   useEffect(() => {
     getData();
   }, []);
-  console.log("detail", info);
+
+
+ 
+ 
+  const picture = useSelector((state)=>state.PanelSlice.pic);
+  console.log("pic",picture)
   return (
     <>
       <div
@@ -71,7 +78,7 @@ const MenuPanel = () => {
         "
         >
           <img
-            src={info.currentPictureAddress}
+            src={picture.puctureAddress}
             className="w-[100%] h-[100%] rounded-[100%] "
           ></img>
         </div>

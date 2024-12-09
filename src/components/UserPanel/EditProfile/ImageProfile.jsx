@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import picc from "../../../assets/images/panel/picc.png";
 import { FileInput } from "@mantine/core";
 import { Field, Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { handlepanel } from "../../../redux/PanelSlice";
 import {
   SelectImg,
   uploadImage,
@@ -20,6 +22,7 @@ const ImageProfile = () => {
       setImage(URL.createObjectURL(event.target.files[0]));
     }
   };
+  const dispatch = useDispatch();
   const handleSubmit = async () => {
     if (!selectedFile) {
       alert("فایل انتخاب کنید");
@@ -43,19 +46,32 @@ const ImageProfile = () => {
           // )
           result.success === true
         ) {
-          
           const images = response.userImage;
           const latestImg = images[images.length - 1];
           const profileFormData = new FormData();
           profileFormData.append("ImageId", latestImg.id);
           const res = await SelectImg(profileFormData);
           console.log("result select image", res);
+         
+          if (res.success === true) {
+          
+            dispatch(handlepanel(latestImg));
+          }
         }
+       
       }
     } catch (error) {
       console.error("خطا", error);
     }
   };
+
+  // dispatch(handlepanel(pic));
+  // useEffect(() => {
+  //   if (info.currentPictureAddress) {
+
+  //     dispatch(handlepanel(info.currentPictureAddress));
+  //   }
+  // }, [info, dispatch]);
   return (
     <Formik>
       <Form>
@@ -70,7 +86,10 @@ const ImageProfile = () => {
               className=" cursor-pointer mt-[3%] bg-[#A4F6DE] w-[70%] h-[20%] m-auto "
             >ویرایش عکس</button> */}
 
-          <img src={image} className="w-[80px] h-[80px] m-auto rounded-[100%] border" />
+          <img
+            src={image}
+            className="w-[80px] h-[80px] m-auto rounded-[100%] border"
+          />
           <input
             type="file"
             accept="image/*"

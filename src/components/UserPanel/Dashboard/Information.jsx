@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import { ItemInformation } from "./ItemInformation";
 import { useNavigate } from "react-router-dom";
 import { FetchProfile } from "../../../core/services/api/panel/Dashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { handlepanel } from "../../../redux/PanelSlice";
 const Information = () => {
   const [info, setInfo] = useState({});
 
   const getData = async () => {
     const result = await FetchProfile();
     setInfo(result);
+   
   };
   useEffect(() => {
     getData();
   }, []);
+
+
   const name = [
     { id: 1, name: "نام   ", value: info?.fName ? info?.fName : "" },
     { id: 2, name: ":تاریخ تولد", value: info?.birthDay ? info?.birthDay : "" },

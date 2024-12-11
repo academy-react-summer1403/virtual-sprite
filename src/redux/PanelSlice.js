@@ -5,7 +5,6 @@ const PanelSlice = createSlice({
     initialState:{pic:"",},
     reducers:{
         handlepanel:(state,action)=>{
-console.log("action",action);
 state.pic = action.payload;
         },
     },

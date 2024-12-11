@@ -52,26 +52,17 @@ const ImageProfile = () => {
           profileFormData.append("ImageId", latestImg.id);
           const res = await SelectImg(profileFormData);
           console.log("result select image", res);
-         
+
           if (res.success === true) {
-          
             dispatch(handlepanel(latestImg));
           }
         }
-       
       }
     } catch (error) {
       console.error("خطا", error);
     }
   };
 
-  // dispatch(handlepanel(pic));
-  // useEffect(() => {
-  //   if (info.currentPictureAddress) {
-
-  //     dispatch(handlepanel(info.currentPictureAddress));
-  //   }
-  // }, [info, dispatch]);
   return (
     <Formik>
       <Form>
@@ -79,12 +70,6 @@ const ImageProfile = () => {
           <div className="w-[100%] h-[23%] text-center text-[#22445D] leading-[50px] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
             عکس پروفایل
           </div>
-          {/* <img />
-            <Field type="file" name="file" onchange={handleImage} />
-            <button
-              onClick={handleApi}
-              className=" cursor-pointer mt-[3%] bg-[#A4F6DE] w-[70%] h-[20%] m-auto "
-            >ویرایش عکس</button> */}
 
           <img
             src={image}

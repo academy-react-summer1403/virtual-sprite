@@ -8,11 +8,13 @@ import {
   GetReplyApi,
   PostReply,
 } from "../../core/services/api/courses/comment.js";
-
+import { useDispatch, useSelector } from "react-redux";
+import { handlecomment } from "../../redux/CommentSlice.js";
+import CommentSlice from "../../redux/CommentSlice.js";
 const CommentItemm = ({ item, detail, comments, GetComment }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [replies, setReplies] = useState({});
-
+  const dispatch = useDispatch();
   const onSubmitReply = async (values, commentId) => {
     const formData = new FormData();
     formData.append("CommentId", commentId);
@@ -21,16 +23,35 @@ const CommentItemm = ({ item, detail, comments, GetComment }) => {
     formData.append("Describe", values?.Describe);
 
     try {
-      await PostReply(formData);
-      GetComment();
+    //  const replyapi = await PostReply(formData);
+    //   GetComment();
+    //   if(replyapi.success === true){
+    //     dispatch(handlecomment(formData));
+      
+    //   }
+    const replyapi = await PostReply(formData);
+    if (replyapi.success === true) {
+    
+      const newComment = {
+        commentId,
+        courseId: item.courseId,
+        title: values?.Title,
+        describe: values?.Describe,
+      };
+      dispatch(handlecomment(newComment)); 
+      GetComment(); 
+    }
     } catch (error) {
       console.error("Error submitting your reply. Please try again.");
     }
+   
   };
-
+const comment =useSelector (state => state.CommentSlice.comment);
+console.log("comment",comment)
   const getReplyForComment = async (commentId) => {
     try {
-      const result = await GetReplyApi(item.courseId, commentId);
+      const result = await GetReplyApi(detail.courseId, commentId);
+      console.log(`Replies for comment`, result);
       setReplies((prevReplies) => ({
         ...prevReplies,
         [commentId]: result,
@@ -39,6 +60,7 @@ const CommentItemm = ({ item, detail, comments, GetComment }) => {
       console.error("Error fetching replies:", error);
     }
   };
+  
 
   useEffect(() => {
     if (comments && comments.length > 0) {

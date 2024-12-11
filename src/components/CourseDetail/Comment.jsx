@@ -73,32 +73,32 @@ const Comment = ({ detail }) => {
     }
   }, [detail, courseId]);
 
-  const getreply = async () => {
-    try {
-      if (!comments || comments.length === 0) {
-        console.log("No comments available for replies.");
-        return;
-      }
+  // const getreply = async () => {
+  //   try {
+  //     if (!comments || comments.length === 0) {
+  //       console.log("No comments available for replies.");
+  //       return;
+  //     }
 
-      for (const comment of comments) {
-        console.log("Fetching replies for comment ID:", comment.id);
-        const result = await GetReplyApi(comment.courseId, comment.id);
-        console.log("Reply result:", result);
+  //     for (const comment of comments) {
+  //       console.log("Fetching replies for comment ID:", comment.id);
+  //       const result = await GetReplyApi(comment.courseId, comment.id);
+  //       console.log("Reply result:", result);
 
-        setReply((prevReplies) => [...prevReplies, ...result]);
-      }
-    } catch (error) {
-      console.error("Error fetching replies:", error);
-      setErrorMessage("Error fetching replies. Please try again later.");
-    }
-  };
-  useEffect(() => {
-    if (comments && comments.length > 0) {
-      getreply();
-    }
-  }, [comments]);
+  //       setReply((prevReplies) => [...prevReplies, ...result]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching replies:", error);
+  //     setErrorMessage("Error fetching replies. Please try again later.");
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (comments && comments.length > 0) {
+  //     getreply();
+  //   }
+  // }, [comments]);
 
-  console.log("reply", reply);
+  // console.log("reply", reply);
   return (
     <div className="flex flex-col">
       <Formik

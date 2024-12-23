@@ -26,9 +26,10 @@ const MyCourses = () => {
   return (
     <div className="w-[95%] h-[580px] mb-[2%] m-auto mt-[1%]  bg-[#FBF6F6] shadow-[10px_10px_5px_0_#00000029] rounded-[15px]">
       <div className="w-[100%]  h-[9%]  m-auto flex  leading-[60px] text-[#22445D] text-[20px] bg-[#A4F6DE] rounded-t-[15px]">
+      <div className="w-[13%] text-right">مدیریت </div>
         <div className="w-[18%]  text-center">وضعیت پرداخت</div>
-        <div className="w-[14%] text-center">تاریخ پایان</div>
-        <div className="w-[14%] text-center">تاریخ شروع</div>
+        <div className="w-[14%] text-left">تاریخ پایان</div>
+        <div className="w-[14%] text-left">تاریخ شروع</div>
         <div className="w-[13%] text-center">نام ترم</div>
         <div className="w-[13%] text-center">نام استاد</div>
         <div className="w-[13%] text-center">نام دوره</div>
@@ -46,6 +47,7 @@ const MyCourses = () => {
               end={item.lastUpdate}
               term={item.typeName }
               mony={item.paymentStatus}
+              cost={item.cost}
               key={index}
             />
           

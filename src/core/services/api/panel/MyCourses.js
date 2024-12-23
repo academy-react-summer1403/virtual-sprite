@@ -13,3 +13,14 @@ export const MyCoursesapi = async (
         return[];
     }
   };
+  export const payapi = async (formdata) => {
+   
+      try {
+        const result = await instance.post("/CoursePayment/StudentAddPeyment",formdata);
+    
+        return result;
+      } catch (error) {
+          console.log(error);
+          return[];
+      }
+    };
